@@ -5,13 +5,13 @@
   "height": 550,
   "layer": [
     {
-      "comment": "Layer 1: Static background court image isolated to a single dummy row for performance",
+      "comment": "Layer 1: Static background court PNG isolated to a single dummy row for performance",
       "data": {
         "values": [{}]
       },
       "mark": {
         "type": "image",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/1/1a/FIBA_basketball_court_diagram.png",
+        "url": "images/fiba_court.png",
         "width": 600,
         "height": 550
       },

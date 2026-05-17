@@ -3,79 +3,67 @@
   "description": "Spatial Shot Footprint super-imposed onto an NBL Basketball Court (2025-2026 Season).",
   "width": 600,
   "height": 550,
-  "data": {
-    "url": "data/nbl_shot_coordinates.csv"
-  },
-  "params": [
-    {
-      "name": "TeamFilter",
-      "select": {
-        "type": "point",
-        "fields": ["Team"]
-      },
-      "bind": {
-        "input": "select",
-        "options": [
-          null,
-          "Adelaide 36ers",
-          "Brisbane Bullets",
-          "Cairns Taipans",
-          "Illawarra Hawks",
-          "Melbourne United",
-          "New Zealand Breakers",
-          "Perth Wildcats",
-          "South East Melbourne Phoenix",
-          "Sydney Kings",
-          "Tasmania JackJumpers"
-        ],
-        "labels": [
-          "League-Wide Footprint",
-          "Adelaide 36ers",
-          "Brisbane Bullets",
-          "Cairns Taipans",
-          "Illawarra Hawks",
-          "Melbourne United",
-          "New Zealand Breakers",
-          "Perth Wildcats",
-          "South East Melbourne Phoenix",
-          "Sydney Kings",
-          "Tasmania JackJumpers"
-        ],
-        "name": "Isolate Team: "
-      }
-    }
-  ],
-  "encoding": {
-    "x": {
-      "field": "X",
-      "type": "quantitative",
-      "title": null,
-      "scale": {"domain": [0, 100]},
-      "axis": null
-    },
-    "y": {
-      "field": "Y",
-      "type": "quantitative",
-      "title": null,
-      "scale": {"domain": [0, 100]},
-      "axis": null
-    }
-  },
   "layer": [
     {
+      "comment": "Layer 1: Static background court image isolated to a single dummy row for performance",
+      "data": {
+        "values": [{}]
+      },
       "mark": {
         "type": "image",
         "url": "https://upload.wikimedia.org/wikipedia/commons/1/1a/Fiba_basketball_court_diagram.png",
-        "opacity": 1,
         "width": 600,
         "height": 550
       },
       "encoding": {
-        "x": {"datum": 0},
-        "y": {"datum": 0}
+        "x": {"datum": 0, "scale": {"domain": [0, 100]}, "axis": null},
+        "y": {"datum": 0, "scale": {"domain": [0, 100]}, "axis": null}
       }
     },
     {
+      "comment": "Layer 2: Real shot-tracking scatter data and franchise dropdown filtering",
+      "data": {
+        "url": "data/nbl_shot_coordinates.csv"
+      },
+      "params": [
+        {
+          "name": "TeamFilter",
+          "select": {
+            "type": "point",
+            "fields": ["Team"]
+          },
+          "bind": {
+            "input": "select",
+            "options": [
+              null,
+              "Adelaide 36ers",
+              "Brisbane Bullets",
+              "Cairns Taipans",
+              "Illawarra Hawks",
+              "Melbourne United",
+              "New Zealand Breakers",
+              "Perth Wildcats",
+              "South East Melbourne Phoenix",
+              "Sydney Kings",
+              "Tasmania JackJumpers"
+            ],
+            "labels": [
+              "League-Wide Footprint",
+              "Adelaide 36ers",
+              "Brisbane Bullets",
+              "Cairns Taipans",
+              "Illawarra Hawks",
+              "Melbourne United",
+              "New Zealand Breakers",
+              "Perth Wildcats",
+              "South East Melbourne Phoenix",
+              "Sydney Kings",
+              "Tasmania JackJumpers"
+            ],
+            "name": "Isolate Team: "
+          }
+        }
+      ],
       "transform": [
         {
           "filter": {"param": "TeamFilter"}
@@ -87,6 +75,16 @@
         "opacity": 0.4
       },
       "encoding": {
+        "x": {
+          "field": "X",
+          "type": "quantitative",
+          "scale": {"domain": [0, 100]}
+        },
+        "y": {
+          "field": "Y",
+          "type": "quantitative",
+          "scale": {"domain": [0, 100]}
+        },
         "color": {
           "field": "Shot_Outcome",
           "type": "nominal",

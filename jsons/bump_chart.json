@@ -1,21 +1,11 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "NBL Round-by-Round Position Tracking Bump Chart.",
-  "width": "container",
+  "width": 650,
   "height": 400,
   "data": {
     "url": "data/nbl_ladder_history.csv"
   },
-  "params": [
-    {
-      "name": "hover_team",
-      "select": {
-        "type": "point",
-        "fields": ["team_name"],
-        "on": "pointerover"
-      }
-    }
-  ],
   "encoding": {
     "x": {
       "field": "round_number",
@@ -42,6 +32,16 @@
   },
   "layer": [
     {
+      "params": [
+        {
+          "name": "hover_team",
+          "select": {
+            "type": "point",
+            "fields": ["team_name"],
+            "on": "pointerover"
+          }
+        }
+      ],
       "mark": {
         "type": "line",
         "strokeWidth": 3,

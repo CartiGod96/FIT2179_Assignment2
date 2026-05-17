@@ -1,8 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Spatial Shot Footprint of the NBL 2025-2026 Season",
-  "width": 550,
-  "height": 500,
+  "description": "Spatial Shot Footprint super-imposed onto an NBL Basketball Court (2025-2026 Season).",
+  "width": 600,
+  "height": 550,
   "data": {
     "url": "data/nbl_shot_coordinates.csv"
   },
@@ -45,44 +45,64 @@
       }
     }
   ],
-  "transform": [
-    {
-      "filter": {"param": "TeamFilter"}
-    }
-  ],
-  "mark": {
-    "type": "circle",
-    "size": 12,
-    "opacity": 0.4
-  },
   "encoding": {
     "x": {
       "field": "X",
       "type": "quantitative",
-      "title": "Court Width Axis (%)",
+      "title": null,
       "scale": {"domain": [0, 100]},
-      "axis": {"grid": false, "labels": false, "ticks": false}
+      "axis": null
     },
     "y": {
       "field": "Y",
       "type": "quantitative",
-      "title": "Court Length Axis (%)",
+      "title": null,
       "scale": {"domain": [0, 100]},
-      "axis": {"grid": false, "labels": false, "ticks": false}
-    },
-    "color": {
-      "field": "Shot_Type",
-      "type": "nominal",
-      "title": "Shot Classification",
-      "scale": {
-        "domain": ["2pt", "3pt"],
-        "range": ["#e74c3c", "#2ecc71"]
+      "axis": null
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "image",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/1/1a/Fiba_basketball_court_diagram.png",
+        "opacity": 1,
+        "width": 600,
+        "height": 550
+      },
+      "encoding": {
+        "x": {"datum": 0},
+        "y": {"datum": 0}
       }
     },
-    "tooltip": [
-      {"field": "Team", "type": "nominal"},
-      {"field": "Shot_Type", "type": "nominal", "title": "Type"},
-      {"field": "Sub_Type", "type": "nominal", "title": "Action"}
-    ]
-  }
+    {
+      "transform": [
+        {
+          "filter": {"param": "TeamFilter"}
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "size": 14,
+        "opacity": 0.4
+      },
+      "encoding": {
+        "color": {
+          "field": "Shot_Outcome",
+          "type": "nominal",
+          "title": "Shot Outcome",
+          "scale": {
+            "domain": ["Make", "Miss"],
+            "range": ["#00b4d8", "#dcdcdc"]
+          }
+        },
+        "tooltip": [
+          {"field": "Team", "type": "nominal"},
+          {"field": "Shot_Type", "type": "nominal", "title": "Value Class"},
+          {"field": "Sub_Type", "type": "nominal", "title": "Execution"},
+          {"field": "Shot_Outcome", "type": "nominal", "title": "Result"}
+        ]
+      }
+    }
+  ]
 }

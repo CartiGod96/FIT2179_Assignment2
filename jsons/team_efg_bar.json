@@ -1,33 +1,38 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Ranked Team Effective Field Goal Percentage Bar Chart with Benchmark Line.",
-  "width": 600,
-  "height": 380,
+  "description": "Ranked Team Effective Field Goal Percentage Bar Chart with Global Benchmark Line.",
+  "width": 500,
+  "height": 400,
   "data": {
     "url": "data/nbl-team-stats.csv"
   },
   "layer": [
     {
-      "comment": "Layer 1: Real-world team performance bars",
+      "comment": "Layer 1: Proportional team performance bars starting from a clean zero baseline",
       "mark": {
         "type": "bar",
         "cornerRadiusEnd": 4,
-        "color": "#2980b9"
+        "color": "#2980b9",
+        "height": 22
       },
       "encoding": {
         "x": {
           "field": "EffectiveFieldGoalPercentage",
           "type": "quantitative",
           "title": "Effective Field Goal % (eFG%)",
-          "scale": {"domain": [0.4, 0.6]},
-          "axis": {"format": "%"}
+          "scale": {"domain": [0, 0.65]},
+          "axis": {"format": "%", "grid": true}
         },
         "y": {
           "field": "Team",
           "type": "nominal",
-          "title": "Franchise",
+          "title": null,
           "sort": "-x",
-          "axis": {"grid": false}
+          "axis": {
+            "labelFontSize": 12,
+            "tickSize": 0,
+            "domain": false
+          }
         },
         "tooltip": [
           {"field": "Team", "type": "nominal"},
@@ -37,7 +42,7 @@
       }
     },
     {
-      "comment": "Layer 2: Calculated League Average Reference Line",
+      "comment": "Layer 2: Continuous Global League Average Line bypassing the Y-axis grouping",
       "mark": {
         "type": "rule",
         "color": "#e74c3c",
@@ -49,7 +54,8 @@
           "aggregate": "mean",
           "field": "EffectiveFieldGoalPercentage",
           "type": "quantitative"
-        }
+        },
+        "y": null
       }
     }
   ]

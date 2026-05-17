@@ -1,0 +1,77 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Interactive Team Offensive vs Defensive Points Per Possession Matrix",
+  "width": 550,
+  "height": 400,
+  "data": {
+    "url": "data/nbl-team-stats.csv"
+  },
+  "layer": [
+    {
+      "comment": "Layer 1: Net-Zero Efficiency Diagonal Baseline",
+      "data": {"values": [{"x": 1.0, "y": 1.0}, {"x": 1.3, "y": 1.3}]},
+      "mark": {
+        "type": "line",
+        "color": "#7f8c8d",
+        "strokeDash": [4, 4],
+        "strokeWidth": 1.5
+      },
+      "encoding": {
+        "x": {"field": "x", "type": "quantitative"},
+        "y": {"field": "y", "type": "quantitative"}
+      }
+    },
+    {
+      "comment": "Layer 2: Interactive Franchise Data Circles",
+      "params": [
+        {
+          "name": "team_hover",
+          "select": {
+            "type": "point",
+            "fields": ["Team"],
+            "on": "pointerover"
+          }
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "size": 160,
+        "cursor": "pointer"
+      },
+      "encoding": {
+        "x": {
+          "field": "PPP_Against",
+          "type": "quantitative",
+          "title": "Defensive Efficiency (Points Allowed / Possession)",
+          "scale": {"domain": [1.0, 1.3]}
+        },
+        "y": {
+          "field": "PPP",
+          "type": "quantitative",
+          "title": "Offensive Efficiency (Points Scored / Possession)",
+          "scale": {"domain": [1.0, 1.3]}
+        },
+        "color": {
+          "field": "Team",
+          "type": "nominal",
+          "title": "NBL Franchise",
+          "scale": {"scheme": "tableau10"}
+        },
+        "opacity": {
+          "condition": {
+            "param": "team_hover",
+            "value": 1,
+            "empty": true
+          },
+          "value": 0.2
+        },
+        "tooltip": [
+          {"field": "Team", "type": "nominal"},
+          {"field": "PPP", "type": "quantitative", "title": "Offensive PPP"},
+          {"field": "PPP_Against", "type": "quantitative", "title": "Defensive PPP"},
+          {"field": "WinPercentage", "type": "quantitative", "title": "Win Record", "format": ".1%"}
+        ]
+      }
+    }
+  ]
+}

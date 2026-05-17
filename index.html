@@ -7,7 +7,6 @@
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/grids-responsive-min.css">
-    
     <link rel="stylesheet" href="styles.css">
 
     <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
@@ -31,10 +30,7 @@
             <div class="pure-u-1 pure-u-md-1-3 text-container">
                 <h2>The Race to the Finals</h2>
                 <p class="narrative-p">
-                    A basketball season isn't won in a single round. Aggregated end-of-year standings often mask the chaotic shifts in momentum, injury crises, and tactical adjustments that teams undergo across a campaign.
-                </p>
-                <p class="narrative-p">
-                    This interactive bump chart tracks the round-by-round trajectory of the ladder rankings. <strong>Hover over any team's line</strong> to isolate their path and filter out league noise to witness their competitive velocity.
+                    This interactive bump chart tracks the round-by-round trajectory of the ladder rankings. <strong>Hover over any team's line</strong> to isolate their path and witness their competitive velocity.
                 </p>
             </div>
             <div class="pure-u-1 pure-u-md-2-3 vis-container">
@@ -42,14 +38,42 @@
             </div>
         </section>
 
-        <div id="map-section-placeholder"></div>
+        <section class="pure-g row-align">
+            <div class="pure-u-1 pure-u-md-2-3 vis-container">
+                <div id="map_home_court" class="chart-box"></div>
+            </div>
+            <div class="pure-u-1 pure-u-md-1-3 text-container">
+                <h2>The Home Court Fortress</h2>
+                <p class="narrative-p">
+                    Playing in the NBL requires brutal transcontinental travel. Here, we project stadium footprints across Australia. 
+                </p>
+                <p class="narrative-p">
+                    <strong>The circle sizes represent stadium capacities</strong>, contrasting massive metropolitan hubs against smaller regional environments.
+                </p>
+            </div>
+        </section>
+
+        <section class="pure-g row-align">
+            <div class="pure-u-1 pure-u-md-1-3 text-container">
+                <h2>Player Offensive Profiles</h2>
+                <p class="narrative-p">
+                    Who are the true offensive anchors of the season? This visualization maps player workloads against scoring output.
+                </p>
+                <p class="narrative-p">
+                    Use the **dropdown menu** below the chart to filter the league by team to isolate specific roster performance metrics.
+                </p>
+            </div>
+            <div class="pure-u-1 pure-u-md-2-3 vis-container"></div>
+                <div id="player_scatter" class="chart-box"></div>
+            </div>
+        </section>
+
     </div>
 
     <script>
-        var spec1 = "jsons/bump_chart.json";
-        vegaEmbed('#bump_chart', spec1, {"actions": false}).then(function(result) {
-            // Embed finalized successfully
-        }).catch(console.error);
+        vegaEmbed('#bump_chart', "jsons/bump_chart.json", {"actions": false}).catch(console.error);
+        vegaEmbed('#map_home_court', "jsons/map_home_court.json", {"actions": false}).catch(console.error);
+        vegaEmbed('#player_scatter', "jsons/player_scatter.json", {"actions": false}).catch(console.error);
     </script>
 </body>
 </html>

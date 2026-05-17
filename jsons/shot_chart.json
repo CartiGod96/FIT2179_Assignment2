@@ -5,7 +5,7 @@
   "height": 430,
   "layer": [
     {
-      "comment": "Layer 1: Horizontal background court image scaled to standard dimensions",
+      "comment": "Layer 1: Background court image centered at (50,50) to perfectly align with full-court data scales",
       "data": {
         "values": [{}]
       },
@@ -16,12 +16,12 @@
         "height": 430
       },
       "encoding": {
-        "x": {"datum": 0, "scale": {"domain": [0, 100]}, "axis": null},
-        "y": {"datum": 0, "scale": {"domain": [0, 100]}, "axis": null}
+        "x": {"datum": 50, "scale": {"domain": [0, 100]}, "axis": null},
+        "y": {"datum": 50, "scale": {"domain": [0, 100]}, "axis": null}
       }
     },
     {
-      "comment": "Layer 2: Real shot-tracking scatter data mapped to horizontal coordinates",
+      "comment": "Layer 2: Real shot-tracking scatter data mapped lockstep to the same 0-100 grid",
       "data": {
         "url": "data/nbl_shot_coordinates.csv"
       },
@@ -72,7 +72,7 @@
       "mark": {
         "type": "circle",
         "size": 14,
-        "opacity": 0.4
+        "opacity": 0.45
       },
       "encoding": {
         "x": {

@@ -1,19 +1,19 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Spatial Shot Footprint super-imposed onto an NBL Basketball Court (2025-2026 Season).",
-  "width": 600,
-  "height": 550,
+  "description": "Spatial Shot Footprint on a Horizontal Basketball Court Layout.",
+  "width": 800,
+  "height": 430,
   "layer": [
     {
-      "comment": "Layer 1: Static background court PNG isolated to a single dummy row for performance",
+      "comment": "Layer 1: Horizontal background court image scaled to standard dimensions",
       "data": {
         "values": [{}]
       },
       "mark": {
         "type": "image",
         "url": "images/fiba_court.png",
-        "width": 600,
-        "height": 550
+        "width": 800,
+        "height": 430
       },
       "encoding": {
         "x": {"datum": 0, "scale": {"domain": [0, 100]}, "axis": null},
@@ -21,7 +21,7 @@
       }
     },
     {
-      "comment": "Layer 2: Real shot-tracking scatter data and franchise dropdown filtering",
+      "comment": "Layer 2: Real shot-tracking scatter data mapped to horizontal coordinates",
       "data": {
         "url": "data/nbl_shot_coordinates.csv"
       },
@@ -78,12 +78,14 @@
         "x": {
           "field": "X",
           "type": "quantitative",
-          "scale": {"domain": [0, 100]}
+          "scale": {"domain": [0, 100]},
+          "axis": null
         },
         "y": {
           "field": "Y",
           "type": "quantitative",
-          "scale": {"domain": [0, 100]}
+          "scale": {"domain": [0, 100]},
+          "axis": null
         },
         "color": {
           "field": "Shot_Outcome",

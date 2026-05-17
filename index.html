@@ -68,12 +68,28 @@
             </div>
         </section>
 
+        <section class="pure-g row-align">
+            <div class="pure-u-1 pure-u-md-2-3 vis-container">
+                <div id="shot_chart" class="chart-box"></div>
+            </div>
+            <div class="pure-u-1 pure-u-md-1-3 text-container">
+                <h2>The Geometry of Shot Selection</h2>
+                <p class="narrative-p">
+                    Where do teams hunt their points? Modern basketball strategy emphasizes maximizing efficiency by focusing heavily on high-value shots: deep three-pointers or high-percentage attempts right at the rim.
+                </p>
+                <p class="narrative-p">
+                    This spatial scatter plot renders thousands of individual real-world shot locations. Notice how the data naturally maps out the physical curves of the three-point arc. Use the <strong>dropdown selector</strong> to compare how team shot distributions change between different franchises.
+                </p>
+            </div>
+        </section>
+
     </div>
 
     <script>
         vegaEmbed('#bump_chart', "jsons/bump_chart.json", {"actions": false}).catch(console.error);
         vegaEmbed('#map_home_court', "jsons/map_home_court.json", {"actions": false}).catch(console.error);
         vegaEmbed('#player_scatter', "jsons/player_scatter.json", {"actions": false}).catch(console.error);
+        vegaEmbed('#shot_chart', "jsons/shot_chart.json", {"actions": false}).catch(console.error);
     </script>
 </body>
 </html>

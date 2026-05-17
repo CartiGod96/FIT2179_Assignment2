@@ -1,0 +1,88 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Spatial Shot Footprint of the NBL 2025-2026 Season",
+  "width": 550,
+  "height": 500,
+  "data": {
+    "url": "data/nbl_shot_coordinates.csv"
+  },
+  "params": [
+    {
+      "name": "TeamFilter",
+      "select": {
+        "type": "point",
+        "fields": ["Team"]
+      },
+      "bind": {
+        "input": "select",
+        "options": [
+          null,
+          "Adelaide 36ers",
+          "Brisbane Bullets",
+          "Cairns Taipans",
+          "Illawarra Hawks",
+          "Melbourne United",
+          "New Zealand Breakers",
+          "Perth Wildcats",
+          "South East Melbourne Phoenix",
+          "Sydney Kings",
+          "Tasmania JackJumpers"
+        ],
+        "labels": [
+          "League-Wide Footprint",
+          "Adelaide 36ers",
+          "Brisbane Bullets",
+          "Cairns Taipans",
+          "Illawarra Hawks",
+          "Melbourne United",
+          "New Zealand Breakers",
+          "Perth Wildcats",
+          "South East Melbourne Phoenix",
+          "Sydney Kings",
+          "Tasmania JackJumpers"
+        ],
+        "name": "Isolate Team: "
+      }
+    }
+  ],
+  "transform": [
+    {
+      "filter": {"param": "TeamFilter"}
+    }
+  ],
+  "mark": {
+    "type": "circle",
+    "size": 12,
+    "opacity": 0.4
+  },
+  "encoding": {
+    "x": {
+      "field": "X",
+      "type": "quantitative",
+      "title": "Court Width Axis (%)",
+      "scale": {"domain": [0, 100]},
+      "axis": {"grid": false, "labels": false, "ticks": false}
+    },
+    "y": {
+      "field": "Y",
+      "type": "quantitative",
+      "title": "Court Length Axis (%)",
+      "scale": {"domain": [0, 100]},
+      "axis": {"grid": false, "labels": false, "ticks": false}
+    },
+    "color": {
+      "field": "Shot_Type",
+      "type": "nominal",
+      "title": "Shot Classification",
+      "scale": {
+        "domain": ["2pt", "3pt"],
+        "range": ["#e74c3c", "#2ecc71"]
+      }
+    },
+    "tooltip": [
+      {"field": "Team", "type": "nominal"},
+      {"field": "Shot_Type", "type": "nominal", "title": "Type"},
+      {"field": "Sub_Type", "type": "nominal", "title": "Action"}
+    ]
+  }
+}

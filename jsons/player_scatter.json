@@ -1,0 +1,84 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "NBL Player Offensive Efficiency Scatter Plot",
+  "width": 600,
+  "height": 400,
+  "data": {
+    "url": "data/nbl-player-stats.csv"
+  },
+  "params": [
+    {
+      "name": "TeamSelect",
+      "select": {
+        "type": "point",
+        "fields": ["team_name"]
+      },
+      "bind": {
+        "input": "select",
+        "options": [
+          null,
+          "Adelaide 36ers",
+          "Brisbane Bullets",
+          "Cairns Taipans",
+          "Illawarra Hawks",
+          "Melbourne United",
+          "New Zealand Breakers",
+          "Perth Wildcats",
+          "South East Melbourne Phoenix",
+          "Sydney Kings",
+          "Tasmania JackJumpers"
+        ],
+        "labels": [
+          "Show All Teams",
+          "Adelaide 36ers",
+          "Brisbane Bullets",
+          "Cairns Taipans",
+          "Illawarra Hawks",
+          "Melbourne United",
+          "New Zealand Breakers",
+          "Perth Wildcats",
+          "South East Melbourne Phoenix",
+          "Sydney Kings",
+          "Tasmania JackJumpers"
+        ],
+        "name": "Filter Franchise: "
+      }
+    }
+  ],
+  "transform": [
+    {
+      "filter": {"param": "TeamSelect"}
+    }
+  ],
+  "mark": {
+    "type": "circle",
+    "size": 100,
+    "opacity": 0.75
+  },
+  "encoding": {
+    "x": {
+      "field": "assists",
+      "type": "quantitative",
+      "title": "Total Assists (AST)",
+      "axis": {"grid": true}
+    },
+    "y": {
+      "field": "points",
+      "type": "quantitative",
+      "title": "Total Points Scored (PTS)",
+      "axis": {"grid": true}
+    },
+    "color": {
+      "field": "team_name",
+      "type": "nominal",
+      "title": "Team",
+      "scale": {"scheme": "tableau10"}
+    },
+    "tooltip": [
+      {"field": "player_name", "type": "nominal", "title": "Player"},
+      {"field": "team_name", "type": "nominal", "title": "Team"},
+      {"field": "points", "type": "quantitative", "title": "Points"},
+      {"field": "assists", "type": "quantitative", "title": "Assists"}
+    ]
+  }
+}

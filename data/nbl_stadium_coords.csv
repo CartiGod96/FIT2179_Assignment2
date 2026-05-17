@@ -1,11 +1,11 @@
-"Team,Latitude,Longitude,Stadium,Capacity"
-"Adelaide,-34.9064,138.5775,Adelaide Entertainment Centre,10000"
-"Brisbane,-27.3431,153.0678,Brisbane Entertainment Centre,14500"
-"Cairns,-16.9272,145.7711,Cairns Convention Centre,5300"
-"Illawarra,-34.4262,150.9014,WIN Entertainment Centre,6000"
-"Melbourne,-37.8226,144.9834,John Cain Arena,10500"
-"New Zealand,-36.8475,174.7772,Spark Arena,12000"
-"Perth,-31.9472,115.8503,RAC Arena,14500"
-"South East Melbourne,-37.8226,144.9834,John Cain Arena,10500"
-"Sydney,-33.8456,151.0611,Qudos Bank Arena,18000"
-"Tasmania,-42.8361,147.2889,MyState Bank Arena,4300"
+"Team","Latitude","Longitude","Stadium","Capacity"
+"Adelaide",-34.9064,138.5775,"Adelaide Entertainment Centre",10000
+"Brisbane",-27.3431,153.0678,"Brisbane Entertainment Centre",14500
+"Cairns",-16.9272,145.7711,"Cairns Convention Centre",5300
+"Illawarra",-34.4262,150.9014,"WIN Entertainment Centre",6000
+"Melbourne",-37.8226,144.9834,"John Cain Arena",10500
+"New Zealand",-36.8475,174.7772,"Spark Arena",12000
+"Perth",-31.9472,115.8503,"RAC Arena",14500
+"South East Melbourne",-37.8226,144.9834,"John Cain Arena",10500
+"Sydney",-33.8456,151.0611,"Qudos Bank Arena",18000
+"Tasmania",-42.8361,147.2889,"MyState Bank Arena",4300

@@ -11,7 +11,7 @@
       "name": "TeamSelect",
       "select": {
         "type": "point",
-        "fields": ["team_name"]
+        "fields": ["Team"]
       },
       "bind": {
         "input": "select",
@@ -53,32 +53,34 @@
   "mark": {
     "type": "circle",
     "size": 100,
-    "opacity": 0.75
+    "opacity": 0.75,
+    "cursor": "pointer"
   },
   "encoding": {
     "x": {
-      "field": "assists",
+      "field": "Assists_A",
       "type": "quantitative",
-      "title": "Total Assists (AST)",
+      "title": "Average Assists per Game (AST)",
       "axis": {"grid": true}
     },
     "y": {
-      "field": "points",
+      "field": "Points_A",
       "type": "quantitative",
-      "title": "Total Points Scored (PTS)",
+      "title": "Average Points Scored per Game (PTS)",
       "axis": {"grid": true}
     },
     "color": {
-      "field": "team_name",
+      "field": "Team",
       "type": "nominal",
       "title": "Team",
       "scale": {"scheme": "tableau10"}
     },
     "tooltip": [
-      {"field": "player_name", "type": "nominal", "title": "Player"},
-      {"field": "team_name", "type": "nominal", "title": "Team"},
-      {"field": "points", "type": "quantitative", "title": "Points"},
-      {"field": "assists", "type": "quantitative", "title": "Assists"}
+      {"field": "Player", "type": "nominal", "title": "Player"},
+      {"field": "Team", "type": "nominal", "title": "Team"},
+      {"field": "Points_A", "type": "quantitative", "title": "Points/Game"},
+      {"field": "Assists_A", "type": "quantitative", "title": "Assists/Game"},
+      {"field": "Minutes_A", "type": "quantitative", "title": "Mins/Game", "format": ".1f"}
     ]
   }
 }

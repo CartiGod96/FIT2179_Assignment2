@@ -2,21 +2,21 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "NBL Stadium Map Projection",
   "width": 600,
-  "height": 400,
+  "height": 450,
   "projection": {
-    "type": "equirectangular"
+    "type": "mercator"
   },
   "layer": [
     {
       "data": {
-        "url": "https://raw.githubusercontent.com/tonywr71/GeoJson-Data/master/australia-states.json",
+        "url": "https://raw.githubusercontent.com/rowanhogan/australian-states/master/states.geojson",
         "format": {"type": "json"}
       },
       "mark": {
         "type": "geoshape",
         "fill": "#eaeaea",
         "stroke": "#ffffff",
-        "strokeWidth": 1
+        "strokeWidth": 1.5
       }
     },
     {

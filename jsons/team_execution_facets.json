@@ -1,69 +1,68 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Faceted Team Offensive Structural Production Matrix (Charts 7 & 8)",
+  "description": "Faceted Player Playmaking and Physical Execution Matrix",
   "data": {
-    "url": "data/nbl-team-stats.csv"
+    "url": "data/nbl-player-stats.csv"
   },
+  "transform": [
+    {"filter": "datum.MinutesPlayed > 100"}
+  ],
   "hconcat": [
     {
       "width": 240,
       "height": 360,
-      "title": "Transition: Fast Break vs Giveaways",
-      "mark": {"type": "point", "size": 100, "filled": true},
+      "title": "Transition: Assists vs Turnovers",
+      "mark": {"type": "circle", "size": 60, "opacity": 0.6},
       "encoding": {
         "x": {
           "field": "Turnovers",
           "type": "quantitative",
-          "title": "Season Turnovers",
-          "scale": {"zero": false}
+          "title": "Season Turnovers"
         },
         "y": {
-          "field": "PointsFastBreak",
+          "field": "Assists",
           "type": "quantitative",
-          "title": "Fast Break Points",
-          "scale": {"zero": false}
+          "title": "Season Assists"
         },
         "color": {
-          "field": "Team",
+          "field": "Position",
           "type": "nominal",
-          "legend": null,
-          "scale": {"scheme": "tableau10"}
+          "scale": {"scheme": "dark2"}
         },
         "tooltip": [
+          {"field": "PlayerName", "type": "nominal", "title": "Player"},
           {"field": "Team", "type": "nominal"},
-          {"field": "PointsFastBreak", "type": "quantitative", "title": "Fast Break Points"},
-          {"field": "Turnovers", "type": "quantitative", "title": "Turnovers"}
+          {"field": "Assists", "type": "quantitative"},
+          {"field": "Turnovers", "type": "quantitative"}
         ]
       }
     },
     {
       "width": 240,
       "height": 360,
-      "title": "Interior: Paint Dominance vs Second Chances",
-      "mark": {"type": "point", "size": 100, "filled": true},
+      "title": "Interior: Rebounding Dominance",
+      "mark": {"type": "circle", "size": 60, "opacity": 0.6},
       "encoding": {
         "x": {
-          "field": "PointsInThePaint",
+          "field": "OffensiveRebounds",
           "type": "quantitative",
-          "title": "Points In Paint",
-          "scale": {"zero": false}
+          "title": "Offensive Rebounds"
         },
         "y": {
-          "field": "PointsSecondChance",
+          "field": "DefensiveRebounds",
           "type": "quantitative",
-          "title": "Second Chance Points",
-          "scale": {"zero": false}
+          "title": "Defensive Rebounds"
         },
         "color": {
-          "field": "Team",
+          "field": "Position",
           "type": "nominal",
-          "title": "Franchise",
-          "scale": {"scheme": "tableau10"}
+          "scale": {"scheme": "dark2"}
         },
         "tooltip": [
+          {"field": "PlayerName", "type": "nominal", "title": "Player"},
           {"field": "Team", "type": "nominal"},
-          {"field": "PointsInThePaint", "type": "quantitative", "title": "Points In Paint"},
-          {"field": "PointsSecondChance", "type": "quantitative", "title": "2nd Chance Points"}
+          {"field": "OffensiveRebounds", "type": "quantitative", "title": "O-Reb"},
+          {"field": "DefensiveRebounds", "type": "quantitative", "title": "D-Reb"}
         ]
       }
     }

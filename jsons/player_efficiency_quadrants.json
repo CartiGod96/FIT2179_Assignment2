@@ -8,10 +8,6 @@
   },
   "transform": [
     {
-      "calculate": "datum.Points / (2 * (datum.FieldGoalsAttempted + 0.44 * datum.FreeThrowsAttempted))",
-      "as": "TrueShootingPercentage"
-    },
-    {
       "calculate": "datum.Assists / max(datum.Turnovers, 1)",
       "as": "AssistToTurnoverRatio"
     },
@@ -19,7 +15,7 @@
   ],
   "layer": [
     {
-      "mark": {"type": "circle", "opacity": 0.6, "size": 60},
+      "mark": {"type": "circle", "opacity": 0.6, "size": 70},
       "encoding": {
         "x": {
           "field": "AssistToTurnoverRatio",
@@ -28,24 +24,24 @@
           "scale": {"domain": [0, 4]}
         },
         "y": {
-          "field": "TrueShootingPercentage",
+          "field": "ThreePointPercentage",
           "type": "quantitative",
-          "title": "True Shooting Percentage (TS%)",
-          "axis": {"format": "%"},
-          "scale": {"domain": [0.3, 0.7]}
+          "title": "Three-Point Shooting Accuracy",
+          "scale": {"domain": [0, 0.6]},
+          "axis": {"format": "%"}
         },
-        "color": {"field": "Position", "type": "nominal", "scale": {"scheme": "dark2"}},
+        "color": {"field": "Position", "type": "nominal", "scale": {"scheme": "category10"}},
         "tooltip": [
           {"field": "PlayerName", "type": "nominal", "title": "Player"},
           {"field": "Team", "type": "nominal"},
-          {"field": "TrueShootingPercentage", "type": "quantitative", "title": "TS%", "format": ".1%"},
+          {"field": "ThreePointPercentage", "type": "quantitative", "title": "3PT %", "format": ".1%"},
           {"field": "AssistToTurnoverRatio", "type": "quantitative", "title": "AST/TO Ratio", "format": ".2f"}
         ]
       }
     },
     {
       "mark": {"type": "rule", "color": "#7f8c8d", "strokeDash": [4, 4]},
-      "encoding": {"y": {"datum": 0.52}}
+      "encoding": {"y": {"datum": 0.35}}
     },
     {
       "mark": {"type": "rule", "color": "#7f8c8d", "strokeDash": [4, 4]},

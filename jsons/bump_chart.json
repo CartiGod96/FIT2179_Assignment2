@@ -1,50 +1,46 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "NBL Round-by-Round Position Tracking Bump Chart.",
-  "width": 650,
+  "width": "container",
   "height": 400,
   "data": {
     "url": "data/nbl_ladder_history.csv"
   },
+  "params": [
+    {
+      "name": "legend_select",
+      "select": {"type": "point", "fields": ["team_name"]},
+      "bind": "legend"
+    },
+    {
+      "name": "hover_team",
+      "select": {
+        "type": "point",
+        "fields": ["team_name"],
+        "on": "pointerover"
+      }
+    }
+  ],
   "encoding": {
     "x": {
       "field": "round_number",
       "type": "ordinal",
       "title": "Competition Round",
-      "axis": {
-        "labelAngle": 0,
-        "grid": true
-      }
+      "axis": {"labelAngle": 0, "grid": true}
     },
     "y": {
       "field": "rank",
       "type": "quantitative",
       "title": "Ladder Position",
-      "scale": {
-        "reverse": true,
-        "domain": [1, 10]
-      },
-      "axis": {
-        "tickMinStep": 1,
-        "values": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-      }
+      "scale": {"reverse": true, "domain": [1, 10]},
+      "axis": {"tickMinStep": 1, "values": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
     }
   },
   "layer": [
     {
-      "params": [
-        {
-          "name": "hover_team",
-          "select": {
-            "type": "point",
-            "fields": ["team_name"],
-            "on": "pointerover"
-          }
-        }
-      ],
       "mark": {
         "type": "line",
-        "strokeWidth": 3,
+        "strokeWidth": 4,
         "interpolate": "monotone"
       },
       "encoding": {
@@ -56,39 +52,28 @@
         },
         "opacity": {
           "condition": {
-            "param": "hover_team",
-            "value": 1,
-            "empty": true
+            "test": "legend_select.team_name === undefined || indata('legend_select', 'team_name', datum.team_name)",
+            "value": 1
           },
-          "value": 0.15
+          "value": 0.1
         }
       }
     },
     {
-      "mark": {
-        "type": "point",
-        "size": 60,
-        "filled": true
-      },
+      "mark": {"type": "point", "size": 70, "filled": true},
       "encoding": {
-        "color": {
-          "field": "team_name",
-          "type": "nominal",
-          "legend": null
-        },
+        "color": {"field": "team_name", "type": "nominal", "legend": null},
         "opacity": {
           "condition": {
-            "param": "hover_team",
-            "value": 1,
-            "empty": true
+            "test": "legend_select.team_name === undefined || indata('legend_select', 'team_name', datum.team_name)",
+            "value": 1
           },
-          "value": 0.15
+          "value": 0.1
         },
         "tooltip": [
-          {"field": "round_number", "type": "ordinal", "title": "Round"},
           {"field": "team_name", "type": "nominal", "title": "Team"},
-          {"field": "rank", "type": "quantitative", "title": "Rank"},
-          {"field": "win_percentage", "type": "quantitative", "title": "Win %", "format": ".1%"}
+          {"field": "round_number", "type": "ordinal", "title": "Round"},
+          {"field": "rank", "type": "quantitative", "title": "Rank"}
         ]
       }
     }

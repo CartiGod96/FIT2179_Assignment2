@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "NBL Player Offensive Efficiency Scatter Plot",
-  "width": 600,
+  "width": "container",
   "height": 400,
   "data": {
     "url": "data/nbl-player-stats.csv"
@@ -9,10 +9,7 @@
   "params": [
     {
       "name": "TeamSelect",
-      "select": {
-        "type": "point",
-        "fields": ["Team"]
-      },
+      "select": {"type": "point", "fields": ["Team"]},
       "bind": {
         "input": "select",
         "options": [
@@ -46,41 +43,39 @@
     }
   ],
   "transform": [
-    {
-      "filter": {"param": "TeamSelect"}
-    }
+    {"filter": {"param": "TeamSelect"}},
+    {"filter": "datum.Minutes_A > 5"}
   ],
-  "mark": {
-    "type": "circle",
-    "size": 100,
-    "opacity": 0.75,
-    "cursor": "pointer"
-  },
+  "mark": {"type": "circle", "opacity": 0.7, "cursor": "pointer"},
   "encoding": {
     "x": {
       "field": "Assists_A",
       "type": "quantitative",
-      "title": "Average Assists per Game (AST)",
-      "axis": {"grid": true}
+      "title": "Average Assists per Game (AST)"
     },
     "y": {
       "field": "Points_A",
       "type": "quantitative",
-      "title": "Average Points Scored per Game (PTS)",
-      "axis": {"grid": true}
+      "title": "Average Points Scored per Game (PTS)"
+    },
+    "size": {
+      "field": "Minutes_A",
+      "type": "quantitative",
+      "title": "Minutes/Game",
+      "scale": {"range": [30, 250]}
     },
     "color": {
       "field": "Team",
       "type": "nominal",
-      "title": "Team",
+      "title": "Franchise",
       "scale": {"scheme": "tableau10"}
     },
     "tooltip": [
-      {"field": "Player", "type": "nominal", "title": "Player"},
-      {"field": "Team", "type": "nominal", "title": "Team"},
-      {"field": "Points_A", "type": "quantitative", "title": "Points/Game"},
-      {"field": "Assists_A", "type": "quantitative", "title": "Assists/Game"},
-      {"field": "Minutes_A", "type": "quantitative", "title": "Mins/Game", "format": ".1f"}
+      {"field": "Player", "type": "nominal"},
+      {"field": "Team", "type": "nominal"},
+      {"field": "Points_A", "type": "quantitative", "title": "PPG"},
+      {"field": "Assists_A", "type": "quantitative", "title": "APG"},
+      {"field": "Minutes_A", "type": "quantitative", "title": "MPG"}
     ]
   }
 }

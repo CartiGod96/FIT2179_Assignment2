@@ -7,7 +7,11 @@
   "transform": [
     {"filter": "datum.Minutes_A > 10"},
     {"filter": "datum.FIC > 0"},
-    {"filter": "datum.PIE > 0"}
+    {"filter": "datum.PIE > 0"},
+    {
+      "calculate": "datum.EffectiveFieldGoalPercentage / 100",
+      "as": "eFG_Decimal"
+    }
   ],
   "hconcat": [
     {
@@ -47,10 +51,11 @@
       "mark": {"type": "circle", "size": 60, "opacity": 0.6},
       "encoding": {
         "x": {
-          "field": "EffectiveFieldGoalPercentage",
+          "field": "eFG_Decimal",
           "type": "quantitative",
           "title": "Effective Field Goal % (eFG%)",
-          "axis": {"format": "%"}
+          "axis": {"format": "%"},
+          "scale": {"domain": [0.3, 0.7]}
         },
         "y": {
           "field": "PIE",
@@ -66,7 +71,7 @@
         "tooltip": [
           {"field": "Player", "type": "nominal"},
           {"field": "Team", "type": "nominal"},
-          {"field": "EffectiveFieldGoalPercentage", "type": "quantitative", "title": "eFG%", "format": ".1%"},
+          {"field": "EffectiveFieldGoalPercentage", "type": "quantitative", "title": "eFG% Original"},
           {"field": "PIE", "type": "quantitative", "title": "PIE Rating"}
         ]
       }

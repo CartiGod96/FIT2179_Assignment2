@@ -18,12 +18,14 @@
         "x": {
           "field": "ARR",
           "type": "quantitative",
-          "title": "Advanced Rim Recovery / Position Index (ARR)"
+          "title": "Advanced Rim Recovery / Position Index (ARR)",
+          "scale": {"domain": [0, 4]}
         },
         "y": {
           "field": "Blocks_A",
           "type": "quantitative",
-          "title": "Blocks per Game"
+          "title": "Blocks per Game",
+          "scale": {"domain": [0, 2.5]}
         },
         "color": {
           "field": "Team",
@@ -42,12 +44,12 @@
     {
       "comment": "Median League Baseline for Blocks",
       "mark": {"type": "rule", "color": "#7f8c8d", "strokeDash": [4, 4]},
-      "encoding": {"y": {"datum": 0.5}}
+      "encoding": {"y": {"datum": 0.4}}
     },
     {
-      "comment": "Median League Baseline for ARR",
+      "comment": "Adjusted Median Baseline for ARR to cut cleanly through the true data domain",
       "mark": {"type": "rule", "color": "#7f8c8d", "strokeDash": [4, 4]},
-      "encoding": {"x": {"datum": 10}}
+      "encoding": {"x": {"datum": 1.5}}
     }
   ]
 }

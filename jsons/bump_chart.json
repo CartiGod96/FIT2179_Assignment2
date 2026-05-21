@@ -8,7 +8,7 @@
   },
   "params": [
     {
-      "name": "legend_select",
+      "name": "bump_legend_select",
       "select": {"type": "point", "fields": ["team_name"]},
       "bind": "legend"
     }
@@ -45,7 +45,7 @@
         },
         "opacity": {
           "condition": {
-            "param": "legend_select",
+            "param": "bump_legend_select",
             "value": 1
           },
           "value": 0.12
@@ -59,7 +59,7 @@
         "color": {"field": "team_name", "type": "nominal", "legend": null},
         "opacity": {
           "condition": {
-            "param": "legend_select",
+            "param": "bump_legend_select",
             "value": 1
           },
           "value": 0.12

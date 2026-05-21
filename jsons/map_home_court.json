@@ -1,11 +1,18 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "NBL Stadium Map Projection",
-  "width": 600,
+  "description": "NBL Stadium Map Projection with Unique Legend Selection",
+  "width": "container",
   "height": 450,
   "projection": {
     "type": "mercator"
   },
+  "params": [
+    {
+      "name": "map_legend_select",
+      "select": {"type": "point", "fields": ["Team"]},
+      "bind": "legend"
+    }
+  ],
   "layer": [
     {
       "data": {
@@ -25,8 +32,7 @@
       },
       "mark": {
         "type": "circle",
-        "opacity": 0.85,
-        "color": "#e67e22"
+        "cursor": "pointer"
       },
       "encoding": {
         "longitude": {"field": "Longitude", "type": "quantitative"},
@@ -35,12 +41,22 @@
           "field": "Capacity",
           "type": "quantitative",
           "title": "Stadium Capacity",
-          "scale": {"domain": [4000, 20000], "range": [100, 800]}
+          "scale": {"domain": [4000, 20000], "range": [80, 600]}
+        },
+        "color": {
+          "field": "Team",
+          "type": "nominal",
+          "title": "Franchise",
+          "scale": {"scheme": "tableau10"}
+        },
+        "opacity": {
+          "condition": {"param": "map_legend_select", "value": 0.9},
+          "value": 0.15
         },
         "tooltip": [
-          {"field": "Team", "type": "nominal", "title": "Franchise"},
-          {"field": "Stadium", "type": "nominal", "title": "Home Court"},
-          {"field": "Capacity", "type": "quantitative", "title": "Capacity", "format": ","}
+          {"field": "Stadium", "type": "nominal"},
+          {"field": "Team", "type": "nominal", "title": "Home Franchise"},
+          {"field": "Capacity", "type": "quantitative", "title": "Seating Capacity", "format": ","}
         ]
       }
     }

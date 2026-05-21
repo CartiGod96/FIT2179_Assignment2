@@ -1,0 +1,71 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Faceted Team Offensive Structural Production Matrix (Charts 7 & 8)",
+  "data": {
+    "url": "data/nbl-team-stats.csv"
+  },
+  "hconcat": [
+    {
+      "width": 240,
+      "height": 360,
+      "title": "Transition: Fast Break vs Giveaways",
+      "mark": {"type": "point", "size": 100, "filled": true},
+      "encoding": {
+        "x": {
+          "field": "Turnovers",
+          "type": "quantitative",
+          "title": "Season Turnovers",
+          "scale": {"zero": false}
+        },
+        "y": {
+          "field": "PointsFastBreak",
+          "type": "quantitative",
+          "title": "Fast Break Points",
+          "scale": {"zero": false}
+        },
+        "color": {
+          "field": "Team",
+          "type": "nominal",
+          "legend": null,
+          "scale": {"scheme": "tableau10"}
+        },
+        "tooltip": [
+          {"field": "Team", "type": "nominal"},
+          {"field": "PointsFastBreak", "type": "quantitative", "title": "Fast Break Points"},
+          {"field": "Turnovers", "type": "quantitative", "title": "Turnovers"}
+        ]
+      }
+    },
+    {
+      "width": 240,
+      "height": 360,
+      "title": "Interior: Paint Dominance vs Second Chances",
+      "mark": {"type": "point", "size": 100, "filled": true},
+      "encoding": {
+        "x": {
+          "field": "PointsInThePaint",
+          "type": "quantitative",
+          "title": "Points In Paint",
+          "scale": {"zero": false}
+        },
+        "y": {
+          "field": "PointsSecondChance",
+          "type": "quantitative",
+          "title": "Second Chance Points",
+          "scale": {"zero": false}
+        },
+        "color": {
+          "field": "Team",
+          "type": "nominal",
+          "title": "Franchise",
+          "scale": {"scheme": "tableau10"}
+        },
+        "tooltip": [
+          {"field": "Team", "type": "nominal"},
+          {"field": "PointsInThePaint", "type": "quantitative", "title": "Points In Paint"},
+          {"field": "PointsSecondChance", "type": "quantitative", "title": "2nd Chance Points"}
+        ]
+      }
+    }
+  ]
+}

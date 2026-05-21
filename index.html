@@ -86,6 +86,36 @@
             </div>
         </section>
 
+        <section class="pure-g row-align">
+            <div class="pure-u-1 pure-u-md-1-3 text-container">
+                <h2>Play-by-Play Tactical Vectors</h2>
+                <p class="narrative-p">This side-by-side dashboard dissects raw play-by-play execution. The left facet traces transition safety, isolating ball care against breakaway points, while the right facet evaluates inside physical execution via second-chance putbacks.</p>
+            </div>
+            <div class="pure-u-1 pure-u-md-2-3 vis-container">
+                <div id="execution_facets" class="chart-box"></div>
+            </div>
+        </section>
+
+        <section class="pure-g row-align">
+            <div class="pure-u-1 pure-u-md-2-3 vis-container">
+                <div id="margin_diverging" class="chart-box"></div>
+            </div>
+            <div class="pure-u-1 pure-u-md-1-3 text-container">
+                <h2>The Absolute Flow Index</h2>
+                <p class="narrative-p">By applying mathematical transformations to raw seasonal points against total matchups, this custom diverging metric displays a team's true net game dominance. Teams anchored to the right actively dictate the flow of the league.</p>
+            </div>
+        </section>
+
+        <section class="pure-g row-align">
+            <div class="pure-u-1 pure-u-md-1-3 text-container">
+                <h2>The True Shooting Threshold Matrix</h2>
+                <p class="narrative-p">An advanced multi-dimensional profile mapping <strong>True Shooting Percentage (TS%)</strong> directly against individual assist security. The crosshairs reflect strict median league averages, organizing the league into clear developmental and superstar quadrants.</p>
+            </div>
+            <div class="pure-u-1 pure-u-md-2-3 vis-container">
+                <div id="efficiency_quadrants" class="chart-box"></div>
+            </div>
+        </section>
+
     </div>
 
     <script>
@@ -95,6 +125,9 @@
         vegaEmbed('#team_efg_bar', "jsons/team_efg_bar.json", {"actions": false}).catch(console.error);
         vegaEmbed('#team_ppp_scatter', "jsons/team_ppp_scatter.json", {"actions": false}).catch(console.error);
         vegaEmbed('#shot_chart', "jsons/shot_chart.json", {"actions": false}).catch(console.error);
+        vegaEmbed('#execution_facets', "jsons/team_execution_facets.json", {"actions": false}).catch(console.error);
+        vegaEmbed('#margin_diverging', "jsons/team_margin_diverging.json", {"actions": false}).catch(console.error);
+        vegaEmbed('#efficiency_quadrants', "jsons/player_efficiency_quadrants.json", {"actions": false}).catch(console.error);
     </script>
 </body>
 </html>

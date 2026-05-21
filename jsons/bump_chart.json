@@ -11,14 +11,6 @@
       "name": "legend_select",
       "select": {"type": "point", "fields": ["team_name"]},
       "bind": "legend"
-    },
-    {
-      "name": "hover_team",
-      "select": {
-        "type": "point",
-        "fields": ["team_name"],
-        "on": "pointerover"
-      }
     }
   ],
   "encoding": {
@@ -38,6 +30,7 @@
   },
   "layer": [
     {
+      "comment": "Layer 1: Continuous Franchise Lines",
       "mark": {
         "type": "line",
         "strokeWidth": 4,
@@ -52,23 +45,24 @@
         },
         "opacity": {
           "condition": {
-            "test": "legend_select.team_name === undefined || indata('legend_select', 'team_name', datum.team_name)",
+            "param": "legend_select",
             "value": 1
           },
-          "value": 0.1
+          "value": 0.12
         }
       }
     },
     {
+      "comment": "Layer 2: Interactive Round Node Anchors",
       "mark": {"type": "point", "size": 70, "filled": true},
       "encoding": {
         "color": {"field": "team_name", "type": "nominal", "legend": null},
         "opacity": {
           "condition": {
-            "test": "legend_select.team_name === undefined || indata('legend_select', 'team_name', datum.team_name)",
+            "param": "legend_select",
             "value": 1
           },
-          "value": 0.1
+          "value": 0.12
         },
         "tooltip": [
           {"field": "team_name", "type": "nominal", "title": "Team"},

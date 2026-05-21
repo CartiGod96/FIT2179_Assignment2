@@ -8,11 +8,17 @@
   },
   "params": [
     {
-      "name": "bump_legend_select",
+      "name": "bump_chart_signal",
       "select": {"type": "point", "fields": ["team_name"]},
       "bind": "legend"
     }
   ],
+  "mark": {
+    "type": "line",
+    "strokeWidth": 4,
+    "interpolate": "monotone",
+    "point": {"size": 70, "filled": true}
+  },
   "encoding": {
     "x": {
       "field": "round_number",
@@ -26,50 +32,24 @@
       "title": "Ladder Position",
       "scale": {"reverse": true, "domain": [1, 10]},
       "axis": {"tickMinStep": 1, "values": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
-    }
-  },
-  "layer": [
-    {
-      "comment": "Layer 1: Continuous Franchise Lines",
-      "mark": {
-        "type": "line",
-        "strokeWidth": 4,
-        "interpolate": "monotone"
-      },
-      "encoding": {
-        "color": {
-          "field": "team_name",
-          "type": "nominal",
-          "title": "NBL Franchise",
-          "scale": {"scheme": "tableau10"}
-        },
-        "opacity": {
-          "condition": {
-            "param": "bump_legend_select",
-            "value": 1
-          },
-          "value": 0.12
-        }
-      }
     },
-    {
-      "comment": "Layer 2: Interactive Round Node Anchors",
-      "mark": {"type": "point", "size": 70, "filled": true},
-      "encoding": {
-        "color": {"field": "team_name", "type": "nominal", "legend": null},
-        "opacity": {
-          "condition": {
-            "param": "bump_legend_select",
-            "value": 1
-          },
-          "value": 0.12
-        },
-        "tooltip": [
-          {"field": "team_name", "type": "nominal", "title": "Team"},
-          {"field": "round_number", "type": "ordinal", "title": "Round"},
-          {"field": "rank", "type": "quantitative", "title": "Rank"}
-        ]
-      }
-    }
-  ]
+    "color": {
+      "field": "team_name",
+      "type": "nominal",
+      "title": "NBL Franchise",
+      "scale": {"scheme": "tableau10"}
+    },
+    "opacity": {
+      "condition": {
+        "param": "bump_chart_signal",
+        "value": 1
+      },
+      "value": 0.15
+    },
+    "tooltip": [
+      {"field": "team_name", "type": "nominal", "title": "Team"},
+      {"field": "round_number", "type": "ordinal", "title": "Round"},
+      {"field": "rank", "type": "quantitative", "title": "Rank"}
+    ]
+  }
 }

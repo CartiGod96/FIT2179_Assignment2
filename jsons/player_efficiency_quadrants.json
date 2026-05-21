@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Advanced Player Performance Quadrants",
+  "description": "Advanced Player Performance Quadrants (Chart 10)",
   "width": 500,
   "height": 380,
   "data": {
@@ -8,10 +8,10 @@
   },
   "transform": [
     {
-      "calculate": "datum.Assists / max(datum.Turnovers, 1)",
+      "calculate": "datum.Assists_A / max(datum.Turnovers_A, 0.5)",
       "as": "AssistToTurnoverRatio"
     },
-    {"filter": "datum.MinutesPlayed > 100"}
+    {"filter": "datum.Minutes_A > 10"}
   ],
   "layer": [
     {
@@ -20,7 +20,7 @@
         "x": {
           "field": "AssistToTurnoverRatio",
           "type": "quantitative",
-          "title": "Playmaking Security (Assists / Turnovers)",
+          "title": "Playmaking Security (Assists / Turnovers Ratio)",
           "scale": {"domain": [0, 4]}
         },
         "y": {
@@ -30,9 +30,13 @@
           "scale": {"domain": [0, 0.6]},
           "axis": {"format": "%"}
         },
-        "color": {"field": "Position", "type": "nominal", "scale": {"scheme": "category10"}},
+        "color": {
+          "field": "Team",
+          "type": "nominal",
+          "scale": {"scheme": "tableau10"}
+        },
         "tooltip": [
-          {"field": "PlayerName", "type": "nominal", "title": "Player"},
+          {"field": "Player", "type": "nominal"},
           {"field": "Team", "type": "nominal"},
           {"field": "ThreePointPercentage", "type": "quantitative", "title": "3PT %", "format": ".1%"},
           {"field": "AssistToTurnoverRatio", "type": "quantitative", "title": "AST/TO Ratio", "format": ".2f"}

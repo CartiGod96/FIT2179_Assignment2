@@ -1,55 +1,53 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Advanced Player Performance Quadrants (Chart 10)",
+  "description": "Advanced Defensive Performance and Rim Protection Quadrants (Chart 10)",
   "width": 500,
-  "height": 380,
+  "height": 350,
+  "autosize": "fit",
   "data": {
     "url": "data/nbl-player-stats.csv"
   },
   "transform": [
-    {
-      "calculate": "datum.Assists_A / max(datum.Turnovers_A, 0.5)",
-      "as": "AssistToTurnoverRatio"
-    },
-    {"filter": "datum.Minutes_A > 10"}
+    {"filter": "datum.Minutes_A > 10"},
+    {"filter": "datum.ARR > 0"}
   ],
   "layer": [
     {
-      "mark": {"type": "circle", "opacity": 0.6, "size": 70},
+      "mark": {"type": "circle", "opacity": 0.6, "size": 75},
       "encoding": {
         "x": {
-          "field": "AssistToTurnoverRatio",
+          "field": "ARR",
           "type": "quantitative",
-          "title": "Playmaking Security (Assists / Turnovers Ratio)",
-          "scale": {"domain": [0, 4]}
+          "title": "Advanced Rim Recovery / Position Index (ARR)"
         },
         "y": {
-          "field": "ThreePointPercentage",
+          "field": "Blocks_A",
           "type": "quantitative",
-          "title": "Three-Point Shooting Accuracy",
-          "scale": {"domain": [0, 0.6]},
-          "axis": {"format": "%"}
+          "title": "Blocks per Game"
         },
         "color": {
           "field": "Team",
           "type": "nominal",
-          "scale": {"scheme": "tableau10"}
+          "scale": {"scheme": "tableau10"},
+          "legend": {"columns": 2, "orient": "right", "title": "Franchise"}
         },
         "tooltip": [
           {"field": "Player", "type": "nominal"},
           {"field": "Team", "type": "nominal"},
-          {"field": "ThreePointPercentage", "type": "quantitative", "title": "3PT %", "format": ".1%"},
-          {"field": "AssistToTurnoverRatio", "type": "quantitative", "title": "AST/TO Ratio", "format": ".2f"}
+          {"field": "Blocks_A", "type": "quantitative", "title": "Blocks per Game"},
+          {"field": "ARR", "type": "quantitative", "title": "ARR Rating"}
         ]
       }
     },
     {
+      "comment": "Median League Baseline for Blocks",
       "mark": {"type": "rule", "color": "#7f8c8d", "strokeDash": [4, 4]},
-      "encoding": {"y": {"datum": 0.35}}
+      "encoding": {"y": {"datum": 0.5}}
     },
     {
+      "comment": "Median League Baseline for ARR",
       "mark": {"type": "rule", "color": "#7f8c8d", "strokeDash": [4, 4]},
-      "encoding": {"x": {"datum": 1.5}}
+      "encoding": {"x": {"datum": 10}}
     }
   ]
 }

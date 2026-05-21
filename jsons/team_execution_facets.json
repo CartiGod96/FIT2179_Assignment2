@@ -1,28 +1,30 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Faceted Player Playmaking and Physical Execution Matrix (Charts 7 & 8)",
+  "description": "Faceted Player Total Floor Impact and Impact Estimate Matrix (Charts 7 & 8)",
   "data": {
     "url": "data/nbl-player-stats.csv"
   },
   "transform": [
-    {"filter": "datum.Minutes_A > 10"}
+    {"filter": "datum.Minutes_A > 10"},
+    {"filter": "datum.FIC > 0"},
+    {"filter": "datum.PIE > 0"}
   ],
   "hconcat": [
     {
-      "width": 240,
-      "height": 360,
-      "title": "Transition: Fast Break vs Giveaways",
+      "width": 220,
+      "height": 340,
+      "title": "Floor Value: Minutes vs Total FIC",
       "mark": {"type": "circle", "size": 60, "opacity": 0.6},
       "encoding": {
         "x": {
-          "field": "Turnovers_A",
+          "field": "Minutes_A",
           "type": "quantitative",
-          "title": "Turnovers per Game"
+          "title": "Minutes per Game"
         },
         "y": {
-          "field": "PointsFastBreak_A",
+          "field": "FIC",
           "type": "quantitative",
-          "title": "Fast Break Points per Game"
+          "title": "Floor Impact Counter (FIC)"
         },
         "color": {
           "field": "Team",
@@ -33,26 +35,27 @@
         "tooltip": [
           {"field": "Player", "type": "nominal"},
           {"field": "Team", "type": "nominal"},
-          {"field": "PointsFastBreak_A", "type": "quantitative", "title": "Fast Break PPG"},
-          {"field": "Turnovers_A", "type": "quantitative", "title": "Turnovers/Game"}
+          {"field": "FIC", "type": "quantitative", "title": "FIC Index"},
+          {"field": "Minutes_A", "type": "quantitative", "title": "Minutes/G"}
         ]
       }
     },
     {
-      "width": 240,
-      "height": 360,
-      "title": "Interior: Paint Points vs Second Chances",
+      "width": 220,
+      "height": 340,
+      "title": "Game Swing: True Shot % vs Player Impact",
       "mark": {"type": "circle", "size": 60, "opacity": 0.6},
       "encoding": {
         "x": {
-          "field": "PointsInThePaint_A",
+          "field": "EffectiveFieldGoalPercentage",
           "type": "quantitative",
-          "title": "Paint Points per Game"
+          "title": "Effective Field Goal % (eFG%)",
+          "axis": {"format": "%"}
         },
         "y": {
-          "field": "PointsSecondChance_A",
+          "field": "PIE",
           "type": "quantitative",
-          "title": "2nd Chance Points per Game"
+          "title": "Player Impact Estimate (PIE)"
         },
         "color": {
           "field": "Team",
@@ -63,8 +66,8 @@
         "tooltip": [
           {"field": "Player", "type": "nominal"},
           {"field": "Team", "type": "nominal"},
-          {"field": "PointsInThePaint_A", "type": "quantitative", "title": "Paint PPG"},
-          {"field": "PointsSecondChance_A", "type": "quantitative", "title": "2nd Chance PPG"}
+          {"field": "EffectiveFieldGoalPercentage", "type": "quantitative", "title": "eFG%", "format": ".1%"},
+          {"field": "PIE", "type": "quantitative", "title": "PIE Rating"}
         ]
       }
     }

@@ -5,7 +5,7 @@
   "data": [
     {
       "name": "raw",
-      "url": "data/nbl-player-stats.csv",
+      "url": "nbl-player-stats.csv",
       "format": {"type": "csv", "parse": "auto"},
       "transform": [
         {

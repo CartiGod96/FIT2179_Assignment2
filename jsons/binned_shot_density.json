@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Clean, volume-filtered court grid with an underlaid background structure.",
+  "description": "Clean, volume-filtered court grid underlaid properly beneath clear court markings.",
   "width": 800,
   "height": 430,
   "layer": [
@@ -13,9 +13,9 @@
           "bind": {
             "input": "select",
             "options": [
-              null, "Adelaide 36ers", "Brisbane Bullets", "Cairns Taipans", "Illawarra Hawks",
-              "Melbourne United", "New Zealand Breakers", "Perth Wildcats",
-              "South East Melbourne Phoenix", "Sydney Kings", "Tasmania JackJumpers"
+              null, "Adelaide", "Brisbane", "Cairns", "Illawarra",
+              "Melbourne", "New Zealand", "Perth",
+              "South East Melbourne", "Sydney", "Tasmania"
             ],
             "labels": [
               "League-Wide Density (Show All)", "Adelaide 36ers", "Brisbane Bullets", "Cairns Taipans", "Illawarra Hawks",
@@ -47,7 +47,7 @@
       "mark": {
         "type": "rect",
         "filled": true,
-        "opacity": 0.35
+        "opacity": 0.75
       },
       "encoding": {
         "x": { "field": "binned_x", "type": "quantitative", "scale": {"domain": [0, 100]}, "axis": null },
@@ -70,10 +70,16 @@
     },
     {
       "data": { "values": [{}] },
-      "mark": { "type": "image", "url": "images/fiba_court_flat.png", "width": 800, "height": 430 },
+      "mark": { 
+        "type": "image", 
+        "url": "images/fiba_court_flat.png", 
+        "width": 800, 
+        "height": 430,
+        "opacity": 0.4
+      },
       "encoding": {
-        "x": {"datum": 50, "axis": null},
-        "y": {"datum": 50, "axis": null}
+        "x": {"datum": 50, "scale": {"domain": [0, 100]}, "axis": null},
+        "y": {"datum": 50, "scale": {"domain": [0, 100]}, "axis": null}
       }
     }
   ],

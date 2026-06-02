@@ -1,41 +1,27 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "NBL Stadium Map Projection with Unique Layer Selection",
+  "description": "NBL Stadium Map Projection",
   "width": "container",
   "height": 450,
-  "projection": {
-    "type": "mercator"
-  },
+  "projection": { "type": "mercator" },
   "layer": [
     {
-      "comment": "Layer 1: Static background geographic context",
       "data": {
         "url": "https://raw.githubusercontent.com/rowanhogan/australian-states/master/states.geojson",
         "format": {"type": "json"}
       },
-      "mark": {
-        "type": "geoshape",
-        "fill": "#eaeaea",
-        "stroke": "#ffffff",
-        "strokeWidth": 1.5
-      }
+      "mark": { "type": "geoshape", "fill": "#eaeaea", "stroke": "#ffffff", "strokeWidth": 1.5 }
     },
     {
-      "comment": "Layer 2: Interactive metrics explicitly encapsulating the unique map signal",
-      "data": {
-        "url": "data/nbl_stadium_coords.csv"
-      },
+      "data": { "url": "data/nbl_stadium_coords.csv" },
       "params": [
         {
-          "name": "isolated_map_signal",
+          "name": "map_chart_exclusive_signal",
           "select": {"type": "point", "fields": ["Team"]},
           "bind": "legend"
         }
       ],
-      "mark": {
-        "type": "circle",
-        "cursor": "pointer"
-      },
+      "mark": { "type": "circle", "cursor": "pointer" },
       "encoding": {
         "longitude": {"field": "Longitude", "type": "quantitative"},
         "latitude": {"field": "Latitude", "type": "quantitative"},
@@ -52,7 +38,7 @@
           "scale": {"scheme": "tableau10"}
         },
         "opacity": {
-          "condition": {"param": "isolated_map_signal", "value": 0.9},
+          "condition": {"param": "map_chart_exclusive_signal", "value": 0.9},
           "value": 0.15
         },
         "tooltip": [

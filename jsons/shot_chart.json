@@ -5,101 +5,49 @@
   "height": 430,
   "layer": [
     {
-      "comment": "Layer 1: Background court image centered at (50,50) to perfectly align with full-court data scales",
-      "data": {
-        "values": [{}]
-      },
-      "mark": {
-        "type": "image",
-        "url": "images/fiba_court_flat.png",
-        "width": 800,
-        "height": 430
-      },
+      "data": { "values": [{}] },
+      "mark": { "type": "image", "url": "images/fiba_court_flat.png", "width": 800, "height": 430 },
       "encoding": {
         "x": {"datum": 50, "scale": {"domain": [0, 100]}, "axis": null},
         "y": {"datum": 50, "scale": {"domain": [0, 100]}, "axis": null}
       }
     },
     {
-      "comment": "Layer 2: Real shot-tracking scatter data mapped lockstep to the same 0-100 grid",
-      "data": {
-        "url": "data/nbl_shot_coordinates.csv"
-      },
+      "data": { "url": "data/nbl_shot_coordinates.csv" },
       "params": [
         {
-          "name": "TeamFilter",
-          "select": {
-            "type": "point",
-            "fields": ["Team"]
-          },
+          "name": "shot_chart_exclusive_dropdown_signal",
+          "select": { "type": "point", "fields": ["Team"] },
           "bind": {
             "input": "select",
             "options": [
-              null,
-              "Adelaide 36ers",
-              "Brisbane Bullets",
-              "Cairns Taipans",
-              "Illawarra Hawks",
-              "Melbourne United",
-              "New Zealand Breakers",
-              "Perth Wildcats",
-              "South East Melbourne Phoenix",
-              "Sydney Kings",
-              "Tasmania JackJumpers"
+              null, "Adelaide 36ers", "Brisbane Bullets", "Cairns Taipans", "Illawarra Hawks",
+              "Melbourne United", "New Zealand Breakers", "Perth Wildcats",
+              "South East Melbourne Phoenix", "Sydney Kings", "Tasmania JackJumpers"
             ],
             "labels": [
-              "League-Wide Footprint",
-              "Adelaide 36ers",
-              "Brisbane Bullets",
-              "Cairns Taipans",
-              "Illawarra Hawks",
-              "Melbourne United",
-              "New Zealand Breakers",
-              "Perth Wildcats",
-              "South East Melbourne Phoenix",
-              "Sydney Kings",
-              "Tasmania JackJumpers"
+              "League-Wide Footprint (Show All)", "Adelaide 36ers", "Brisbane Bullets", "Cairns Taipans", "Illawarra Hawks",
+              "Melbourne United", "New Zealand Breakers", "Perth Wildcats",
+              "South East Melbourne Phoenix", "Sydney Kings", "Tasmania JackJumpers"
             ],
-            "name": "Isolate Team: "
+            "name": "Isolate Team Profile: "
           }
         }
       ],
-      "transform": [
-        {
-          "filter": {"param": "TeamFilter"}
-        }
-      ],
-      "mark": {
-        "type": "circle",
-        "size": 14,
-        "opacity": 0.45
-      },
+      "transform": [ { "filter": {"param": "shot_chart_exclusive_dropdown_signal"} } ],
+      "mark": { "type": "circle", "size": 14, "opacity": 0.45 },
       "encoding": {
-        "x": {
-          "field": "X",
-          "type": "quantitative",
-          "scale": {"domain": [0, 100]},
-          "axis": null
-        },
-        "y": {
-          "field": "Y",
-          "type": "quantitative",
-          "scale": {"domain": [0, 100]},
-          "axis": null
-        },
+        "x": { "field": "X", "type": "quantitative", "scale": {"domain": [0, 100]}, "axis": null },
+        "y": { "field": "Y", "type": "quantitative", "scale": {"domain": [0, 100]}, "axis": null },
         "color": {
           "field": "Shot_Outcome",
           "type": "nominal",
           "title": "Shot Outcome",
-          "scale": {
-            "domain": ["Make", "Miss"],
-            "range": ["#00b4d8", "#dcdcdc"]
-          }
+          "scale": { "domain": ["Make", "Miss"], "range": ["#00b4d8", "#dcdcdc"] }
         },
         "tooltip": [
           {"field": "Team", "type": "nominal"},
           {"field": "Shot_Type", "type": "nominal", "title": "Value Class"},
-          {"field": "Sub_Type", "type": "nominal", "title": "Execution"},
           {"field": "Shot_Outcome", "type": "nominal", "title": "Result"}
         ]
       }

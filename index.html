@@ -27,70 +27,53 @@
         <hr class="divider">
         <header class="pure-g">
             <div class="pure-u-1 block-center-left">
-                <h2 class="section-title">1. The Competitive Landscape & Geographic Footprint</h2>
+                <h2 class="section-title">1. Ranks and Geography</h2>
             </div>
         </header>
 
         <section class="pure-g row-align">
-            <div class="pure-u-1 pure-u-lg-12-24 vis-container">
+            <div class="pure-u-1 pure-u-lg-16-24 vis-container">
                 <div id="bump_chart" class="chart-box"></div>
             </div>
-            <div class="pure-u-1 pure-u-lg-12-24 vis-container">
-                <div id="map_home_court" class="chart-box"></div>
+            <div class="pure-u-1 pure-u-lg-8-24 text-container" style="padding-left: 20px;">
+                <h3>Competitive Velocity</h3>
+                <p class="narrative-p">The round-by-round volatility of the NBL ladder captures mid-season surges and functional collapses. <strong>Clicking a franchise badge directly in the legend</strong> filters clutter out to reveal its path.</p>
             </div>
         </section>
 
-        <section class="pure-g" style="margin-top: 15px; padding: 0 10px;">
-            <div class="pure-u-1">
-                <p class="narrative-p">
-                    The trajectory of a professional basketball season is defined by competitive velocity and grueling travel demands. The interactive bump chart on the left captures the round-by-round volatility of the NBL ladder rankings, tracking which franchises sustained upward momentum and which suffered mid-season collapses. 
-                    <strong>Clicking on a team's name in the right-hand legend</strong> dynamically highlights their structural timeline while fading out noise from competing teams.
-                </p>
-                <p class="narrative-p">
-                    To understand the operational environment behind these rank trajectories, the proportional symbol map on the right projects home-court stadium coordinates across Australia and New Zealand. Competing in the NBL presents a massive transcontinental travel challenge, forcing teams to log thousands of air kilometers between metropolitan hubs like Sydney and Melbourne and isolated boutique markets like Perth and New Zealand. The relative bubble sizes map physical stadium capacities, highlighting how home-court crowd size contributes to an environment's competitive advantage.
-                </p>
+        <section class="pure-g row-align" style="margin-top: 25px;">
+            <div class="pure-u-1 pure-u-lg-8-24 text-container" style="padding-right: 20px;">
+                <h3>The Travel Tax</h3>
+                <p class="narrative-p">Proportional markers locate team stadia across Australia and New Zealand. Bubble sizes correspond directly to crowd capacities, visualizing how physical home environments shape competitive advantages.</p>
+            </div>
+            <div class="pure-u-1 pure-u-lg-16-24 vis-container">
+                <div id="map_home_court" class="chart-box"></div>
             </div>
         </section>
 
         <hr class="divider">
         <header class="pure-g">
             <div class="pure-u-1 block-center-left">
-                <h2 class="section-title">2. Team Efficiency & Possession Frontiers</h2>
+                <h2 class="section-title">2. Team Efficiency Frontiers</h2>
             </div>
         </header>
 
         <section class="pure-g row-align">
-            <div class="pure-u-1 pure-u-lg-1-3 text-container">
-                <h3>The Efficiency Frontier</h3>
-                <p class="narrative-p">
-                    Points Per Possession (PPP) serves as the ultimate diagnostic tool for team performance, bypassing raw scoring averages which are easily distorted by an accelerated game pace. The main scatter matrix maps offensive production against defensive resilience. 
-                </p>
-                <p class="narrative-p">
-                    The dashed diagonal line tracks a net-zero efficiency profile. Franchises positioning themselves in the <strong>top-left quadrant</strong> represent elite title contenders they successfully restrict opponent efficiency while generating premium output on their own possessions. Move your pointer over any bubble to fade competing teams and highlight a single franchise's statistical profile.
-                </p>
-            </div>
-            <div class="pure-u-1 pure-u-lg-2-3 vis-container">
+            <div class="pure-u-1 pure-u-lg-16-24 vis-container">
                 <div id="team_ppp_scatter" class="chart-box"></div>
             </div>
+            <div class="pure-u-1 pure-u-lg-8-24 text-container" style="padding-left: 20px;">
+                <h3>The Possession Frontier</h3>
+                <p class="narrative-p">Points Per Possession (PPP) bypasses raw scoring columns distorted by fast play styles. The top-left quadrant isolates the title core—franchises creating maximum output while restricting opponents.</p>
+            </div>
         </section>
 
-        <section class="pure-g row-align" style="margin-top: 25px;">
-            <div class="pure-u-1 pure-u-md-12-24 vis-container">
+        <section class="pure-g row-align" style="margin-top: 25px; background-color: #fafafa; padding: 15px; border-radius: 6px;">
+            <div class="pure-u-1 pure-u-md-12-24 vis-container" style="padding: 10px;">
                 <div id="team_efg_bar" class="chart-box"></div>
             </div>
-            <div class="pure-u-1 pure-u-md-12-24 vis-container">
+            <div class="pure-u-1 pure-u-md-12-24 vis-container" style="padding: 10px;">
                 <div id="margin_diverging" class="chart-box"></div>
-            </div>
-        </section>
-
-        <section class="pure-g" style="margin-top: 15px; padding: 0 10px;">
-            <div class="pure-u-1">
-                <p class="narrative-p">
-                    To unpack the mechanics behind this possession matrix, the nested visualizations above compare two distinct macro perspectives. The bar chart on the left isolates <strong>Effective Field Goal Percentage (eFG%)</strong>, a critical metric that adjusts traditional field goal parameters to reflect the mathematical reality that a three-point shot yields 50% more value than a two-point attempt. The horizontal benchmarks sort franchises by true shooting efficiency, highlighted by a dashed red line mapping the overall league average.
-                </p>
-                <p class="narrative-p">
-                    The diverging bar chart on the right complements this by evaluating game control through a derived mathematical calculation: <strong>Net Scoring Margin per Game</strong>. By subtracting defensive points surrendered from total offensive output and averaging the delta over all season matchups, the chart isolates which franchises actively dictate game flow. Teams pushing right in green consistently build point cushions, while teams bleeding left in red struggle with negative scoring margins.
-                </p>
             </div>
         </section>
 
@@ -102,38 +85,28 @@
         </header>
 
         <section class="pure-g row-align">
-            <div class="pure-u-1 pure-u-lg-12-24 vis-container">
+            <div class="pure-u-1 pure-u-lg-16-24 vis-container">
                 <div id="player_scatter" class="chart-box"></div>
             </div>
-            <div class="pure-u-1 pure-u-lg-12-24 vis-container">
+            <div class="pure-u-1 pure-u-lg-8-24 text-container" style="padding-left: 20px;">
+                <h3>Workloads & Assists vs. Points</h3>
+                <p class="narrative-p">This profile charts playmaker table-setters against volume scoring anchors. Bubble sizes reflect game durations (MPG). Use the interactive franchise dropdown selector to evaluate internal roster utility distributions.</p>
+            </div>
+        </section>
+
+        <section class="pure-g row-align" style="margin-top: 25px;">
+            <div class="pure-u-1 pure-u-lg-8-24 text-container" style="padding-right: 20px;">
+                <h3>Paint Security Matrix</h3>
+                <p class="narrative-p">Defensive mapping pits blocks against Advanced Rim Recovery (ARR). Use the range slider at the bottom to filter minimal workloads, or click a legend badge to track a single team's interior wall.</p>
+            </div>
+            <div class="pure-u-1 pure-u-lg-16-24 vis-container">
                 <div id="efficiency_quadrants" class="chart-box"></div>
             </div>
         </section>
 
-        <section class="pure-g" style="margin-top: 15px; padding: 0 10px;">
-            <div class="pure-u-1">
-                <p class="narrative-p">
-                    Transitioning to a micro-level lens reveals how roster construction dictates tactical output. The interactive scatter plot on the left maps player workloads by charting assists against raw scoring averages, with bubble sizes classified by minutes played per game. This layout clearly separates high-volume scoring anchors from elite playmaking table-setters. The dropdown filter allows users to isolate individual franchises to audit how coaches distribute roles across their rosters.
-                </p>
-                <p class="narrative-p">
-                    The chart on the right maps defensive production by cross-referencing blocks per game against <strong>Advanced Rim Recovery (ARR)</strong> ratings. This creates a detailed quadrant breakdown of the league's paint protectors. High-ARR, high-block centers sit securely in the upper-right quadrant as elite paint anchors. 
-                    <strong>Use the range slider</strong> to filter out low-minute bench players and focus purely on regular rotation matchups, or click on a team badge in the legend to isolate that franchise's defensive profile.
-                </p>
-            </div>
-        </section>
-
         <section class="pure-g row-align" style="margin-top: 30px; background-color: #fcfcfc; padding: 20px; border-radius: 8px;">
-            <div class="pure-u-1 pure-u-lg-1-4 text-container">
-                <h3>Micro-Utility Matrices</h3>
-                <p class="narrative-p">
-                    This side-by-side dashboard tracks advanced all-in-one player metrics. The left facet traces total utility by plotting minutes played against <strong>Floor Impact Counter (FIC)</strong>, identifying high-value role players.
-                </p>
-                <p class="narrative-p">
-                    The right facet matches scoring efficiency (eFG%) with <strong>Player Impact Estimate (PIE)</strong>, isolating hyper-efficient scorers whose on-court presence heavily impacts winning.
-                </p>
-            </div>
-            <div class="pure-u-1 pure-u-lg-3-4 vis-container" style="display: flex; justify-content: center; overflow-x: auto;">
-                <div id="execution_facets" class="chart-box"></div>
+            <div class="pure-u-1 vis-container" style="overflow-x: auto;">
+                <div id="execution_facets" class="chart-box" style="display: flex; justify-content: center;"></div>
             </div>
         </section>
 
@@ -144,23 +117,16 @@
             </div>
         </header>
 
-        <section class="pure-g row-align">
-            <div class="pure-u-1 vis-container" style="display: flex; justify-content: center; overflow-x: auto; padding: 15px;">
+        <section class="pure-g row-align" style="margin-bottom: 60px;">
+            <div class="pure-u-1 vis-container" style="display: flex; justify-content: center; overflow-x: auto; padding: 10px;">
                 <div id="shot_chart" class="chart-box"></div>
-            </div>
-        </section>
-
-        <section class="pure-g" style="margin-top: 15px; padding: 0 10px; margin-bottom: 50px;">
-            <div class="pure-u-1">
-                <p class="narrative-p" style="text-align: center; max-width: 900px; margin: 0 auto;">
-                    This spatial shot chart maps thousands of individual, real-world shot coordinates collected throughout the season directly onto a standardized FIBA hardwood diagram. Blue markers trace successful field goals, while muted gray markers track missed attempts. The resulting scatter footprints reveal the league's distinct spatial shot profiles. Use the dropdown selector to examine how shooting preferences shift between franchises, detailing how team strategies change across the floor.
-                </p>
             </div>
         </section>
 
     </div>
 
     <script>
+        // Core Web Embed Pipeline
         vegaEmbed('#bump_chart', "jsons/bump_chart.json", {"actions": false}).catch(console.error);
         vegaEmbed('#map_home_court', "jsons/map_home_court.json", {"actions": false}).catch(console.error);
         vegaEmbed('#player_scatter', "jsons/player_scatter.json", {"actions": false}).catch(console.error);

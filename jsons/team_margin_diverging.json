@@ -1,51 +1,23 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Diverging Team Net Scoring Margin per Game",
-  "width": 500,
+  "width": "container",
   "height": 380,
-  "data": {
-    "url": "data/nbl-team-stats.csv"
-  },
+  "data": { "url": "data/nbl-team-stats.csv" },
   "transform": [
-    {
-      "calculate": "(datum.Score - datum.Score_Against) / 28",
-      "as": "NetMarginPerGame"
-    }
+    { "calculate": "(datum.Score - datum.Score_Against) / 28", "as": "NetMarginPerGame" }
   ],
-  "mark": {
-    "type": "bar",
-    "cornerRadiusEnd": 4
-  },
+  "mark": { "type": "bar", "cornerRadiusEnd": 4 },
   "encoding": {
-    "x": {
-      "field": "NetMarginPerGame",
-      "type": "quantitative",
-      "title": "Net Point Margin per Game",
-      "axis": {"grid": true}
-    },
-    "y": {
-      "field": "Team",
-      "type": "nominal",
-      "sort": "-x",
-      "title": null,
-      "axis": {
-        "offset": 5,
-        "ticks": false,
-        "domain": false
-      }
-    },
+    "x": { "field": "NetMarginPerGame", "type": "quantitative", "title": "Net Point Margin per Game", "axis": {"grid": true} },
+    "y": { "field": "Team", "type": "nominal", "sort": "-x", "title": null, "axis": { "offset": 5, "ticks": false, "domain": false, "labelFontSize": 11 } },
     "color": {
-      "condition": {
-        "test": "datum.NetMarginPerGame > 0",
-        "value": "#2ecc71"
-      },
+      "condition": { "test": "datum.NetMarginPerGame > 0", "value": "#2ecc71" },
       "value": "#e74c3c"
     },
     "tooltip": [
       {"field": "Team", "type": "nominal"},
-      {"field": "NetMarginPerGame", "type": "quantitative", "title": "Net Margin/Game", "format": ".2f"},
-      {"field": "Score", "type": "quantitative", "title": "Total Points For"},
-      {"field": "Score_Against", "type": "quantitative", "title": "Total Points Allowed"}
+      {"field": "NetMarginPerGame", "type": "quantitative", "title": "Net Margin/Game", "format": ".2f"}
     ]
   }
 }

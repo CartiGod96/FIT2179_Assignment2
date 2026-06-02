@@ -3,12 +3,10 @@
   "description": "NBL Round-by-Round Position Tracking Bump Chart.",
   "width": "container",
   "height": 400,
-  "data": {
-    "url": "data/nbl_ladder_history.csv"
-  },
+  "data": { "url": "data/nbl_ladder_history.csv" },
   "params": [
     {
-      "name": "bump_chart_signal",
+      "name": "bump_chart_exclusive_signal",
       "select": {"type": "point", "fields": ["team_name"]},
       "bind": "legend"
     }
@@ -40,10 +38,7 @@
       "scale": {"scheme": "tableau10"}
     },
     "opacity": {
-      "condition": {
-        "param": "bump_chart_signal",
-        "value": 1
-      },
+      "condition": { "param": "bump_chart_exclusive_signal", "value": 1 },
       "value": 0.15
     },
     "tooltip": [

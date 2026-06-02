@@ -1,51 +1,22 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Team Offensive vs Defensive Points Per Possession Matrix",
-  "width": 500,
+  "width": "container",
   "height": 400,
-  "data": {
-    "url": "data/nbl-team-stats.csv"
-  },
+  "data": { "url": "data/nbl-team-stats.csv" },
   "params": [
     {
-      "name": "team_hover",
-      "select": {
-        "type": "point",
-        "fields": ["Team"],
-        "on": "pointerover"
-      }
+      "name": "team_ppp_exclusive_hover_signal",
+      "select": { "type": "point", "fields": ["Team"], "on": "pointerover" }
     }
   ],
-  "mark": {
-    "type": "circle",
-    "size": 180,
-    "cursor": "pointer"
-  },
+  "mark": { "type": "circle", "size": 180, "cursor": "pointer" },
   "encoding": {
-    "x": {
-      "field": "PPP_Against",
-      "type": "quantitative",
-      "title": "Defensive Efficiency (Points Allowed / Possession)",
-      "scale": {"zero": false}
-    },
-    "y": {
-      "field": "PPP",
-      "type": "quantitative",
-      "title": "Offensive Efficiency (Points Scored / Possession)",
-      "scale": {"zero": false}
-    },
-    "color": {
-      "field": "Team",
-      "type": "nominal",
-      "title": "Franchise",
-      "scale": {"scheme": "tableau10"}
-    },
+    "x": { "field": "PPP_Against", "type": "quantitative", "title": "Defensive Efficiency (Points Allowed / Possession)", "scale": {"zero": false} },
+    "y": { "field": "PPP", "type": "quantitative", "title": "Offensive Efficiency (Points Scored / Possession)", "scale": {"zero": false} },
+    "color": { "field": "Team", "type": "nominal", "title": "Franchise", "scale": {"scheme": "tableau10"} },
     "opacity": {
-      "condition": {
-        "param": "team_hover",
-        "value": 1,
-        "empty": true
-      },
+      "condition": { "param": "team_ppp_exclusive_hover_signal", "value": 1, "empty": true },
       "value": 0.2
     },
     "tooltip": [

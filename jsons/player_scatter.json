@@ -3,61 +3,35 @@
   "description": "NBL Player Offensive Efficiency Scatter Plot",
   "width": "container",
   "height": 400,
-  "data": {
-    "url": "data/nbl-player-stats.csv"
-  },
+  "data": { "url": "data/nbl-player-stats.csv" },
   "params": [
     {
-      "name": "TeamSelect",
+      "name": "player_scatter_dropdown_signal",
       "select": {"type": "point", "fields": ["Team"]},
       "bind": {
         "input": "select",
         "options": [
-          null,
-          "Adelaide 36ers",
-          "Brisbane Bullets",
-          "Cairns Taipans",
-          "Illawarra Hawks",
-          "Melbourne United",
-          "New Zealand Breakers",
-          "Perth Wildcats",
-          "South East Melbourne Phoenix",
-          "Sydney Kings",
-          "Tasmania JackJumpers"
+          null, "Adelaide 36ers", "Brisbane Bullets", "Cairns Taipans", "Illawarra Hawks",
+          "Melbourne United", "New Zealand Breakers", "Perth Wildcats",
+          "South East Melbourne Phoenix", "Sydney Kings", "Tasmania JackJumpers"
         ],
         "labels": [
-          "Show All Teams",
-          "Adelaide 36ers",
-          "Brisbane Bullets",
-          "Cairns Taipans",
-          "Illawarra Hawks",
-          "Melbourne United",
-          "New Zealand Breakers",
-          "Perth Wildcats",
-          "South East Melbourne Phoenix",
-          "Sydney Kings",
-          "Tasmania JackJumpers"
+          "Show All Teams", "Adelaide 36ers", "Brisbane Bullets", "Cairns Taipans", "Illawarra Hawks",
+          "Melbourne United", "New Zealand Breakers", "Perth Wildcats",
+          "South East Melbourne Phoenix", "Sydney Kings", "Tasmania JackJumpers"
         ],
         "name": "Filter Franchise: "
       }
     }
   ],
   "transform": [
-    {"filter": {"param": "TeamSelect"}},
+    {"filter": {"param": "player_scatter_dropdown_signal"}},
     {"filter": "datum.Minutes_A > 5"}
   ],
   "mark": {"type": "circle", "opacity": 0.7, "cursor": "pointer"},
   "encoding": {
-    "x": {
-      "field": "Assists_A",
-      "type": "quantitative",
-      "title": "Average Assists per Game (AST)"
-    },
-    "y": {
-      "field": "Points_A",
-      "type": "quantitative",
-      "title": "Average Points Scored per Game (PTS)"
-    },
+    "x": { "field": "Assists_A", "type": "quantitative", "title": "Average Assists per Game (AST)" },
+    "y": { "field": "Points_A", "type": "quantitative", "title": "Average Points Scored per Game (PTS)" },
     "size": {
       "field": "Minutes_A",
       "type": "quantitative",

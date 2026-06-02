@@ -16,15 +16,20 @@
 <body>
 
     <div class="page-wrapper">
-        <header class="pure-g">
-            <div class="pure-u-1 block-center">
-                <h1>The NBL Performance Frontier</h1>
-                <p class="subtitle">A Spatial and Statistical Study of the 2025-2026 Season</p>
-                <p class="author-tag">Data Visualisation Portfolio by Liam Fowler</p>
+        <!-- UPDATED: Flexbox distribution to split title and logo right-aligned -->
+        <header class="pure-g" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; margin-bottom: 10px;">
+            <div style="flex: 1; min-width: 280px;">
+                <h1 style="margin-bottom: 5px;">The NBL Performance Frontier</h1>
+                <p class="subtitle" style="margin-top: 0; margin-bottom: 5px;">A Spatial and Statistical Study of the 2025-2026 Season</p>
+                <p class="author-tag" style="margin-top: 0;">Data Visualisation Portfolio by Liam Fowler</p>
+            </div>
+            <!-- Top Right Brand Placement -->
+            <div style="padding: 10px 0;">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/NBL_Logo.png" alt="NBL Logo" style="height: 75px; width: auto; max-width: 100%; object-fit: contain;">
             </div>
         </header>
 
-        <!-- NEW: Comprehensive Project Introduction Block -->
+        <!-- Comprehensive Project Introduction Block -->
         <section class="pure-g" style="margin-top: 20px; margin-bottom: 30px;">
             <div class="pure-u-1" style="background: #ffffff; padding: 25px; border-radius: 8px; border: 1px solid #e1e8ed; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
                 <h2 style="margin-top: 0; color: #2c3e50; font-size: 1.5rem; border-bottom: 2px solid #34495e; padding-bottom: 8px;">Executive Summary & Portfolio Context</h2>
@@ -44,17 +49,21 @@
             </div>
         </header>
 
-        <section class="pure-g row-align">
-            <div class="pure-u-1 pure-u-lg-16-24 vis-container">
-                <div id="bump_chart" class="chart-box"></div>
-            </div>
-            <div class="pure-u-1 pure-u-lg-8-24 text-container" style="padding-left: 20px;">
+        <!-- UPDATED: Text layout moved above the chart container stretching full width -->
+        <section class="pure-g" style="margin-bottom: 15px; padding: 0 10px;">
+            <div class="pure-u-1">
                 <h3>Competitive Velocity</h3>
-                <p class="narrative-p">The round-by-round volatility of the NBL ladder captures mid-season surges and functional collapses. <strong>Clicking a franchise badge directly in the legend</strong> filters clutter out to reveal its path.</p>
+                <p class="narrative-p" style="margin-bottom: 0; max-width: 100%;">The round-by-round volatility of the NBL ladder captures mid-season surges and functional collapses. <strong>Clicking a franchise badge directly in the legend</strong> filters clutter out to reveal its path.</p>
             </div>
         </section>
 
-        <section class="pure-g row-align" style="margin-top: 25px;">
+        <section class="pure-g row-align">
+            <div class="pure-u-1 vis-container">
+                <div id="bump_chart" class="chart-box"></div>
+            </div>
+        </section>
+
+        <section class="pure-g row-align" style="margin-top: 35px;">
             <div class="pure-u-1 pure-u-lg-8-24 text-container" style="padding-right: 20px;">
                 <h3>The Travel Tax</h3>
                 <p class="narrative-p">Proportional markers locate team stadia across Australia and New Zealand. Bubble sizes correspond directly to crowd capacities, visualizing how physical home environments shape competitive advantages.</p>
@@ -81,7 +90,7 @@
             </div>
         </section>
 
-        <!-- UPDATED: Integrated text directly INSIDE the chart container box -->
+        <!-- Integrated text directly INSIDE the chart container box -->
         <section class="pure-g row-align" style="margin-top: 35px;">
             <div class="pure-u-1" style="background-color: #fafafa; padding: 25px; border-radius: 8px; border: 1px solid #e1e8ed;">
                 <div style="margin-bottom: 20px; padding: 0 10px;">
@@ -126,7 +135,7 @@
             </div>
         </section>
 
-        <!-- UPDATED: Integrated text directly INSIDE the Execution Facets background block -->
+        <!-- Integrated text directly INSIDE the Execution Facets background block -->
         <section class="pure-g row-align" style="margin-top: 35px;">
             <div class="pure-u-1" style="background-color: #fcfcfc; padding: 25px; border-radius: 8px; border: 1px solid #e1e8ed;">
                 <div style="margin-bottom: 15px; padding: 0 10px;">
@@ -146,7 +155,7 @@
             </div>
         </header>
 
-        <!-- UPDATED: Integrated text directly inside a clean visual container surrounding the Shot Chart -->
+        <!-- Integrated text directly inside a clean visual container surrounding the Shot Chart -->
         <section class="pure-g row-align" style="margin-top: 15px; margin-bottom: 60px;">
             <div class="pure-u-1" style="background: #ffffff; padding: 25px; border-radius: 8px; border: 1px solid #e1e8ed; box-shadow: 0 2px 4px rgba(0,0,0,0.01);">
                 <div style="text-align: center; margin-bottom: 20px;">

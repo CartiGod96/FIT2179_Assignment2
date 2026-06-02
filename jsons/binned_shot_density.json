@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Binned Court Volume & Efficiency Blueprint overlaid on Court Layout.",
+  "description": "Hexagonal Court Volume & Efficiency Blueprint overlaid on Court Layout.",
   "width": 800,
   "height": 430,
   "layer": [
@@ -42,23 +42,25 @@
         }
       ],
       "mark": {
-        "type": "rect",
-        "opacity": 0.75,
+        "type": "point",
+        "shape": "hexagon",
+        "filled": true,
+        "opacity": 0.85,
         "stroke": "#ffffff",
-        "strokeWidth": 0.5
+        "strokeWidth": 1
       },
       "encoding": {
         "x": {
           "field": "X",
           "type": "quantitative",
-          "bin": {"maxbins": 30},
+          "bin": {"step": 15},
           "scale": {"domain": [0, 100]},
           "axis": null
         },
         "y": {
           "field": "Y",
           "type": "quantitative",
-          "bin": {"maxbins": 20},
+          "bin": {"step": 20},
           "scale": {"domain": [0, 100]},
           "axis": null
         },
@@ -70,7 +72,7 @@
           "scale": {
             "scheme": "redyellowblue",
             "reverse": true,
-            "domain": [0.25, 0.65]
+            "domain": [0.25, 0.60]
           },
           "legend": {
             "format": ".0%",
@@ -82,6 +84,7 @@
           "aggregate": "count",
           "type": "quantitative",
           "title": "Attempts in Zone",
+          "scale": {"range": [400, 2200]},
           "legend": {
             "orient": "right",
             "titlePadding": 10
@@ -95,6 +98,7 @@
     }
   ],
   "config": {
-    "view": {"stroke": "transparent", "background": "transparent"}
+    "view": {"stroke": "transparent", "background": "transparent"},
+    "scale": {"invalid": {"color": null}}
   }
 }

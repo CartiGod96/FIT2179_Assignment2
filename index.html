@@ -23,7 +23,7 @@
                 <p class="subtitle" style="margin-top: 0; margin-bottom: 5px;">A Spatial and Statistical Study of the 2025-2026 Season</p>
                 <p class="author-tag" style="margin-top: 0;">Data Visualisation Portfolio by Liam Fowler</p>
             </div>
-            <!-- Top Right Brand Placement with Corrected URL -->
+            <!-- Top Right Brand Placement -->
             <div style="padding: 10px 0;">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/e/e4/NBL_Logo.png" alt="NBL Logo" style="height: 75px; width: auto; max-width: 100%; object-fit: contain;">
             </div>
@@ -49,7 +49,7 @@
             </div>
         </header>
 
-        <!-- Text layout moved above the chart container stretching full width -->
+        <!-- Text layout above the chart container stretching full width -->
         <section class="pure-g" style="margin-bottom: 15px; padding: 0 10px;">
             <div class="pure-u-1">
                 <h3>Competitive Velocity</h3>
@@ -63,6 +63,7 @@
             </div>
         </section>
 
+        <!-- Text placed on LEFT, graph container placed on RIGHT -->
         <section class="pure-g row-align" style="margin-top: 35px;">
             <div class="pure-u-1 pure-u-lg-8-24 text-container" style="padding-right: 20px;">
                 <h3>The Travel Tax</h3>
@@ -80,13 +81,14 @@
             </div>
         </header>
 
+        <!-- Text placed on LEFT, graph container placed on RIGHT -->
         <section class="pure-g row-align">
-            <div class="pure-u-1 pure-u-lg-16-24 vis-container">
-                <div id="team_ppp_scatter" class="chart-box"></div>
-            </div>
-            <div class="pure-u-1 pure-u-lg-8-24 text-container" style="padding-left: 20px;">
+            <div class="pure-u-1 pure-u-lg-8-24 text-container" style="padding-right: 20px;">
                 <h3>The Possession Frontier</h3>
                 <p class="narrative-p">Points Per Possession (PPP) bypasses raw scoring columns distorted by fast play styles. The top-left quadrant isolates the title core—franchises creating maximum output while restricting opponents.</p>
+            </div>
+            <div class="pure-u-1 pure-u-lg-16-24 vis-container">
+                <div id="team_ppp_scatter" class="chart-box"></div>
             </div>
         </section>
 
@@ -115,23 +117,41 @@
             </div>
         </header>
 
+        <!-- Graph container placed on LEFT, text and image shifted to RIGHT -->
         <section class="pure-g row-align">
             <div class="pure-u-1 pure-u-lg-16-24 vis-container">
                 <div id="player_scatter" class="chart-box"></div>
             </div>
-            <div class="pure-u-1 pure-u-lg-8-24 text-container" style="padding-left: 20px;">
-                <h3>Workloads & Assists vs. Points</h3>
-                <p class="narrative-p">This profile charts playmaker table-setters against volume scoring anchors. Bubble sizes reflect game durations (MPG). Use the interactive franchise dropdown selector to evaluate internal roster utility distributions.</p>
+            <div class="pure-u-1 pure-u-lg-8-24 text-container" style="padding-left: 20px; display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                    <h3>Workloads & Assists vs. Points</h3>
+                    <p class="narrative-p" style="margin-bottom: 15px;">This profile charts playmaker table-setters against volume scoring anchors. Bubble sizes reflect game durations (MPG). Use the interactive franchise dropdown selector to evaluate internal roster utility distributions.</p>
+                </div>
+                <!-- Workload Section Added Image Context -->
+                <div style="width: 100%; text-align: center; margin-top: 10px;">
+                    <img src="https://imageresizer.static9.net.au/230NLRYknbRLBc4nsqTnhwCaN2c=/0x18:1024x594/1200x1200/https%3A%2F%2Fprod.static9.net.au%2Ffs%2Fd4243168-14b1-4ec7-84f5-0365349404c3" 
+                         alt="NBL On-Court Execution Workload" 
+                         style="width: 100%; max-width: 320px; height: auto; border-radius: 6px; border: 1px solid #e1e8ed; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+                </div>
             </div>
         </section>
 
-        <section class="pure-g row-align" style="margin-top: 25px;">
-            <div class="pure-u-1 pure-u-lg-8-24 text-container" style="padding-right: 20px;">
-                <h3>Paint Security Matrix</h3>
-                <p class="narrative-p">Defensive mapping pits blocks against Advanced Rim Recovery (ARR). Use the range slider at the bottom to filter minimal workloads, or click a legend badge to track a single team's interior wall.</p>
-            </div>
+        <!-- Graph container placed on LEFT, text and image shifted to RIGHT -->
+        <section class="pure-g row-align" style="margin-top: 35px;">
             <div class="pure-u-1 pure-u-lg-16-24 vis-container">
                 <div id="efficiency_quadrants" class="chart-box"></div>
+            </div>
+            <div class="pure-u-1 pure-u-lg-8-24 text-container" style="padding-left: 20px; display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                    <h3>Paint Security Matrix</h3>
+                    <p class="narrative-p" style="margin-bottom: 15px;">Defensive mapping pits blocks against Advanced Rim Recovery (ARR). Use the range slider at the bottom to filter minimal workloads, or click a legend badge to track a single team's interior wall.</p>
+                </div>
+                <!-- Paint Security Added Image Context -->
+                <div style="width: 100%; text-align: center; margin-top: 10px;">
+                    <img src="https://content.api.news/v3/images/bin/6f9c53163370f4185cf4d6c022fac28d" 
+                         alt="NBL Paint Defensive Security Architecture" 
+                         style="width: 100%; max-width: 320px; height: auto; border-radius: 6px; border: 1px solid #e1e8ed; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+                </div>
             </div>
         </section>
 
@@ -169,6 +189,15 @@
                 </div>
             </div>
         </section>
+
+        <!-- Academic Image Attribution Footer Segment (Ensuring full compliance with FIT2179 requirements) -->
+        <footer style="margin-top: 40px; padding: 20px 10px; border-top: 1px solid #e1e8ed; font-size: 0.85rem; color: #7f8c8d; line-height: 1.5;">
+            <p style="margin: 0 0 5px 0;"><strong>Portfolio Narrative Asset Sources (As per strict submission brief instructions):</strong></p>
+            <ul style="margin: 0; padding-left: 20px; list-style-type: square;">
+                <li>Section 3 Workloads Contextual Image sourced via Nine Network Media Engine. URL available <a href="https://imageresizer.static9.net.au/230NLRYknbRLBc4nsqTnhwCaN2c=/0x18:1024x594/1200x1200/https%3A%2F%2Fprod.static9.net.au%2Ffs%2Fd4243168-14b1-4ec7-84f5-0365349404c3" target="_blank" style="color: #3498db;">here</a>.</li>
+                <li>Section 3 Paint Security Contextual Image sourced via News Corp Australia API Platform. URL available <a href="https://content.api.news/v3/images/bin/6f9c53163370f4185cf4d6c022fac28d" target="_blank" style="color: #3498db;">here</a>.</li>
+            </ul>
+        </footer>
 
     </div>
 

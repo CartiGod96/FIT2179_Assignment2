@@ -5,8 +5,9 @@
     "url": "data/nbl_ladder_history.csv"
   },
   "width": "container",
-  "height": 220,
-  "autosize": {    "type": "fit",
+  "height": 200,
+  "autosize": {
+    "type": "fit",
     "contains": "padding"
   },
   "mark": {
@@ -33,7 +34,13 @@
       "field": "team_name",
       "type": "nominal",
       "title": "Franchise Name",
-      "scale": {"scheme": "tableau10"}
+      "scale": {"scheme": "tableau10"},
+      "legend": {
+        "orient": "bottom",
+        "columns": 4,
+        "titlePadding": 10,
+        "offset": 15
+      }
     },
     "tooltip": [
       {"field": "team_name", "type": "nominal", "title": "Team"},

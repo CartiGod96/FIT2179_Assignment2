@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "A high-fidelity spatial shot blueprint with structural grid partitioning.",
+  "description": "Clean, structured court partitioning that snaps exactly within boundaries.",
   "width": 800,
   "height": 430,
   "layer": [
@@ -36,6 +36,7 @@
       ],
       "transform": [
         { "filter": {"param": "density_chart_team_dropdown"} },
+        { "filter": "datum.X >= 2 && datum.X <= 98 && datum.Y >= 2 && datum.Y <= 98" },
         {
           "calculate": "datum.Shot_Outcome == 'Make' ? 1 : 0",
           "as": "shot_made_numeric"
@@ -43,9 +44,10 @@
       ],
       "mark": {
         "type": "rect",
-        "filled": false,
-        "opacity": 0.9,
-        "strokeWidth": 3.5
+        "filled": true,
+        "opacity": 0.45,
+        "stroke": "#ffffff",
+        "strokeWidth": 1.5
       },
       "encoding": {
         "x": {
@@ -62,7 +64,7 @@
           "scale": {"domain": [0, 100]},
           "axis": null
         },
-        "stroke": {
+        "color": {
           "aggregate": "mean",
           "field": "shot_made_numeric",
           "type": "quantitative",
@@ -74,16 +76,6 @@
           },
           "legend": {
             "format": ".0%",
-            "orient": "right",
-            "titlePadding": 10
-          }
-        },
-        "color": {
-          "aggregate": "count",
-          "type": "quantitative",
-          "title": "Attempts Volume",
-          "scale": {"scheme": "greys", "range": ["#e0e0e0", "#212121"]},
-          "legend": {
             "orient": "right",
             "titlePadding": 10
           }

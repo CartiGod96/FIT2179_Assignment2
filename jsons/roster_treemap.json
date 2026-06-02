@@ -6,21 +6,32 @@
       "calculate": "datum.Points_A + (datum.ThreePointersMade_A * 2) + (datum.PointsInThePaint_A * 0.5)",
       "as": "ScoringImpact"
     },
-    {"filter": "datum.ScoringImpact > 0"}
+    {"filter": "datum.ScoringImpact > 0"},
+    {
+      "nest": [{"field": "Team"}, {"field": "Player"}]
+    },
+    {
+      "treemap": "ScoringImpact",
+      "method": "squarify"
+    }
   ],
+  "width": 800,
+  "height": 450,
   "mark": {"type": "rect", "stroke": "white"},
   "encoding": {
-    "color": {"field": "Team", "type": "nominal", "scale": {"scheme": "category20"}},
+    "x": {"field": "x0", "type": "quantitative", "axis": null},
+    "y": {"field": "y0", "type": "quantitative", "axis": null},
+    "x2": {"field": "x1", "type": "quantitative"},
+    "y2": {"field": "y1", "type": "quantitative"},
+    "color": {
+      "field": "Team", 
+      "type": "nominal", 
+      "scale": {"scheme": "category20"},
+      "legend": null
+    },
     "tooltip": [
       {"field": "Player", "type": "nominal"},
       {"field": "ScoringImpact", "type": "quantitative", "format": ".1f"}
-    ],
-    "x": {"field": "x0", "type": "quantitative", "axis": null},
-    "y": {"field": "y0", "type": "quantitative", "axis": null},
-    "x2": {"field": "x2", "type": "quantitative"},
-    "y2": {"field": "y2", "type": "quantitative"}
-  },
-  "width": 800,
-  "height": 450,
-  "mark": "treemap"
+    ]
+  }
 }

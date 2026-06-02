@@ -5,7 +5,7 @@
     "url": "data/nbl-player-stats.csv"
   },
   "transform": [
-    {"filter": "datum.Minutes_A > 10"},
+    {"filter": "datum.Minutes_A > 5"},
     {"filter": "datum.FIC > 0"},
     {"filter": "datum.PIE > 0"},
     {
@@ -15,7 +15,7 @@
   ],
   "hconcat": [
     {
-      "width": 220,
+      "width": 350,
       "height": 340,
       "title": "Floor Value: Minutes vs Total FIC",
       "mark": {"type": "circle", "size": 60, "opacity": 0.6},
@@ -23,7 +23,8 @@
         "x": {
           "field": "Minutes_A",
           "type": "quantitative",
-          "title": "Minutes per Game"
+          "title": "Minutes per Game",
+          "scale": {"domain": [5, 40]}
         },
         "y": {
           "field": "FIC",
@@ -45,7 +46,7 @@
       }
     },
     {
-      "width": 220,
+      "width": 350,
       "height": 340,
       "title": "Game Swing: True Shot % vs Player Impact",
       "mark": {"type": "circle", "size": 60, "opacity": 0.6},

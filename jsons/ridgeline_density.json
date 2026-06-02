@@ -1,0 +1,57 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Ridgeline Plot of Supercoach Production Rate",
+  "data": {"url": "data/nbl-player-stats.csv"},
+  "width": 700,
+  "height": {"step": 25},
+  "transform": [
+    {"filter": "datum.Minutes_A >= 10"},
+    {
+      "density": "Supercoach_40",
+      "groupby": ["Team"],
+      "extent": [0, 80],
+      "steps": 100
+    }
+  ],
+  "mark": {
+    "type": "area",
+    "line": {"color": "#ffffff", "width": 1},
+    "opacity": 0.8,
+    "interpolate": "monotone"
+  },
+  "encoding": {
+    "x": {
+      "field": "value",
+      "type": "quantitative",
+      "title": "Supercoach Production Pace (Per 40 Mins)",
+      "axis": {"grid": false}
+    },
+    "y": {
+      "field": "density",
+      "type": "quantitative",
+      "axis": null,
+      "scale": {"range": [25, -45]} 
+    },
+    "color": {
+      "field": "Team",
+      "type": "nominal",
+      "legend": null,
+      "scale": {"scheme": "category20"}
+    },
+    "facet": {
+      "field": "Team",
+      "type": "nominal",
+      "header": {
+        "title": null,
+        "labelAlign": "right",
+        "labelAngle": 0,
+        "labelFontWeight": "bold",
+        "labelPadding": -10
+      }
+    }
+  },
+  "config": {
+    "facet": {"spacing": 0},
+    "view": {"stroke": null}
+  }
+}

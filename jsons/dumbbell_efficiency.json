@@ -1,0 +1,51 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Dumbbell Plot for Team Offense vs Defense PPP",
+  "data": {"url": "data/nbl-team-stats.csv"},
+  "width": 650,
+  "height": 350,
+  "encoding": {
+    "y": {
+      "field": "Team",
+      "type": "nominal",
+      "sort": {"field": "PPP", "order": "descending"},
+      "axis": {"title": null, "labelFontWeight": "bold"}
+    }
+  },
+  "layer": [
+    {
+      "mark": {"type": "rule", "color": "#cbd5e1", "size": 3},
+      "encoding": {
+        "x": {
+          "field": "PPP",
+          "type": "quantitative",
+          "scale": {"zero": false},
+          "title": "Points Per Possession (Green = Scored, Red = Allowed)"
+        },
+        "x2": {"field": "PPP_Against"}
+      }
+    },
+    {
+      "mark": {"type": "point", "size": 250, "filled": true, "opacity": 1},
+      "encoding": {
+        "x": {"field": "PPP", "type": "quantitative"},
+        "color": {"datum": "Offensive PPP", "scale": {"range": ["#2ecc71", "#e74c3c"]}, "legend": {"title": "Efficiency Metric"}},
+        "tooltip": [
+          {"field": "Team", "type": "nominal"},
+          {"field": "PPP", "type": "quantitative", "title": "Offensive PPP"}
+        ]
+      }
+    },
+    {
+      "mark": {"type": "point", "size": 250, "filled": true, "opacity": 1},
+      "encoding": {
+        "x": {"field": "PPP_Against", "type": "quantitative"},
+        "color": {"datum": "Defensive PPP Allowed"},
+        "tooltip": [
+          {"field": "Team", "type": "nominal"},
+          {"field": "PPP_Against", "type": "quantitative", "title": "Defensive PPP Allowed"}
+        ]
+      }
+    }
+  ]
+}

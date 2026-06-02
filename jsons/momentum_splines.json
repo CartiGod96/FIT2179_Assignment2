@@ -38,8 +38,8 @@
       "legend": {
         "orient": "bottom",
         "columns": 4,
-        "titlePadding": 10,
-        "offset": 15
+        "titlePadding": 6,
+        "offset": 10
       }
     },
     "tooltip": [
@@ -48,5 +48,11 @@
       {"field": "win_percentage", "type": "quantitative", "title": "Win Record", "format": ".1%"},
       {"field": "rank", "type": "quantitative", "title": "Rank Standings"}
     ]
+  },
+  "config": {
+    "view": {
+      "stroke": "transparent",
+      "padding": 0
+    }
   }
 }

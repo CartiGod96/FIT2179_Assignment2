@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Clean, structured court partitioning that snaps exactly within boundaries.",
+  "description": "Clean, volume-filtered court grid with a sequential blue efficiency scale.",
   "width": 800,
   "height": 430,
   "layer": [
@@ -40,39 +40,49 @@
         {
           "calculate": "datum.Shot_Outcome == 'Make' ? 1 : 0",
           "as": "shot_made_numeric"
-        }
+        },
+        {
+          "bin": {"step": 15}, "field": "X", "as": "binned_x"
+        },
+        {
+          "bin": {"step": 20}, "field": "Y", "as": "binned_y"
+        },
+        {
+          "joinaggregate": [
+            {"op": "count", "as": "zone_shot_count"},
+            {"op": "mean", "field": "shot_made_numeric", "as": "zone_fg_percentage"}
+          ],
+          "groupby": ["binned_x", "binned_y"]
+        },
+        { "filter": "datum.zone_shot_count >= 15" }
       ],
       "mark": {
         "type": "rect",
         "filled": true,
-        "opacity": 0.45,
+        "opacity": 0.65,
         "stroke": "#ffffff",
         "strokeWidth": 1.5
       },
       "encoding": {
         "x": {
-          "field": "X",
+          "field": "binned_x",
           "type": "quantitative",
-          "bin": {"step": 15},
           "scale": {"domain": [0, 100]},
           "axis": null
         },
         "y": {
-          "field": "Y",
+          "field": "binned_y",
           "type": "quantitative",
-          "bin": {"step": 20},
           "scale": {"domain": [0, 100]},
           "axis": null
         },
         "color": {
-          "aggregate": "mean",
-          "field": "shot_made_numeric",
+          "field": "zone_fg_percentage",
           "type": "quantitative",
           "title": "Zone FG%",
           "scale": {
-            "scheme": "redyellowblue",
-            "reverse": true,
-            "domain": [0.25, 0.60]
+            "scheme": "blues",
+            "domain": [0.30, 0.55]
           },
           "legend": {
             "format": ".0%",
@@ -81,8 +91,8 @@
           }
         },
         "tooltip": [
-          {"aggregate": "count", "type": "quantitative", "title": "Total Visualized Attempts"},
-          {"aggregate": "mean", "field": "shot_made_numeric", "type": "quantitative", "title": "Calculated Zone FG%", "format": ".1%"}
+          {"field": "zone_shot_count", "type": "quantitative", "title": "Attempts in Zone"},
+          {"field": "zone_fg_percentage", "type": "quantitative", "title": "Zone FG%", "format": ".1%"}
         ]
       }
     }

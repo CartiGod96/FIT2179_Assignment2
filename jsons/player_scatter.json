@@ -11,9 +11,9 @@
       "bind": {
         "input": "select",
         "options": [
-          null, "Adelaide 36ers", "Brisbane Bullets", "Cairns Taipans", "Illawarra Hawks",
-          "Melbourne United", "New Zealand Breakers", "Perth Wildcats",
-          "South East Melbourne Phoenix", "Sydney Kings", "Tasmania JackJumpers"
+          null, "Adelaide", "Brisbane", "Cairns", "Illawarra",
+          "Melbourne", "New Zealand", "Perth",
+          "South East Melbourne", "Sydney", "Tasmania"
         ],
         "labels": [
           "Show All Teams", "Adelaide 36ers", "Brisbane Bullets", "Cairns Taipans", "Illawarra Hawks",

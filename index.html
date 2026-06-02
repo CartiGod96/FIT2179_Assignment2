@@ -37,21 +37,13 @@
         </section>
 
         <hr class="divider">
-        <header class="pure-g"><div class="pure-u-1"><h2 class="section-title">1. Ranks, Momentum & Geography</h2></div></header>
+        <header class="pure-g"><div class="pure-u-1"><h2 class="section-title">1. Ranks & Geography</h2></div></header>
 
         <section class="pure-g row-align" style="margin-top: 15px;">
             <div class="pure-u-1" style="background-color: #ffffff; padding: 25px; border-radius: 8px; border: 1px solid #e1e8ed; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
                 <h3 style="margin-top: 0;">Competitive Velocity</h3>
                 <p class="narrative-p" style="color: #555; margin-bottom: 20px;">The round-by-round volatility of the NBL ladder captures mid-season surges and functional collapses. <strong>Clicking a franchise badge directly in the legend</strong> filters clutter out to reveal its path.</p>
                 <div class="vis-container" style="overflow-x: auto;"><div id="bump_chart" class="chart-box" style="border:none; background:transparent; box-shadow:none;"></div></div>
-            </div>
-        </section>
-
-        <section class="pure-g row-align" style="margin-top: 35px;">
-            <div class="pure-u-1" style="background-color: #ffffff; padding: 25px; border-radius: 8px; border: 1px solid #e1e8ed; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
-                <h3 style="margin-top:0;">Continuous Win Margin Trajectories</h3>
-                <p class="narrative-p" style="color: #555; margin-bottom: 20px;">Shifting from ordinal standings to point cushion depth. This continuous momentum area graph visualizes the true margin of safety top contenders held over the chasing pack throughout the season.</p>
-                <div class="vis-container" style="overflow-x: auto; width: 100%;"><div id="momentum_splines" class="chart-box" style="border:none; background:transparent; box-shadow:none; padding: 0;"></div></div>
             </div>
         </section>
 
@@ -194,7 +186,6 @@
 
     <script>
         vegaEmbed('#bump_chart', "jsons/bump_chart.json", {"actions": false}).catch(console.error);
-        vegaEmbed('#momentum_splines', "jsons/momentum_splines.json", {"actions": false}).catch(console.error);
         vegaEmbed('#map_home_court', "jsons/map_home_court.json", {"actions": false}).catch(console.error);
         vegaEmbed('#team_ppp_scatter', "jsons/team_ppp_scatter.json", {"actions": false}).catch(console.error);
         vegaEmbed('#period_heatmap', "jsons/period_heatmap.json", {"actions": false}).catch(console.error);
@@ -208,4 +199,4 @@
         vegaEmbed('#binned_shot_density', "jsons/binned_shot_density.json", {"actions": false}).catch(console.error);
     </script>
 </body>
-</html> 
+</html>

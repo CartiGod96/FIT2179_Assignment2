@@ -1,17 +1,9 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Clean, volume-filtered court grid with a sequential blue efficiency scale.",
+  "description": "Clean, volume-filtered court grid with an underlaid background structure.",
   "width": 800,
   "height": 430,
   "layer": [
-    {
-      "data": { "values": [{}] },
-      "mark": { "type": "image", "url": "images/fiba_court_flat.png", "width": 800, "height": 430 },
-      "encoding": {
-        "x": {"datum": 50, "scale": {"domain": [0, 100]}, "axis": null},
-        "y": {"datum": 50, "scale": {"domain": [0, 100]}, "axis": null}
-      }
-    },
     {
       "data": { "url": "data/nbl_shot_coordinates.csv" },
       "params": [
@@ -36,17 +28,13 @@
       ],
       "transform": [
         { "filter": {"param": "density_chart_team_dropdown"} },
-        { "filter": "datum.X >= 2 && datum.X <= 98 && datum.Y >= 2 && datum.Y <= 98" },
+        { "filter": "datum.X >= 4 && datum.X <= 96 && datum.Y >= 4 && datum.Y <= 96" },
         {
           "calculate": "datum.Shot_Outcome == 'Make' ? 1 : 0",
           "as": "shot_made_numeric"
         },
-        {
-          "bin": {"step": 15}, "field": "X", "as": "binned_x"
-        },
-        {
-          "bin": {"step": 20}, "field": "Y", "as": "binned_y"
-        },
+        { "bin": {"maxbins": 7}, "field": "X", "as": "binned_x" },
+        { "bin": {"maxbins": 5}, "field": "Y", "as": "binned_y" },
         {
           "joinaggregate": [
             {"op": "count", "as": "zone_shot_count"},
@@ -54,51 +42,42 @@
           ],
           "groupby": ["binned_x", "binned_y"]
         },
-        { "filter": "datum.zone_shot_count >= 15" }
+        { "filter": "datum.zone_shot_count >= 25" }
       ],
       "mark": {
         "type": "rect",
         "filled": true,
-        "opacity": 0.65,
-        "stroke": "#ffffff",
-        "strokeWidth": 1.5
+        "opacity": 0.35
       },
       "encoding": {
-        "x": {
-          "field": "binned_x",
-          "type": "quantitative",
-          "scale": {"domain": [0, 100]},
-          "axis": null
-        },
-        "y": {
-          "field": "binned_y",
-          "type": "quantitative",
-          "scale": {"domain": [0, 100]},
-          "axis": null
-        },
+        "x": { "field": "binned_x", "type": "quantitative", "scale": {"domain": [0, 100]}, "axis": null },
+        "y": { "field": "binned_y", "type": "quantitative", "scale": {"domain": [0, 100]}, "axis": null },
         "color": {
           "field": "zone_fg_percentage",
           "type": "quantitative",
           "title": "Zone FG%",
           "scale": {
             "scheme": "blues",
-            "domain": [0.30, 0.55]
+            "domain": [0.32, 0.52]
           },
-          "legend": {
-            "format": ".0%",
-            "orient": "right",
-            "titlePadding": 10
-          }
+          "legend": { "format": ".0%", "orient": "right" }
         },
         "tooltip": [
           {"field": "zone_shot_count", "type": "quantitative", "title": "Attempts in Zone"},
           {"field": "zone_fg_percentage", "type": "quantitative", "title": "Zone FG%", "format": ".1%"}
         ]
       }
+    },
+    {
+      "data": { "values": [{}] },
+      "mark": { "type": "image", "url": "images/fiba_court_flat.png", "width": 800, "height": 430 },
+      "encoding": {
+        "x": {"datum": 50, "axis": null},
+        "y": {"datum": 50, "axis": null}
+      }
     }
   ],
   "config": {
-    "view": {"stroke": "transparent", "background": "transparent"},
-    "scale": {"invalid": {"color": null}}
+    "view": {"stroke": "transparent", "background": "transparent"}
   }
 }

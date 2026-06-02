@@ -1,23 +1,25 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Ridgeline Plot of Supercoach Production Rate",
-  "data": {"url": "data/nbl-player-stats.csv"},
+  "data": {"url": "nbl-player-stats.csv"},
   "width": 700,
-  "height": {"step": 25},
+  "height": 50,
   "transform": [
     {"filter": "datum.Minutes_A >= 10"},
     {
       "density": "Supercoach_40",
       "groupby": ["Team"],
-      "extent": [0, 80],
+      "extent": [0, 150],
       "steps": 100
     }
   ],
   "mark": {
     "type": "area",
-    "line": {"color": "#ffffff", "width": 1},
-    "opacity": 0.8,
-    "interpolate": "monotone"
+    "interpolate": "monotone",
+    "fill": "skyblue",
+    "stroke": "black",
+    "strokeWidth": 1,
+    "fillOpacity": 0.7
   },
   "encoding": {
     "x": {
@@ -30,15 +32,9 @@
       "field": "density",
       "type": "quantitative",
       "axis": null,
-      "scale": {"range": [25, -45]} 
+      "scale": {"range": [50, -20]}
     },
-    "color": {
-      "field": "Team",
-      "type": "nominal",
-      "legend": null,
-      "scale": {"scheme": "category20"}
-    },
-    "facet": {
+    "row": {
       "field": "Team",
       "type": "nominal",
       "header": {
@@ -46,12 +42,12 @@
         "labelAlign": "right",
         "labelAngle": 0,
         "labelFontWeight": "bold",
-        "labelPadding": -10
-      }
+        "labelPadding": 10
+      },
+      "spacing": -25
     }
   },
   "config": {
-    "facet": {"spacing": 0},
     "view": {"stroke": null}
   }
 }

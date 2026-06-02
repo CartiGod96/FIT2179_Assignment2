@@ -1,100 +1,26 @@
 {
-  "$schema": "https://vega.github.io/schema/vega/v5.json",
-  "description": "Treemap of Scoring Impact (Points + 3PT Impact)",
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {"url": "nbl-player-stats.csv"},
+  "transform": [
+    {
+      "calculate": "datum.Points_A + (datum.ThreePointersMade_A * 2) + (datum.PointsInThePaint_A * 0.5)",
+      "as": "ScoringImpact"
+    },
+    {"filter": "datum.ScoringImpact > 0"}
+  ],
+  "mark": {"type": "rect", "stroke": "white"},
+  "encoding": {
+    "color": {"field": "Team", "type": "nominal", "scale": {"scheme": "category20"}},
+    "tooltip": [
+      {"field": "Player", "type": "nominal"},
+      {"field": "ScoringImpact", "type": "quantitative", "format": ".1f"}
+    ],
+    "x": {"field": "x0", "type": "quantitative", "axis": null},
+    "y": {"field": "y0", "type": "quantitative", "axis": null},
+    "x2": {"field": "x2", "type": "quantitative"},
+    "y2": {"field": "y2", "type": "quantitative"}
+  },
   "width": 800,
   "height": 450,
-  "padding": 5,
-  "data": [
-    {
-      "name": "raw",
-      "url": "data/nbl-player-stats.csv",
-      "format": {"type": "csv", "parse": "auto"},
-      "transform": [
-        {
-          "type": "formula", 
-          "as": "ScoringImpact", 
-          "expr": "datum.Points_A + (datum.ThreePointersMade_A * 2) + (datum.PointsInThePaint_A * 0.5)"
-        },
-        {"type": "filter", "expr": "datum.ScoringImpact > 0"}
-      ]
-    },
-    {
-      "name": "tree",
-      "source": "raw",
-      "transform": [
-        {"type": "nest", "keys": ["Team"]},
-        {
-          "type": "treemap",
-          "field": "ScoringImpact",
-          "sort": {"field": "value", "order": "descending"},
-          "round": true,
-          "method": "squarify",
-          "size": [{"signal": "width"}, {"signal": "height"}]
-        }
-      ]
-    },
-    {
-      "name": "nodes",
-      "source": "tree",
-      "transform": [{"type": "filter", "expr": "datum.children"}]
-    },
-    {
-      "name": "leaves",
-      "source": "tree",
-      "transform": [{"type": "filter", "expr": "!datum.children"}]
-    }
-  ],
-  "scales": [
-    {
-      "name": "color",
-      "type": "ordinal",
-      "domain": {"data": "nodes", "field": "key"},
-      "range": [
-        "#002B5C", "#004B87", "#F9A01B", "#E31837", "#2c3e50",
-        "#002A5C", "#00B2A9", "#E4002B", "#0055A4", "#502B85", "#005A9C"
-      ]
-    }
-  ],
-  "marks": [
-    {
-      "type": "rect",
-      "from": {"data": "leaves"},
-      "encode": {
-        "enter": {
-          "stroke": {"value": "#ffffff"},
-          "strokeWidth": {"value": 1.5}
-        },
-        "update": {
-          "x": {"field": "x0"},
-          "y": {"field": "y0"},
-          "x2": {"field": "x1"},
-          "y2": {"field": "y1"},
-          "fill": {"scale": "color", "field": "parent.key"},
-          "tooltip": {
-            "signal": "{'Player': datum.Player, 'Scoring Impact': format(datum.ScoringImpact, '.1f'), 'Raw Points': datum.Points_A}"
-          }
-        }
-      }
-    },
-    {
-      "type": "text",
-      "from": {"data": "leaves"},
-      "interactive": false,
-      "encode": {
-        "enter": {
-          "font": {"value": "sans-serif"},
-          "align": {"value": "center"},
-          "baseline": {"value": "middle"},
-          "fill": {"value": "#ffffff"},
-          "fontWeight": {"value": "bold"}
-        },
-        "update": {
-          "x": {"signal": "0.5 * (datum.x0 + datum.x1)"},
-          "y": {"signal": "0.5 * (datum.y0 + datum.y1)"},
-          "text": {"signal": "datum.x1 - datum.x0 > 70 ? datum.Player : ''"},
-          "fontSize": {"value": 11}
-        }
-      }
-    }
-  ]
+  "mark": "treemap"
 }

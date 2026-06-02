@@ -71,7 +71,7 @@
       "mark": {
         "type": "rect",
         "filled": true,
-        "opacity": 0.35,
+        "opacity": 0.25,
         "stroke": "#ffffff",
         "strokeWidth": 0.5
       },

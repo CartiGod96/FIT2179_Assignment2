@@ -1,30 +1,22 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Rebuilt High-Fidelity Spatial Shot Geography Grid Heatmap",
+  "description": "Spatial Shot Footprint on a Horizontal Basketball Court Layout.",
   "width": 800,
   "height": 430,
   "layer": [
     {
-      "description": "Layer 1: Base Court Map Backdrop",
       "data": { "values": [{}] },
-      "mark": {
-        "type": "image",
-        "url": "images/fiba_court_flat.png",
-        "width": 800,
-        "height": 430,
-        "aspect": false
-      },
+      "mark": { "type": "image", "url": "images/fiba_court_flat.png", "width": 800, "height": 430 },
       "encoding": {
         "x": {"datum": 50, "scale": {"domain": [0, 100]}, "axis": null},
         "y": {"datum": 50, "scale": {"domain": [0, 100]}, "axis": null}
       }
     },
     {
-      "description": "Layer 2: Translucent Quantitative Grid Overlaid on Hardwood",
       "data": { "url": "data/nbl_shot_coordinates.csv" },
       "params": [
         {
-          "name": "density_chart_team_dropdown",
+          "name": "shot_chart_exclusive_dropdown_signal",
           "select": { "type": "point", "fields": ["Team"] },
           "bind": {
             "input": "select",
@@ -34,84 +26,31 @@
               "South East Melbourne Phoenix", "Sydney Kings", "Tasmania JackJumpers"
             ],
             "labels": [
-              "League-Wide Density (Show All)", "Adelaide 36ers", "Brisbane Bullets", "Cairns Taipans", "Illawarra Hawks",
+              "League-Wide Footprint (Show All)", "Adelaide 36ers", "Brisbane Bullets", "Cairns Taipans", "Illawarra Hawks",
               "Melbourne United", "New Zealand Breakers", "Perth Wildcats",
               "South East Melbourne Phoenix", "Sydney Kings", "Tasmania JackJumpers"
             ],
-            "name": "Isolate Density Profile: "
+            "name": "Isolate Team Profile: "
           }
         }
       ],
-      "transform": [
-        { "filter": {"param": "density_chart_team_dropdown"} },
-        { "filter": "datum.X >= 0 && datum.X <= 100 && datum.Y >= 0 && datum.Y <= 100" },
-        {
-          "calculate": "datum.Shot_Outcome == 'Make' ? 1 : 0",
-          "as": "shot_made_numeric"
-        },
-        { 
-          "bin": {"maxbins": 7}, 
-          "field": "X", 
-          "as": "binned_x" 
-        },
-        { 
-          "bin": {"exact": false, "maxbins": 5, "step": 20}, 
-          "field": "Y", 
-          "as": "binned_y" 
-        },
-        {
-          "joinaggregate": [
-            {"op": "count", "as": "zone_shot_count"},
-            {"op": "mean", "field": "shot_made_numeric", "as": "zone_fg_percentage"}
-          ],
-          "groupby": ["binned_x", "binned_y"]
-        },
-        { "filter": "datum.zone_shot_count >= 25" }
-      ],
-      "mark": {
-        "type": "rect",
-        "filled": true,
-        "opacity": 0.08,
-        "stroke": "#ffffff",
-        "strokeWidth": 0.5
-      },
+      "transform": [ { "filter": {"param": "shot_chart_exclusive_dropdown_signal"} } ],
+      "mark": { "type": "circle", "size": 14, "opacity": 0.45 },
       "encoding": {
-        "x": { 
-          "field": "binned_x", 
-          "type": "quantitative", 
-          "scale": {"domain": [0, 100]}, 
-          "axis": null 
-        },
-        "x2": { "field": "binned_x_end" },
-        "y": { 
-          "field": "binned_y", 
-          "type": "quantitative", 
-          "scale": {"domain": [0, 100]}, 
-          "axis": null 
-        },
-        "y2": { "field": "binned_y_end" },
+        "x": { "field": "X", "type": "quantitative", "scale": {"domain": [0, 100]}, "axis": null },
+        "y": { "field": "Y", "type": "quantitative", "scale": {"domain": [0, 100]}, "axis": null },
         "color": {
-          "field": "zone_fg_percentage",
-          "type": "quantitative",
-          "title": "Zone FG%",
-          "scale": {
-            "type": "linear",
-            "scheme": "blues"
-          },
-          "legend": { 
-            "format": ".0%", 
-            "orient": "right",
-            "titleFontWeight": "bold"
-          }
+          "field": "Shot_Outcome",
+          "type": "nominal",
+          "title": "Shot Outcome",
+          "scale": { "domain": ["Make", "Miss"], "range": ["#00b4d8", "#dcdcdc"] }
         },
         "tooltip": [
-          {"field": "zone_shot_count", "type": "quantitative", "title": "Attempts in Zone"},
-          {"field": "zone_fg_percentage", "type": "quantitative", "title": "Zone FG%", "format": ".1%"}
+          {"field": "Team", "type": "nominal"},
+          {"field": "Shot_Type", "type": "nominal", "title": "Value Class"},
+          {"field": "Shot_Outcome", "type": "nominal", "title": "Result"}
         ]
       }
     }
-  ],
-  "config": {
-    "view": {"stroke": "transparent", "background": "transparent"}
-  }
+  ]
 }

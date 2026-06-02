@@ -29,9 +29,9 @@
           "bind": {
             "input": "select",
             "options": [
-              null, "Adelaide", "Brisbane", "Cairns", "Illawarra",
-              "Melbourne", "New Zealand", "Perth",
-              "South East Melbourne", "Sydney", "Tasmania"
+              null, "Adelaide 36ers", "Brisbane Bullets", "Cairns Taipans", "Illawarra Hawks",
+              "Melbourne United", "New Zealand Breakers", "Perth Wildcats",
+              "South East Melbourne Phoenix", "Sydney Kings", "Tasmania JackJumpers"
             ],
             "labels": [
               "League-Wide Density (Show All)", "Adelaide 36ers", "Brisbane Bullets", "Cairns Taipans", "Illawarra Hawks",

@@ -1,0 +1,62 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Binned Court Density Framework via nbl_shot_coordinates.csv",
+  "data": {
+    "url": "data/nbl_shot_coordinates.csv"
+  },
+  "transform": [
+    {"calculate": "datum.Shot_Outcome == 'Make' ? 1 : 0", "as": "IsMake"},
+    {"bin": {"maxbins": 30}, "field": "X", "as": "bx"},
+    {"bin": {"maxbins": 30}, "field": "Y", "as": "by"},
+    {
+      "aggregate": [
+        {"op": "count", "as": "Volume"},
+        {"op": "mean", "field": "IsMake", "as": "Accuracy"}
+      ],
+      "groupby": ["bx", "by"]
+    },
+    {"filter": "datum.Volume > 3"}
+  ],
+  "width": 780,
+  "height": 380,
+  "mark": {"type": "circle", "opacity": 0.8},
+  "encoding": {
+    "x": {
+      "field": "bx",
+      "type": "quantitative",
+      "title": "Court Width Axis",
+      "scale": {"domain": [0, 100]},
+      "axis": {"grid": false}
+    },
+    "y": {
+      "field": "by",
+      "type": "quantitative",
+      "title": "Court Depth Baseline",
+      "scale": {"domain": [0, 100]},
+      "axis": {"grid": false}
+    },
+    "size": {
+      "field": "Volume",
+      "type": "quantitative",
+      "title": "Attempts Gathered",
+      "scale": {"range": [30, 500]}
+    },
+    "color": {
+      "field": "Accuracy",
+      "type": "quantitative",
+      "title": "FG % Accuracy",
+      "scale": {
+        "domain": [0.25, 0.45, 0.65],
+        "range": ["#e66101", "#f7f7f7", "#5e3c99"]
+      },
+      "legend": {"format": ".0%"}
+    },
+    "tooltip": [
+      {"field": "Volume", "type": "quantitative", "title": "Attempts Volume"},
+      {"field": "Accuracy", "type": "quantitative", "title": "Field Goal Efficiency", "format": ".1%"}
+    ]
+  },
+  "config": {
+    "view": {"stroke": "transparent"}
+  }
+}

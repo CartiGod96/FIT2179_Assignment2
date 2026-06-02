@@ -1,0 +1,52 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Parallel Coordinates Utility Profiles via nbl-player-stats.csv",
+  "data": {
+    "url": "data/nbl-player-stats.csv"
+  },
+  "transform": [
+    {"filter": "datum.Minutes_A > 15 && datum.Matches > 8"},
+    {"window": [{"op": "min", "field": "Minutes_A", "as": "min_m"}, {"op": "max", "field": "Minutes_A", "as": "max_m"}], "frame": [null, null]},
+    {"window": [{"op": "min", "field": "Points_A", "as": "min_p"}, {"op": "max", "field": "Points_A", "as": "max_p"}], "frame": [null, null]},
+    {"window": [{"op": "min", "field": "PIE", "as": "min_pie"}, {"op": "max", "field": "PIE", "as": "max_pie"}], "frame": [null, null]},
+    {"window": [{"op": "min", "field": "ARR", "as": "min_arr"}, {"op": "max", "field": "ARR", "as": "max_arr"}], "frame": [null, null]},
+    {"calculate": "(datum.Minutes_A - datum.min_m) / (datum.max_m - datum.min_m)", "as": "Norm_Minutes"},
+    {"calculate": "(datum.Points_A - datum.min_p) / (datum.max_p - datum.min_p)", "as": "Norm_Points"},
+    {"calculate": "(datum.PIE - datum.min_pie) / (datum.max_pie - datum.min_pie)", "as": "Norm_PIE"},
+    {"calculate": "(datum.ARR - datum.min_arr) / (datum.max_arr - datum.min_arr)", "as": "Norm_ARR"},
+    {"fold": ["Norm_Minutes", "Norm_Points", "Norm_PIE", "Norm_ARR"], "as": ["Axis", "Value"]},
+    {"calculate": "datum.Axis == 'Norm_Minutes' ? 'Mins/G' : datum.Axis == 'Norm_Points' ? 'Pts/G' : datum.Axis == 'Norm_PIE' ? 'Impact (PIE)' : 'Rim Def (ARR)'", "as": "Metric"}
+  ],
+  "width": 780,
+  "height": 340,
+  "mark": {"type": "line", "opacity": 0.35, "strokeWidth": 2.5},
+  "encoding": {
+    "x": {
+      "field": "Metric",
+      "type": "nominal",
+      "title": " Roster Metric Axes",
+      "sort": ["Mins/G", "Pts/G", "Impact (PIE)", "Rim Def (ARR)"],
+      "axis": {"labelAngle": 0}
+    },
+    "y": {
+      "field": "Value",
+      "type": "quantitative",
+      "title": "Standardized Range (0-1 Scale)",
+      "axis": {"labels": false, "ticks": false}
+    },
+    "color": {
+      "field": "Team",
+      "type": "nominal",
+      "title": "Team",
+      "scale": {"scheme": "tableau10"}
+    },
+    "detail": {"field": "Player"},
+    "tooltip": [
+      {"field": "Player", "type": "nominal"},
+      {"field": "Team", "type": "nominal"},
+      {"field": "Points_A", "type": "quantitative", "title": "PPG"},
+      {"field": "PIE", "type": "quantitative", "title": "PIE Index"},
+      {"field": "ARR", "type": "quantitative", "title": "ARR Index"}
+    ]
+  }
+}

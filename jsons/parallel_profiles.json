@@ -2,7 +2,17 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Parallel Coordinates Utility Profiles via Fixed League Percentile Rankings",
   "data": {
-    "url": "data/nbl-player-stats.csv"
+    "url": "data/nbl-player-stats.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "Minutes_A": "number",
+        "Points_A": "number",
+        "PIE": "number",
+        "ARR": "number",
+        "Matches": "number"
+      }
+    }
   },
   "width": "container",
   "height": 340,

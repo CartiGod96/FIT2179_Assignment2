@@ -1,62 +1,100 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Binned Court Density Framework via nbl_shot_coordinates.csv",
-  "data": {
-    "url": "data/nbl_shot_coordinates.csv"
-  },
-  "transform": [
-    {"calculate": "datum.Shot_Outcome == 'Make' ? 1 : 0", "as": "IsMake"},
-    {"bin": {"maxbins": 30}, "field": "X", "as": "bx"},
-    {"bin": {"maxbins": 30}, "field": "Y", "as": "by"},
+  "description": "Binned Court Volume & Efficiency Blueprint overlaid on Court Layout.",
+  "width": 800,
+  "height": 430,
+  "layer": [
     {
-      "aggregate": [
-        {"op": "count", "as": "Volume"},
-        {"op": "mean", "field": "IsMake", "as": "Accuracy"}
+      "data": { "values": [{}] },
+      "mark": { "type": "image", "url": "images/fiba_court_flat.png", "width": 800, "height": 430 },
+      "encoding": {
+        "x": {"datum": 50, "scale": {"domain": [0, 100]}, "axis": null},
+        "y": {"datum": 50, "scale": {"domain": [0, 100]}, "axis": null}
+      }
+    },
+    {
+      "data": { "url": "data/nbl_shot_coordinates.csv" },
+      "params": [
+        {
+          "name": "density_chart_team_dropdown",
+          "select": { "type": "point", "fields": ["Team"] },
+          "bind": {
+            "input": "select",
+            "options": [
+              null, "Adelaide 36ers", "Brisbane Bullets", "Cairns Taipans", "Illawarra Hawks",
+              "Melbourne United", "New Zealand Breakers", "Perth Wildcats",
+              "South East Melbourne Phoenix", "Sydney Kings", "Tasmania JackJumpers"
+            ],
+            "labels": [
+              "League-Wide Density (Show All)", "Adelaide 36ers", "Brisbane Bullets", "Cairns Taipans", "Illawarra Hawks",
+              "Melbourne United", "New Zealand Breakers", "Perth Wildcats",
+              "South East Melbourne Phoenix", "Sydney Kings", "Tasmania JackJumpers"
+            ],
+            "name": "Isolate Density Profile: "
+          }
+        }
       ],
-      "groupby": ["bx", "by"]
-    },
-    {"filter": "datum.Volume > 3"}
-  ],
-  "width": 780,
-  "height": 380,
-  "mark": {"type": "circle", "opacity": 0.8},
-  "encoding": {
-    "x": {
-      "field": "bx",
-      "type": "quantitative",
-      "title": "Court Width Axis",
-      "scale": {"domain": [0, 100]},
-      "axis": {"grid": false}
-    },
-    "y": {
-      "field": "by",
-      "type": "quantitative",
-      "title": "Court Depth Baseline",
-      "scale": {"domain": [0, 100]},
-      "axis": {"grid": false}
-    },
-    "size": {
-      "field": "Volume",
-      "type": "quantitative",
-      "title": "Attempts Gathered",
-      "scale": {"range": [30, 500]}
-    },
-    "color": {
-      "field": "Accuracy",
-      "type": "quantitative",
-      "title": "FG % Accuracy",
-      "scale": {
-        "domain": [0.25, 0.45, 0.65],
-        "range": ["#e66101", "#f7f7f7", "#5e3c99"]
+      "transform": [
+        { "filter": {"param": "density_chart_team_dropdown"} },
+        {
+          "calculate": "datum.Shot_Outcome == 'Make' ? 1 : 0",
+          "as": "shot_made_numeric"
+        }
+      ],
+      "mark": {
+        "type": "rect",
+        "opacity": 0.75,
+        "stroke": "#ffffff",
+        "strokeWidth": 0.5
       },
-      "legend": {"format": ".0%"}
-    },
-    "tooltip": [
-      {"field": "Volume", "type": "quantitative", "title": "Attempts Volume"},
-      {"field": "Accuracy", "type": "quantitative", "title": "Field Goal Efficiency", "format": ".1%"}
-    ]
-  },
+      "encoding": {
+        "x": {
+          "field": "X",
+          "type": "quantitative",
+          "bin": {"maxbins": 30},
+          "scale": {"domain": [0, 100]},
+          "axis": null
+        },
+        "y": {
+          "field": "Y",
+          "type": "quantitative",
+          "bin": {"maxbins": 20},
+          "scale": {"domain": [0, 100]},
+          "axis": null
+        },
+        "color": {
+          "aggregate": "mean",
+          "field": "shot_made_numeric",
+          "type": "quantitative",
+          "title": "Zone FG%",
+          "scale": {
+            "scheme": "redyellowblue",
+            "reverse": true,
+            "domain": [0.25, 0.65]
+          },
+          "legend": {
+            "format": ".0%",
+            "orient": "right",
+            "titlePadding": 10
+          }
+        },
+        "size": {
+          "aggregate": "count",
+          "type": "quantitative",
+          "title": "Attempts in Zone",
+          "legend": {
+            "orient": "right",
+            "titlePadding": 10
+          }
+        },
+        "tooltip": [
+          {"aggregate": "count", "type": "quantitative", "title": "Total Visualized Attempts"},
+          {"aggregate": "mean", "field": "shot_made_numeric", "type": "quantitative", "title": "Calculated Zone FG%", "format": ".1%"}
+        ]
+      }
+    }
+  ],
   "config": {
-    "view": {"stroke": "transparent"}
+    "view": {"stroke": "transparent", "background": "transparent"}
   }
 }

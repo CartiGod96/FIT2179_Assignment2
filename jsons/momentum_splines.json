@@ -1,16 +1,16 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Continuous Ladder Momentum Splines via nbl_ladder_history.csv",
+  "description": "Compressed Compact Ladder Momentum Banner",
   "data": {
     "url": "data/nbl_ladder_history.csv"
   },
   "width": 780,
-  "height": 320,
+  "height": 160,
   "mark": {
     "type": "area",
     "interpolate": "monotone",
     "line": {"size": 2},
-    "opacity": 0.15
+    "opacity": 0.12
   },
   "encoding": {
     "x": {
@@ -22,8 +22,8 @@
     "y": {
       "field": "win_percentage",
       "type": "quantitative",
-      "title": "Proportional Win Cushion",
-      "scale": {"domain": [0, 1]},
+      "title": "Win Record",
+      "scale": {"domain": [0.1, 0.9]},
       "axis": {"format": ".0%"}
     },
     "color": {
@@ -36,7 +36,7 @@
       {"field": "team_name", "type": "nominal", "title": "Team"},
       {"field": "round_number", "type": "quantitative", "title": "Round"},
       {"field": "win_percentage", "type": "quantitative", "title": "Win Record", "format": ".1%"},
-      {"field": "rank", "type": "quantitative", "title": "Ladder Rank"}
+      {"field": "rank", "type": "quantitative", "title": "Rank Standings"}
     ]
   }
 }

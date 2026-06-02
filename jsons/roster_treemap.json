@@ -5,7 +5,7 @@
   "data": [
     {
       "name": "raw",
-      "url": "nbl-player-stats.csv",
+      "url": "nbl-player-stats.csv", 
       "format": {"type": "csv", "parse": "auto"},
       "transform": [
         {
@@ -40,7 +40,7 @@
     {
       "name": "color",
       "type": "ordinal",
-      "domain": {"data": "leaves", "field": "parent.key"},
+      "domain": {"data": "raw", "field": "Team"},
       "range": {"scheme": "category20"}
     }
   ],
@@ -55,7 +55,7 @@
           "y": {"field": "y0"},
           "x2": {"field": "x1"},
           "y2": {"field": "y1"},
-          "fill": {"scale": "color", "field": "parent.key"},
+          "fill": {"scale": "color", "field": "Team"},
           "tooltip": {"signal": "datum.Player + ': ' + format(datum.ScoringImpact, '.1f')"}
         }
       }

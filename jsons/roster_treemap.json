@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "data": {"url": "nbl-player-stats.csv"},
+  "data": {"url": "data/nbl-player-stats.csv"},
   "transform": [
     {
       "calculate": "datum.Points_A + (datum.ThreePointersMade_A * 2) + (datum.PointsInThePaint_A * 0.5)",

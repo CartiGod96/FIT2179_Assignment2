@@ -24,6 +24,19 @@
             </div>
         </header>
 
+        <!-- NEW: Comprehensive Project Introduction Block -->
+        <section class="pure-g" style="margin-top: 20px; margin-bottom: 30px;">
+            <div class="pure-u-1" style="background: #ffffff; padding: 25px; border-radius: 8px; border: 1px solid #e1e8ed; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
+                <h2 style="margin-top: 0; color: #2c3e50; font-size: 1.5rem; border-bottom: 2px solid #34495e; padding-bottom: 8px;">Executive Summary & Portfolio Context</h2>
+                <p class="narrative-p" style="line-height: 1.6; color: #34495e;">
+                    Modern basketball analytics has evolved past raw box scores, shifting toward efficiency-driven spatial metrics and possession-adjusted tracking data. This portfolio evaluates the competitive landscape of the National Basketball League (NBL) across its 2025-2026 campaign. By mapping the performance frontiers of franchises and individual athletes, these interactive components dissect the core factors driving success: team efficiency, geographic constraints, defensive workloads, and spatial shot distribution. 
+                </p>
+                <p class="narrative-p" style="line-height: 1.6; color: #34495e; margin-bottom: 0;">
+                    Through dynamic filtering and multi-layered visual encodings, this study converts dense tracking records into an exploratory tactical interface—unveiling how team structures navigate travel taxes and paint security architectures to forge title runs.
+                </p>
+            </div>
+        </section>
+
         <hr class="divider">
         <header class="pure-g">
             <div class="pure-u-1 block-center-left">
@@ -64,23 +77,25 @@
             </div>
             <div class="pure-u-1 pure-u-lg-8-24 text-container" style="padding-left: 20px;">
                 <h3>The Possession Frontier</h3>
-                <p class="narrative-p">Points Per Possession (PPP) bypasses raw scoring columns distorted by fast play styles. The top-left quadrant isolates the title core franchises creating maximum output while restricting opponents.</p>
+                <p class="narrative-p">Points Per Possession (PPP) bypasses raw scoring columns distorted by fast play styles. The top-left quadrant isolates the title core—franchises creating maximum output while restricting opponents.</p>
             </div>
         </section>
 
-        <section class="pure-g" style="margin-top: 35px; padding: 0 10px;">
-            <div class="pure-u-1">
-                <h3>True Shooting Profiles & Point Differentials</h3>
-                <p class="narrative-p" style="margin-bottom: 10px;">Evaluating the underlying mechanics of scoring efficiency. The left chart unpacks Effective Field Goal percentages (eFG%) across squads, while the right displays net scoring margins across home and away splits.</p>
-            </div>
-        </section>
-
-        <section class="pure-g row-align" style="background-color: #fafafa; padding: 15px; border-radius: 6px;">
-            <div class="pure-u-1 pure-u-md-12-24 vis-container" style="padding: 10px;">
-                <div id="team_efg_bar" class="chart-box"></div>
-            </div>
-            <div class="pure-u-1 pure-u-md-12-24 vis-container" style="padding: 10px;">
-                <div id="margin_diverging" class="chart-box"></div>
+        <!-- UPDATED: Integrated text directly INSIDE the chart container box -->
+        <section class="pure-g row-align" style="margin-top: 35px;">
+            <div class="pure-u-1" style="background-color: #fafafa; padding: 25px; border-radius: 8px; border: 1px solid #e1e8ed;">
+                <div style="margin-bottom: 20px; padding: 0 10px;">
+                    <h3 style="margin-top: 0;">True Shooting Profiles & Point Differentials</h3>
+                    <p class="narrative-p" style="color: #555; max-width: 90%;">Evaluating the underlying mechanics of scoring efficiency. The left chart unpacks Effective Field Goal percentages (eFG%) across squads, while the right displays net scoring margins across home and away splits.</p>
+                </div>
+                <div class="pure-g">
+                    <div class="pure-u-1 pure-u-md-12-24 vis-container" style="padding: 10px;">
+                        <div id="team_efg_bar" class="chart-box" style="border: none; background: transparent; box-shadow: none; padding: 0;"></div>
+                    </div>
+                    <div class="pure-u-1 pure-u-md-12-24 vis-container" style="padding: 10px;">
+                        <div id="margin_diverging" class="chart-box" style="border: none; background: transparent; box-shadow: none; padding: 0;"></div>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -111,16 +126,16 @@
             </div>
         </section>
 
-        <section class="pure-g" style="margin-top: 40px; padding: 0 10px;">
-            <div class="pure-u-1">
-                <h3>Roster Execution Matrices: FIC vs. PIE Metrics</h3>
-                <p class="narrative-p" style="margin-bottom: 5px;">A direct side-by-side diagnostic comparison of holistic impact metrics. Floor Impact Counter (FIC) values raw box-score productivity, whereas Player Impact Estimate (PIE) gauges the exact percentage of game events a player commands.</p>
-            </div>
-        </section>
-
-        <section class="pure-g row-align" style="background-color: #fcfcfc; padding: 20px; border-radius: 8px;">
-            <div class="pure-u-1 vis-container" style="overflow-x: auto;">
-                <div id="execution_facets" class="chart-box" style="display: flex; justify-content: center;"></div>
+        <!-- UPDATED: Integrated text directly INSIDE the Execution Facets background block -->
+        <section class="pure-g row-align" style="margin-top: 35px;">
+            <div class="pure-u-1" style="background-color: #fcfcfc; padding: 25px; border-radius: 8px; border: 1px solid #e1e8ed;">
+                <div style="margin-bottom: 15px; padding: 0 10px;">
+                    <h3 style="margin-top: 0;">Roster Execution Matrices: FIC vs. PIE Metrics</h3>
+                    <p class="narrative-p" style="color: #555;">A direct side-by-side diagnostic comparison of holistic impact metrics. Floor Impact Counter (FIC) values raw box-score productivity, whereas Player Impact Estimate (PIE) gauges the exact percentage of game events a player commands.</p>
+                </div>
+                <div class="vis-container" style="overflow-x: auto; padding: 10px;">
+                    <div id="execution_facets" class="chart-box" style="display: flex; justify-content: center; border: none; background: transparent; box-shadow: none; padding: 0;"></div>
+                </div>
             </div>
         </section>
 
@@ -128,21 +143,20 @@
         <header class="pure-g">
             <div class="pure-u-1 block-center-left">
                 <h2 class="section-title">4. High-Fidelity Shot Tracking Geography</h2>
-            </div>
-        </header>
+            </header>
 
-        <section class="pure-g" style="margin-top: 15px; padding: 0 10px;">
-            <div class="pure-u-1 block-center">
-                <h3 style="text-align: center;">Spatial Court Density and Shot Selection Architecture</h3>
-                <p class="narrative-p" style="text-align: center; max-width: 800px; margin: 0 auto 15px auto;">
-                    Mapping every attempt across the hardwood workspace. This spatial dataset evaluates specific high-value efficiency hubs, contrasting mid-range frequency drop-offs against high-density rim and corner-three distributions.
-                </p>
-            </div>
-        </section>
-
-        <section class="pure-g row-align" style="margin-bottom: 60px;">
-            <div class="pure-u-1 vis-container" style="display: flex; justify-content: center; overflow-x: auto; padding: 10px;">
-                <div id="shot_chart" class="chart-box"></div>
+        <!-- UPDATED: Integrated text directly inside a clean visual container surrounding the Shot Chart -->
+        <section class="pure-g row-align" style="margin-top: 15px; margin-bottom: 60px;">
+            <div class="pure-u-1" style="background: #ffffff; padding: 25px; border-radius: 8px; border: 1px solid #e1e8ed; box-shadow: 0 2px 4px rgba(0,0,0,0.01);">
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <h3 style="margin-top: 0;">Spatial Court Density and Shot Selection Architecture</h3>
+                    <p class="narrative-p" style="max-width: 800px; margin: 0 auto; color: #555;">
+                        Mapping every attempt across the hardwood workspace. This spatial dataset evaluates specific high-value efficiency hubs, contrasting mid-range frequency drop-offs against high-density rim and corner-three distributions.
+                    </p>
+                </div>
+                <div class="vis-container" style="display: flex; justify-content: center; overflow-x: auto; padding: 10px;">
+                    <div id="shot_chart" class="chart-box" style="border: none; background: transparent; box-shadow: none; padding: 0;"></div>
+                </div>
             </div>
         </section>
 

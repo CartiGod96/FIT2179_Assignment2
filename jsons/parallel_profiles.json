@@ -4,9 +4,54 @@
   "data": {
     "url": "data/nbl-player-stats.csv"
   },
+  "width": "container",
+  "height": 340,
+  "autosize": {
+    "type": "fit",
+    "contains": "padding"
+  },
+  "params": [
+    {
+      "name": "archetype_team_filter",
+      "select": {"type": "point", "fields": ["Team"]},
+      "bind": {
+        "input": "select",
+        "options": [
+          null,
+          "Adelaide 36ers",
+          "Brisbane Bullets",
+          "Cairns Taipans",
+          "Illawarra Hawks",
+          "Melbourne United",
+          "New Zealand Breakers",
+          "Perth Wildcats",
+          "South East Melbourne Phoenix",
+          "Sydney Kings",
+          "Tasmania JackJumpers"
+        ],
+        "labels": [
+          "Show All Franchises",
+          "Adelaide 36ers",
+          "Brisbane Bullets",
+          "Cairns Taipans",
+          "Illawarra Hawks",
+          "Melbourne United",
+          "New Zealand Breakers",
+          "Perth Wildcats",
+          "South East Melbourne Phoenix",
+          "Sydney Kings",
+          "Tasmania JackJumpers"
+        ],
+        "name": "Isolate Franchise Roster: "
+      }
+    }
+  ],
   "transform": [
     {
       "filter": "datum.Minutes_A > 12 && datum.Matches > 5"
+    },
+    {
+      "filter": {"param": "archetype_team_filter"}
     },
     {
       "window": [{"op": "rank", "as": "rank_mins"}],
@@ -49,8 +94,6 @@
       "as": ["Metric", "Percentile_Value"]
     }
   ],
-  "width": 780,
-  "height": 340,
   "mark": {
     "type": "line", 
     "opacity": 0.4, 

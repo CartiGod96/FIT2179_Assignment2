@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Hexagonal Court Volume & Efficiency Blueprint overlaid on Court Layout.",
+  "description": "A high-fidelity spatial shot blueprint with structural grid partitioning.",
   "width": 800,
   "height": 430,
   "layer": [
@@ -42,12 +42,10 @@
         }
       ],
       "mark": {
-        "type": "point",
-        "shape": "hexagon",
-        "filled": true,
-        "opacity": 0.85,
-        "stroke": "#ffffff",
-        "strokeWidth": 1
+        "type": "rect",
+        "filled": false,
+        "opacity": 0.9,
+        "strokeWidth": 3.5
       },
       "encoding": {
         "x": {
@@ -64,7 +62,7 @@
           "scale": {"domain": [0, 100]},
           "axis": null
         },
-        "color": {
+        "stroke": {
           "aggregate": "mean",
           "field": "shot_made_numeric",
           "type": "quantitative",
@@ -80,11 +78,11 @@
             "titlePadding": 10
           }
         },
-        "size": {
+        "color": {
           "aggregate": "count",
           "type": "quantitative",
-          "title": "Attempts in Zone",
-          "scale": {"range": [400, 2200]},
+          "title": "Attempts Volume",
+          "scale": {"scheme": "greys", "range": ["#e0e0e0", "#212121"]},
           "legend": {
             "orient": "right",
             "titlePadding": 10

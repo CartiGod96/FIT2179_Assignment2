@@ -4,8 +4,11 @@
   "data": {
     "url": "data/nbl_ladder_history.csv"
   },
-  "width": 780,
-  "height": 160,
+  "width": "container",
+  "height": 220,
+  "autosize": {    "type": "fit",
+    "contains": "padding"
+  },
   "mark": {
     "type": "area",
     "interpolate": "monotone",

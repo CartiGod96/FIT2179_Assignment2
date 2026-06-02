@@ -31,11 +31,6 @@
       ]
     },
     {
-      "name": "nodes",
-      "source": "tree",
-      "transform": [{"type": "filter", "expr": "datum.children"}]
-    },
-    {
       "name": "leaves",
       "source": "tree",
       "transform": [{"type": "filter", "expr": "!datum.children"}]
@@ -45,7 +40,7 @@
     {
       "name": "color",
       "type": "ordinal",
-      "domain": {"data": "nodes", "field": "key"},
+      "domain": {"data": "leaves", "field": "parent.key"},
       "range": {"scheme": "category20"}
     }
   ],

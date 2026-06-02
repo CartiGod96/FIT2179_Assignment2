@@ -17,11 +17,6 @@
         "step": 1,
         "name": "Minimum Minutes Played per Game: "
       }
-    },
-    {
-      "name": "legend_select",
-      "select": {"type": "point", "fields": ["Team"]},
-      "bind": "legend"
     }
   ],
   "transform": [
@@ -30,6 +25,14 @@
   ],
   "layer": [
     {
+      "name": "scatter_layer",
+      "params": [
+        {
+          "name": "legend_select",
+          "select": {"type": "point", "fields": ["Team"]},
+          "bind": "legend"
+        }
+      ],
       "mark": {"type": "circle", "opacity": 0.7},
       "encoding": {
         "x": {

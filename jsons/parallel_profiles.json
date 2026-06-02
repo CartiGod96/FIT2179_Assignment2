@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Parallel Coordinates Utility Profiles via Percentile Rankings",
+  "description": "Parallel Coordinates Utility Profiles via Fixed League Percentile Rankings",
   "data": {
     "url": "data/nbl-player-stats.csv"
   },
@@ -51,9 +51,6 @@
       "filter": "datum.Minutes_A > 12 && datum.Matches > 5"
     },
     {
-      "filter": {"param": "archetype_team_filter"}
-    },
-    {
       "window": [{"op": "rank", "as": "rank_mins"}],
       "sort": [{"field": "Minutes_A", "order": "ascending"}]
     },
@@ -88,6 +85,9 @@
     {
       "calculate": "(datum.rank_arr - 1) / (datum.total_players - 1)",
       "as": "Rim Def (ARR)"
+    },
+    {
+      "filter": {"param": "archetype_team_filter"}
     },
     {
       "fold": ["Mins/G", "Pts/G", "Impact (PIE)", "Rim Def (ARR)"],

@@ -5,21 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NBL Performance Frontier (2025-2026)</title>
     
-    <!-- Pure CSS Framework -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/grids-responsive-min.css">
 
-    <!-- Vega Visualization Engine -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700;1,900&family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+
     <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
 
-    <!-- Project Stylesheet Connection -->
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <!-- Sticky Navigation Bar -->
     <nav class="sticky-nav">
         <div class="nav-container">
             <div class="nav-logo">
@@ -36,10 +36,8 @@
         </div>
     </nav>
 
-    <!-- Main Content Envelope -->
     <main class="page-wrapper">
         
-        <!-- Premium Header Workspace -->
         <header id="overview" class="hero-container">
             <p class="hero-tagline">National Basketball League · 2025-2026 Analytics Space</p>
             <h1>The Performance <br><span class="accent-text">On the Frontier</span></h1>
@@ -48,7 +46,6 @@
             </p>
         </header>
 
-        <!-- Rule of Thirds Landing Metrics -->
         <div class="pure-g stat-grid">
             <div class="pure-u-1 pure-u-sm-1-2 pure-u-md-1-4">
                 <div class="stat-card">
@@ -76,30 +73,40 @@
             </div>
         </div>
 
-        <!-- SECTION 02: LEAGUE CONTEXT & ENVIRONMENTAL FACTORS -->
         <section id="environment" class="section-block">
-            <h2 class="section-title">02. League Context & Environmental Factors</h2>
+            <div class="section-header-wrapper">
+                <span class="chapter-label">Chapter 02</span>
+                <h2 class="section-title">League Context &amp; <span class="title-italic">Environmental Factors</span></h2>
+            </div>
             
-            <!-- Full Width Bump Chart Showcase -->
             <div class="pure-g content-panel row-align">
                 <div class="pure-u-1 panel-inner">
                     <h3>Competitive Velocity</h3>
                     <p class="narrative-p">
-                        The round-by-round volatility of the NBL ladder captures mid-season surges and functional collapses. 
-                        <span class="ux-badge">Interactive Feature</span> <strong>Clicking a franchise badge directly in the legend</strong> filters out clutter to isolate its specific path trajectory.
+                        The round-by-round volatility of the NBL regular-season ladder highlights mid-season surges and functional collapses. This coordinate trajectory maps severe table density over consecutive milestones, tracking how tight point differentials alter playoff paths across the 20-round campaign.
                     </p>
-                    <div class="vis-container"><div id="bump_chart" class="chart-box"></div></div>
+                    <div class="interactive-box">
+                        <strong>How to Explore:</strong> Click a franchise badge directly in the legend to filter out background noise and isolate its specific path trajectory across the competitive timeline.
+                    </div>
+                    <div class="vis-container">
+                        <div id="bump_chart" class="chart-box"></div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Asymmetric Section (Rule of Thirds: 1/3 Text, 2/3 Image) -->
             <div class="pure-g content-panel row-align">
                 <div class="pure-u-1 pure-u-lg-8-24 text-container">
                     <div class="panel-inner">
                         <h3>The Travel Tax Vector</h3>
                         <p class="narrative-p">
-                            Proportional markers locate team stadia across Australia and New Zealand. Bubble sizes correspond directly to stadium crowd capacities, visualizing how distinct physical home environments and massive travel scales shape competitive advantages.
+                            Proportional markers map severe geographic isolation across the league's layout. The structural distance separating the Perth Wildcats in Western Australia from the New Zealand Breakers in Auckland reveals an elite physical travel penalty that presents unique logistical challenges.
                         </p>
+                        <p class="narrative-p">
+                            Evaluating stadium asset capacity exposes structural resource divides. Metropolitan teams play out of major entertainment hubs, highlighted by the <strong>Sydney Kings at Qudos Bank Arena (18,000 capacity)</strong> and the <strong>Brisbane Entertainment Centre (14,500 capacity)</strong>. Conversely, regional setups operate under strict venue constraints, with the <strong>Cairns Convention Centre checking in at 5,300 seats</strong> and the <strong>Tasmania JackJumpers managing a 4,300 capacity limit at MyState Bank Arena</strong>.
+                        </p>
+                        <div class="interactive-box">
+                            <strong>How to Explore:</strong> Hover over individual regional markers to extract precise stadium names and cross-reference localized home crowd capacities.
+                        </div>
                     </div>
                 </div>
                 <div class="pure-u-1 pure-u-lg-16-24 vis-container-split">
@@ -108,21 +115,25 @@
             </div>
         </section>
 
-        <!-- SECTION 03: FRANCHISE PRODUCTION & EFFICIENCY DYNAMICS -->
         <section id="efficiency" class="section-block">
-            <h2 class="section-title">03. Franchise Production & Efficiency Dynamics</h2>
+            <div class="section-header-wrapper">
+                <span class="chapter-label">Chapter 03</span>
+                <h2 class="section-title">Franchise Production &amp; <span class="title-italic">Efficiency Dynamics</span></h2>
+            </div>
 
-            <!-- Stacked Dashboard Unit -->
             <div class="pure-g content-panel row-align">
                 <div class="pure-u-1 pure-u-lg-8-24 text-container">
                     <div class="panel-inner">
-                        <h3>Efficiency & Margin Blueprint</h3>
+                        <h3>Efficiency &amp; Margin Blueprint</h3>
                         <p class="narrative-p">
-                            Points Per Possession (PPP) bypasses raw scoring volumes distorted by varying game paces. This diagnostic suite balances overarching team production efficiency against defensive baselines.
+                            Points Per Possession (PPP) filters out raw scoring volume changes caused by varying game paces. Offensive generation is balanced directly against defensive containment to expose underlying execution quality across organizations.
                         </p>
                         <p class="narrative-p">
-                            The dumbbell element maps the precise operational spread between offensive generation and points allowed, while the lower ledger traces absolute point variance outcomes.
+                            Sydney displays high-value structural balance, anchoring defensive positions while pushing highly efficient offensive output. Conversely, squads like Brisbane reveal clear single-sided flaws, letting their defensive points allowed outpace their offensive production.
                         </p>
+                        <div class="interactive-box">
+                            <strong>How to Explore:</strong> Scan the length of the horizontal linking bars; wider gaps signify extreme single-sided efficiency splits, while overlapping nodes isolate balanced squads.
+                        </div>
                     </div>
                 </div>
                 <div class="pure-u-1 pure-u-lg-16-24 vis-container-split">
@@ -130,35 +141,49 @@
                 </div>
                 
                 <div class="pure-u-1 map-lower-ledger">
-                    <h4 class="ledger-title">Net Scoring Margins Across Home & Away Splits</h4>
+                    <h4 class="ledger-title">Net Scoring Margins Across Home &amp; Away Splits</h4>
+                    <p class="narrative-p" style="margin-bottom: 20px;">
+                        Re-evaluating these statistics based on location reveals how much home court advantage impacts performance. Teams like Sydney and South East Melbourne generate large net margins on their home floors. Meanwhile, outfits like Cairns and Brisbane fall below baseline levels when traveling, underscoring structural inconsistencies away from home environments.
+                    </p>
                     <div id="margin_diverging" class="chart-box"></div>
                 </div>
             </div>
 
-            <!-- Heatmap Unit -->
             <div class="pure-g content-panel row-align">
                 <div class="pure-u-1 panel-inner">
                     <h3>Quarter-by-Quarter Scoring Dominance Matrix</h3>
                     <p class="narrative-p">
-                        Breaking down macro match composition. This matrix exposes strategic structural fatigue and execution depth across game periods by validating franchises against normalized league offensive baselines.
+                        This matrix captures tactical execution shifts as game clocks run down. Tracking performance profiles across individual quarters uncovers how well rotations sustain pressure, highlighting execution drop-offs after half-time adjustments. 
                     </p>
-                    <div class="vis-container"><div id="period_heatmap" class="chart-box"></div></div>
+                    <p class="narrative-p">
+                        Sydney displays sustained execution, generating high efficiency during middle stanzas (Q2 and Q3 dark blue blocks). In contrast, Brisbane shows structural fatigue directly after intermission, dropping into lower efficiency values during third quarters.
+                    </p>
+                    <div class="interactive-box">
+                        <strong>How to Explore:</strong> Hover over cell intersections to view exact normalized efficiency index ratings relative to the broader league baseline.
+                    </div>
+                    <div class="vis-container">
+                        <div id="period_heatmap" class="chart-box"></div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- SECTION 04: ROSTER ARCHITECTURE & DEPTH DYNAMICS -->
         <section id="rosters" class="section-block">
-            <h2 class="section-title">04. Roster Architecture & Depth Dynamics</h2>
+            <div class="section-header-wrapper">
+                <span class="chapter-label">Chapter 04</span>
+                <h2 class="section-title">Roster Architecture &amp; <span class="title-italic">Depth Dynamics</span></h2>
+            </div>
 
-            <!-- Asymmetric Treemap Split -->
             <div class="pure-g content-panel row-align">
                 <div class="pure-u-1 pure-u-lg-8-24 text-container">
                     <div class="panel-inner">
                         <h3>Roster Hierarchy Map</h3>
                         <p class="narrative-p">
-                            Visualizing the hierarchical distribution of player contributions across the roster. The nested block segments isolate tracking loads, scaling area dimensions to mirror absolute individual usage volume weights across team rotation structures.
+                            This structural allocation maps roster usage and minute distribution proportions. Proportional blocks reveal how rosters handle depth. Balanced space distributions identify teams with shared offensive responsibilities, while heavily skewed block proportions point to top-heavy rotations dependent on star pairs.
                         </p>
+                        <div class="interactive-box">
+                            <strong>How to Explore:</strong> Hover over nested blocks to reveal individual athlete usage metrics and total roster contribution weights.
+                        </div>
                     </div>
                 </div>
                 <div class="pure-u-1 pure-u-lg-16-24 vis-container-split">
@@ -166,14 +191,19 @@
                 </div>
             </div>
 
-            <!-- Asymmetric Ridgeline Split -->
             <div class="pure-g content-panel row-align">
                 <div class="pure-u-1 pure-u-lg-8-24 text-container">
                     <div class="panel-inner">
                         <h3>Supercoach Production Density</h3>
                         <p class="narrative-p">
-                            Wide ridgeline distribution curves indicate high-utility depth charts with stable bench outputs, while narrow, sharp peaks signal severe reliance on top-heavy star distributions and concentrated rotations.
+                            Plotting individual player outputs per 40 minutes using normalized distribution slopes exposes different team building strategies. 
                         </p>
+                        <p class="narrative-p">
+                            Perth displays a highly concentrated, sharp peak around the 35-point mark, confirming heavy reliance on a tight core of star producers. Conversely, Adelaide and Brisbane show wide, gradual curves, identifying deep, distributed roster setups with reliable bench production and less reliance on high-usage individuals.
+                        </p>
+                        <div class="interactive-box">
+                            <strong>How to Explore:</strong> Compare peak vertical heights; tall spikes indicate concentrated production zones, while broad curves highlight varied point distributions.
+                        </div>
                     </div>
                 </div>
                 <div class="pure-u-1 pure-u-lg-16-24 vis-container-split">
@@ -181,38 +211,48 @@
                 </div>
             </div>
 
-            <!-- Facet Matrix Unit -->
             <div class="pure-g content-panel row-align">
                 <div class="pure-u-1 panel-inner">
                     <h3>Roster Execution Matrices: FIC vs. PIE Metrics</h3>
                     <p class="narrative-p">
-                        A direct side-by-side diagnostic comparison of holistic impact metrics. Floor Impact Counter (FIC) values raw box-score productivity volumes, whereas Player Impact Estimate (PIE) gauges the exact percentage of game events controlled by an athlete.
+                        Side-by-side matrices plot total box-score volume directly against overall game event control. Tracking tracking indicators across roster structures isolates high-value output contributors from high-volume, lower-efficiency pieces.
                     </p>
-                    <div class="vis-container"><div id="team_execution_facets" class="chart-box"></div></div>
+                    <div class="interactive-box">
+                        <strong>How to Explore:</strong> Switch between the standalone metric tabs to analyze changes in franchise roster distributions across performance frameworks.
+                    </div>
+                    <div class="vis-container">
+                        <div id="team_execution_facets" class="chart-box"></div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- SECTION 05: ADVANCED PLAYER IMPACT SUITE -->
         <section id="player-impact" class="section-block">
-            <h2 class="section-title">05. Advanced Player Impact Suite</h2>
+            <div class="section-header-wrapper">
+                <span class="chapter-label">Chapter 05</span>
+                <h2 class="section-title">Advanced Player <span class="title-italic">Impact Suite</span></h2>
+            </div>
 
-            <!-- Playmaker Split -->
             <div class="pure-g content-panel row-align">
                 <div class="pure-u-1 pure-u-lg-16-24 vis-container-split" style="border-right: none; border-left: 1px solid #e2e8f0; order: 2;">
                     <div id="player_scatter" class="chart-box"></div>
                 </div>
                 <div class="pure-u-1 pure-u-lg-8-24 text-container" style="order: 1;">
                     <div class="panel-inner">
-                        <h3>Workloads & Assists vs. Points</h3>
+                        <h3>Workloads &amp; Assists vs. Points</h3>
                         <p class="narrative-p">
-                            This landscape records playmaker table-setters against volume scoring anchors. Bubble coordinates map minutes-per-game (MPG). <span class="ux-badge">Interactive Feature</span> Adjust the dedicated drop-down selector to isolate internal roster breakdowns.
+                            Plotting scoring production against playmaking creation maps distinct player roles across the league. The tracking profile outlines clear archetypes, tracing a linear trend from high-volume scorers to primary tablesetters. 
                         </p>
+                        <p class="narrative-p">
+                            Outliers climbing toward the top-right quadrant identify elite offensive engines. This space isolates high-usage franchise anchors who handle both playmaking workloads and heavy scoring burdens simultaneously.
+                        </p>
+                        <div class="interactive-box">
+                            <strong>How to Explore:</strong> Utilize the dropdown selection element to isolate and audit individual franchise rosters.
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Paint Protection Split -->
             <div class="pure-g content-panel row-align">
                 <div class="pure-u-1 pure-u-lg-16-24 vis-container-split" style="border-right: none; border-left: 1px solid #e2e8f0; order: 2;">
                     <div id="efficiency_quadrants" class="chart-box"></div>
@@ -221,63 +261,83 @@
                     <div class="panel-inner">
                         <h3>Paint Security Matrix</h3>
                         <p class="narrative-p">
-                            Defensive mapping pits total blocks against Advanced Rim Recovery (ARR). <span class="ux-badge">Interactive Feature</span> Drag the slider scale to eliminate marginal rotation constraints, or isolate team clusters by clicking indicators in the legend.
+                            Pitting blocks directly against Advanced Rim Recovery efficiency evaluates interior frontcourt defense. This spatial layout tracks player value based on their ability to defend the basket and contest incoming shots.
                         </p>
+                        <p class="narrative-p">
+                            The top-right quadrant isolates elite rim protectors who alter shot trajectories near the basket. Conversely, the bottom-left space reveals roster gaps where teams lack the size and physical presence to alter interior scoring attempts.
+                        </p>
+                        <div class="interactive-box">
+                            <strong>How to Explore:</strong> Adjust the interactive slider handle to filter out low-minute rotation players and focus on core frontcourt data.
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Parallel Axes Space -->
             <div class="pure-g content-panel row-align">
                 <div class="pure-u-1 panel-inner">
                     <h3>Player Archetype Fingerprints (Parallel Axes Coordinate Space)</h3>
                     <p class="narrative-p">
-                        Instead of evaluating performance parameters in metrics silos, this structural framework tracks complete player execution curves across five discrete attributes simultaneously, grouping high-volume floor generals apart from physical defensive interior anchors.
+                        This unified coordinate framework charts performance profiles across five dimensions simultaneously. It maps multivariable output configurations, grouping distinct athlete roles by tracing individual performance lines across all five axes. This system separates high-volume floor generals from physical, defensive interior rim anchors.
                     </p>
-                    <div class="vis-container"><div id="parallel_profiles" class="chart-box"></div></div>
+                    <div class="interactive-box">
+                        <strong>How to Explore:</strong> Hover or click specific player lines to track their relative strengths and weaknesses across all five axes.
+                    </div>
+                    <div class="vis-container">
+                        <div id="parallel_profiles" class="chart-box"></div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- SECTION 06: HIGH-FIDELITY SPATIAL SHOT GEOGRAPHY -->
         <section id="shot-geography" class="section-block">
-            <h2 class="section-title">06. High-Fidelity Spatial Shot Geography</h2>
+            <div class="section-header-wrapper">
+                <span class="chapter-label">Chapter 06</span>
+                <h2 class="section-title">High-Fidelity Spatial <span class="title-italic">Shot Geography</span></h2>
+            </div>
 
-            <!-- Scatter Shot -->
             <div class="pure-g content-panel row-align">
                 <div class="pure-u-1 panel-inner">
                     <h3>Spatial Court Density and Shot Selection Architecture</h3>
                     <p class="narrative-p">
-                        Mapping actual event coordinates across the hardwood floor workspace. This spatial dataset isolates specific high-efficiency hotspots, charting steep mid-range frequency drop-offs against high-volume rim distributions and corner-three strategies.
+                        Mapping individual shot events across court coordinates highlights modern analytical strategies. Dense shot clusters near the rim and along the perimeter show an emphasis on high-efficiency zones, while the mid-range paint remains a clear low-volume dead zone.
                     </p>
-                    <div class="vis-container"><div id="shot_chart" class="chart-box"></div></div>
+                    <div class="interactive-box">
+                        <strong>How to Explore:</strong> Use the toggle element to isolate specific team prints and evaluate variation in court spacing strategies.
+                    </div>
+                    <div class="vis-container">
+                        <div id="shot_chart" class="chart-box"></div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Binned Hex Map -->
             <div class="pure-g content-panel row-align">
                 <div class="pure-u-1 panel-inner">
-                    <h3>Aggregated Court Volume & Efficiency Blueprint</h3>
+                    <h3>Aggregated Court Volume &amp; Efficiency Blueprint</h3>
                     <p class="narrative-p">
-                        By parsing thousands of coordinates into discrete spatial grid cells, this structural map exposes offensive blueprints. Hexagonal area dimensions report concentrated shot frequency zones, and colors communicate performance thresholds.
+                        Grouping shot attempts into discrete spatial grid cells reveals clear offensive focal points. Darker blue hex blocks indicate elite accuracy zones right at the rim, while varying cell sizes show shot volume concentration. This cross-references efficiency against location, showing exactly where teams exploit defensive gaps.
                     </p>
-                    <div class="vis-container"><div id="binned_shot_density" class="chart-box"></div></div>
+                    <div class="interactive-box">
+                        <strong>How to Explore:</strong> Hover over binned hexagons to view absolute field goal percentage splits and shot counts within that specific court zone.
+                    </div>
+                    <div class="vis-container">
+                        <div id="binned_shot_density" class="chart-box"></div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Platform Footer -->
         <footer class="dashboard-footer">
-            <p class="footer-primary">National Basketball League Analytics Platform Hub Portfolio Spec.</p>
+            <p class="footer-primary">National Basketball League Analytics Platform Portfolio Specification.</p>
             <p class="footer-secondary">Data compiled across tracked spatial distributions and individual play profiles (Season 2025-2026).</p>
         </footer>
 
     </main>
 
-    <!-- Render Execution Scripts -->
     <script>
+        // Premium embedding view controls
         const opt = {"actions": false};
 
+        // Standalone detached JSON spec routers
         vegaEmbed('#bump_chart', "jsons/bump_chart.json", opt).catch(console.error);
         vegaEmbed('#map_home_court', "jsons/map_home_court.json", opt).catch(console.error);
         vegaEmbed('#dumbbell_efficiency', "jsons/dumbbell_efficiency.json", opt).catch(console.error);

@@ -2,8 +2,12 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Dumbbell Plot for Team Offense vs Defense PPP",
   "data": {"url": "data/nbl-team-stats.csv"},
-  "width": 650,
+  "width": 500,
   "height": 350,
+  "autosize": {
+  "type": "fit",
+  "contains": "padding"
+},
   "encoding": {
     "y": {
       "field": "Team",

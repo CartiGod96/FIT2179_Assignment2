@@ -5,218 +5,261 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NBL Performance Frontier (2025-2026)</title>
     
+    <!-- External Grids Framework -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/grids-responsive-min.css">
-    <link rel="stylesheet" href="styles.css">
 
+    <!-- Vega Visualization Engine Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+
+    <!-- Global Externalized Link Stylesheet Link -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+    <!-- Premium Sticky Navigation Bar Layout (Page Jumps Mapping) -->
+    <nav class="sticky-nav">
+        <div class="nav-logo">
+            <span style="font-size:1.3rem;">🏀</span> NBL FRONTIER
+        </div>
+        <div class="nav-links">
+            <a href="#overview"><span>01</span> Overview</a>
+            <a href="#environment"><span>02</span> Environment</a>
+            <a href="#efficiency"><span>03</span> Efficiency</a>
+            <a href="#rosters"><span>04</span> Rosters</a>
+            <a href="#player-impact"><span>05</span> Impact</a>
+            <a href="#shot-geography"><span>06</span> Geometry</a>
+        </div>
+    </nav>
+
     <div class="page-wrapper">
-        <header class="pure-g" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; margin-bottom: 10px;">
-            <div style="flex: 1; min-width: 280px;">
-                <h1 style="margin-bottom: 5px;">The NBL Performance Frontier</h1>
-                <p class="subtitle" style="margin-top: 0; margin-bottom: 5px;">A Spatial and Statistical Study of the 2025-2026 Season</p>
-                <p class="author-tag" style="margin-top: 0;">Data Visualisation Portfolio by Liam Fowler</p>
-            </div>
-            <div style="padding: 10px 0;">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/e/e4/NBL_Logo.png" alt="NBL Logo" style="height: 75px; width: auto; max-width: 100%; object-fit: contain;">
-            </div>
+        
+        <!-- High-Fidelity Deep Theme Hero Workspace -->
+        <header id="overview" class="hero-container">
+            <p class="hero-tagline">National Basketball League · 2025-2026 Analytics Space</p>
+            <h1>The Performance <br><em>On the Frontier</em></h1>
+            <p class="hero-subtitle">
+                An interactive visualization suite probing modern basketball efficiency, geographic travel taxes, structural roster depth, and spatial court distribution frameworks across Australia and New Zealand.
+            </p>
         </header>
 
-        <section class="pure-g" style="margin-top: 20px; margin-bottom: 30px;">
-            <div class="pure-u-1" style="background: #ffffff; padding: 25px; border-radius: 8px; border: 1px solid #e1e8ed; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
-                <h2 style="margin-top: 0; color: #2c3e50; font-size: 1.5rem; border-bottom: 2px solid #34495e; padding-bottom: 8px;">Executive Summary & Portfolio Context</h2>
-                <p class="narrative-p" style="line-height: 1.6; color: #34495e;">
-                    Modern basketball analytics has evolved past raw box scores, shifting toward efficiency-driven spatial metrics and possession-adjusted tracking data. This portfolio evaluates the competitive landscape of the National Basketball League (NBL) across its 2025-2026 campaign. By mapping the performance frontiers of franchises and individual athletes, these interactive components dissect the core factors driving success: team efficiency, geographic constraints, defensive workloads, and spatial shot distribution. 
-                </p>
-                <div style="width: 50%; margin: 25px auto 0 auto; overflow: hidden; border-radius: 6px; border: 1px solid #e1e8ed;">
-                    <img src="https://cdn.nbl.com.au/s/391bc4ef-6279-4d90-8c26-5f2544d58c00.jpg" alt="NBL Full Width Action Spread" style="width: 100%; height: auto; display: block; object-fit: cover;">
-                </div>
+        <!-- Dynamic Landing Overview Counter Ledger (Inspired by image_d8e23e.jpg) -->
+        <div class="stat-grid">
+            <div class="stat-card">
+                <div class="stat-number" style="color: #ff6b35;">10</div>
+                <div class="stat-label">Active Franchises</div>
             </div>
-        </section>
-
-        <hr class="divider">
-        <header class="pure-g"><div class="pure-u-1"><h2 class="section-title">1. League Context & Environmental Factors</h2></div></header>
-
-        <section class="pure-g row-align" style="margin-top: 15px;">
-            <div class="pure-u-1" style="background-color: #ffffff; padding: 25px; border-radius: 8px; border: 1px solid #e1e8ed; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
-                <h3 style="margin-top: 0;">Competitive Velocity</h3>
-                <p class="narrative-p" style="color: #555; margin-bottom: 20px;">The round-by-round volatility of the NBL ladder captures mid-season surges and functional collapses. <strong>Clicking a franchise badge directly in the legend</strong> filters clutter out to reveal its path.</p>
-                <div class="vis-container" style="overflow-x: auto;"><div id="bump_chart" class="chart-box" style="border:none; background:transparent; box-shadow:none;"></div></div>
+            <div class="stat-card">
+                <div class="stat-number" style="color: #3b82f6;">140+</div>
+                <div class="stat-label">Athletes Tracked</div>
             </div>
-        </section>
-
-        <section class="pure-g row-align" style="margin-top: 35px;">
-            <div class="pure-u-1 pure-u-lg-8-24 text-container" style="padding-right: 20px;">
-                <h3>The Travel Tax</h3>
-                <p class="narrative-p">Proportional markers locate team stadia across Australia and New Zealand. Bubble sizes correspond directly to crowd capacities, visualizing how physical home environments shape competitive advantages.</p>
+            <div class="stat-card">
+                <div class="stat-number" style="color: #10b981;">1.12</div>
+                <div class="stat-label">Avg Points Per Possession</div>
             </div>
-            <div class="pure-u-1 pure-u-lg-16-24 vis-container" style="background-color: #ffffff; padding: 15px; border-radius: 8px; border: 1px solid #e1e8ed; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
-                <div id="map_home_court" class="chart-box" style="border:none; box-shadow:none;"></div>
+            <div class="stat-card">
+                <div class="stat-number" style="color: #a855f7;">4.5k+</div>
+                <div class="stat-label">Spatial Coordinates Binned</div>
             </div>
-        </section>
+        </div>
 
-        <hr class="divider">
-        <header class="pure-g"><div class="pure-u-1"><h2 class="section-title">2. Franchise Production & Efficiency Dynamics</h2></div></header>
 
-        <section class="pure-g row-align" style="margin-top: 15px; background-color: #ffffff; padding: 25px; border-radius: 8px; border: 1px solid #e1e8ed; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
-            <div class="pure-u-1 row-align" style="display: flex; flex-wrap: wrap; width: 100%;">
-                <div class="pure-u-1 pure-u-lg-8-24" style="padding-right: 20px; box-sizing: border-box;">
-                    <h3 style="margin-top: 0;">Efficiency & Margin Blueprint</h3>
-                    <p class="narrative-p" style="color: #555;">Points Per Possession (PPP) bypasses raw scoring volumes distorted by varying game paces. This diagnostic suite balances individual scoring efficiency metrics against overarching split schedules.</p>
-                    <p class="narrative-p" style="color: #555; margin-top: 12px;">The dumbbell component isolates the operational spread between true offensive generation and baseline scoring defensive allocations. The secondary net ledger handles absolute variance tracking.</p>
-                </div>
-                <div class="pure-u-1 pure-u-lg-16-24 vis-container">
-                    <div id="dumbbell_efficiency" class="chart-box" style="border:none; box-shadow:none;"></div>
-                </div>
-            </div>
-        
-            <div class="pure-u-1" style="margin-top: 30px; border-top: 1px solid #f0f4f6; padding-top: 25px;">
-                <h4 style="margin-top: 0; color: #2c3e50; font-size: 1.1rem;">Net Scoring Margins Across Home & Away Splits</h4>
-                <div id="margin_diverging" class="chart-box" style="border:none; box-shadow:none;"></div>
-            </div>
-        </section>
+        <!-- SECTION 1: LEAGUE CONTEXT & ENVIRONMENTAL FACTORS -->
+        <span id="environment"></span>
+        <header class="pure-g"><div class="pure-u-1"><h2 class="section-title">02. League Context & Environmental Factors</h2></div></header>
 
-        <section class="pure-g row-align" style="margin-top: 35px;">
-            <div class="pure-u-1" style="background-color: #ffffff; padding: 25px; border-radius: 8px; border: 1px solid #e1e8ed; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
-                <h3 style="margin-top: 0;">Quarter-by-Quarter Scoring Dominance Matrix</h3>
-                <p class="narrative-p" style="color: #555;">Breaking down match composition. This matrix uncovers strategic fatigue and execution depth across game periods, comparing teams against normalized offensive baselines.</p>
-                <div class="vis-container" style="overflow-x: auto;"><div id="period_heatmap" class="chart-box" style="border:none; background:transparent; box-shadow:none;"></div></div>
-            </div>
-        </section>
-
-        <hr class="divider">
-        <header class="pure-g"><div class="pure-u-1"><h2 class="section-title">3. Roster Architecture & Depth Dynamics</h2></div></header>
-
-        <section class="pure-g row-align" style="margin-top: 15px;">
-            <div class="pure-u-1 pure-u-lg-8-24 text-container" style="padding-right: 20px;">
-                <h3>Roster Hierarchy</h3>
-                <p class="narrative-p">Visualizing the hierarchical distribution of player contributions across the roster. The nested area divisions isolate tracking loads, scaling space to mirror absolute individual usage volume weights across team structures.</p>
-            </div>
-            <div class="pure-u-1 pure-u-lg-16-24 vis-container" style="background-color: #ffffff; padding: 25px; border-radius: 8px; border: 1px solid #e1e8ed; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
-                <div id="roster_treemap" class="chart-box" style="border:none; box-shadow:none;"></div>
-            </div>
-        </section>
-
-        <section class="pure-g row-align" style="margin-top: 35px;">
-            <div class="pure-u-1 pure-u-lg-8-24 text-container" style="padding-right: 20px;">
-                <h3>Supercoach Production Density</h3>
-                <p class="narrative-p">Wide ridgeline curves indicate deep rosters with stable benchmark outputs, while sharp, isolated spikes signal high reliance on concentrated superstar rotations and top-heavy operational minutes.</p>
-            </div>
-            <div class="pure-u-1 pure-u-lg-16-24 vis-container" style="background-color: #ffffff; padding: 25px; border-radius: 8px; border: 1px solid #e1e8ed; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
-                <div id="ridgeline_density" class="chart-box" style="border:none; box-shadow:none;"></div>
-            </div>
-        </section>
-
-        <section class="pure-g row-align" style="margin-top: 35px;">
-            <div class="pure-u-1" style="background-color: #ffffff; padding: 25px; border-radius: 8px; border: 1px solid #e1e8ed; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
-                <div style="text-align: left; margin-bottom: 15px; padding: 0 10px;">
-                    <h3 style="margin-top: 0;">Roster Execution Matrices: FIC vs. PIE Metrics</h3>
-                    <p class="narrative-p" style="color: #555;">A direct side-by-side diagnostic comparison of holistic impact metrics. Floor Impact Counter (FIC) values raw box-score productivity, whereas Player Impact Estimate (PIE) gauges the exact percentage of game events a player commands.</p>
-                </div>
-                <div class="vis-container" style="overflow-x: auto; padding: 10px;">
-                    <div id="team_execution_facets" class="chart-box" style="display: flex; justify-content: center; border: none; background: transparent; box-shadow: none; padding: 0;"></div>
-                </div>
-            </div>
-        </section>
-
-        <hr class="divider">
-        <header class="pure-g"><div class="pure-u-1"><h2 class="section-title">4. Advanced Player Impact Suite</h2></div></header>
-
+        <!-- Bump Chart Grid Container Module -->
         <section class="pure-g row-align">
-            <div class="pure-u-1 pure-u-lg-16-24 vis-container" style="background-color: #ffffff; padding: 15px; border-radius: 8px; border: 1px solid #e1e8ed; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
-                <div id="player_scatter" class="chart-box" style="border:none; box-shadow:none;"></div>
+            <div class="pure-u-1" style="padding: 35px; box-sizing: border-box;">
+                <h3>Competitive Velocity</h3>
+                <p class="narrative-p" style="margin-bottom: 25px;">The round-by-round volatility of the NBL ladder captures mid-season surges and functional collapses. <span class="ux-badge">Interactive Feature</span> <strong>Clicking a franchise badge directly in the legend</strong> filters out clutter to isolate its specific path trajectory.</p>
+                <div class="vis-container" style="padding: 0; overflow-x: auto;"><div id="bump_chart" class="chart-box"></div></div>
             </div>
-            <div class="pure-u-1 pure-u-lg-8-24 text-container" style="padding-left: 20px; display: flex; flex-direction: column; justify-content: space-between;">
+        </section>
+
+        <!-- Home Court Travel Maps Grid Layout (1/3 Context, 2/3 Graphic Layout) -->
+        <section class="pure-g row-align">
+            <div class="pure-u-1 pure-u-lg-8-24 text-container">
+                <h3>The Travel Tax Vector</h3>
+                <p class="narrative-p">Proportional markers locate team stadia across Australia and New Zealand. Bubble sizes correspond directly to stadium crowd capacities, visualizing how distinct physical home environments and massive travel scales shape competitive advantages.</p>
+            </div>
+            <div class="pure-u-1 pure-u-lg-16-24 vis-container">
+                <div id="map_home_court" class="chart-box"></div>
+            </div>
+        </section>
+
+
+        <!-- SECTION 2: FRANCHISE PRODUCTION & EFFICIENCY DYNAMICS -->
+        <hr class="divider">
+        <span id="efficiency"></span>
+        <header class="pure-g"><div class="pure-u-1"><h2 class="section-title">03. Franchise Production & Efficiency Dynamics</h2></div></header>
+
+        <!-- Combined Integrated Card Layout Module (Dumbbell + Diverging Net Margin Elements) -->
+        <section class="pure-g row-align" style="padding: 35px; box-sizing: border-box;">
+            <div class="pure-u-1 row-align" style="display: flex; flex-wrap: wrap; width: 100%; box-shadow: none; margin: 0; border: none; border-radius: 0; background: transparent;">
+                
+                <!-- Row 1 Side Element: Narrative Text Column Blocks (1/3 Width) -->
+                <div class="pure-u-1 pure-u-lg-8-24" style="padding-right: 25px; box-sizing: border-box; margin-bottom: 10px; display: flex; flex-direction: column; justify-content: center;">
+                    <h3 style="margin-top: 0;">Efficiency & Margin Blueprint</h3>
+                    <p class="narrative-p">Points Per Possession (PPP) bypasses raw scoring volumes distorted by varying game paces. This diagnostic suite balances overarching team production efficiency against defensive baselines.</p>
+                    <p class="narrative-p" style="margin-bottom: 0;">The dumbbell element maps the precise operational spread between offensive generation (green) and points allowed (red), while the lower ledger traces absolute point variance outcomes.</p>
+                </div>
+                
+                <!-- Row 1 Side Element: Dumbbell Plot Graphic Panel Container (2/3 Width) -->
+                <div class="pure-u-1 pure-u-lg-16-24 vis-container" style="padding: 0; margin-bottom: 10px; background: transparent;">
+                    <div id="dumbbell_efficiency" class="chart-box"></div>
+                </div>
+            </div>
+            
+            <!-- Row 2 Full Width Lower Block: Net Scoring Margins Panel (Brought Up Tight) -->
+            <div class="pure-u-1" style="border-top: 1px solid rgba(255, 255, 255, 0.06); margin-top: 15px; padding-top: 30px;">
+                <h4 style="margin-top: 0; margin-bottom: 15px; color: #ffffff; font-size: 1.1rem; font-weight: 700;">Net Scoring Margins Across Home & Away Splits</h4>
+                <div id="margin_diverging" class="chart-box" style="padding: 0; margin: 0;"></div>
+            </div>
+        </section>
+
+        <!-- Period Dominance Heatmap Matrix Card -->
+        <section class="pure-g row-align">
+            <div class="pure-u-1" style="padding: 35px; box-sizing: border-box;">
+                <h3>Quarter-by-Quarter Scoring Dominance Matrix</h3>
+                <p class="narrative-p" style="margin-bottom: 25px;">Breaking down macro match composition. This matrix matrix exposes strategic structural fatigue and execution depth across game periods by validating franchises against normalized league offensive baselines.</p>
+                <div class="vis-container" style="padding:0; overflow-x: auto;"><div id="period_heatmap" class="chart-box"></div></div>
+            </div>
+        </section>
+
+
+        <!-- SECTION 3: ROSTER ARCHITECTURE & DEPTH DYNAMICS -->
+        <hr class="divider">
+        <span id="rosters"></span>
+        <header class="pure-g"><div class="pure-u-1"><h2 class="section-title">04. Roster Architecture & Depth Dynamics</h2></div></header>
+
+        <!-- Usage Volume Treemap Grid Layout -->
+        <section class="pure-g row-align">
+            <div class="pure-u-1 pure-u-lg-8-24 text-container">
+                <h3>Roster Hierarchy Map</h3>
+                <p class="narrative-p">Visualizing the hierarchical distribution of player contributions across the roster. The nested block segments isolate tracking loads, scaling area dimensions to mirror absolute individual usage volume weights across team rotation structures.</p>
+            </div>
+            <div class="pure-u-1 pure-u-lg-16-24 vis-container">
+                <div id="roster_treemap" class="chart-box"></div>
+            </div>
+        </section>
+
+        <!-- Supercoach Density Ridgeline Grid Layout -->
+        <section class="pure-g row-align">
+            <div class="pure-u-1 pure-u-lg-8-24 text-container">
+                <h3>Supercoach Production Density</h3>
+                <p class="narrative-p">Wide ridgeline distribution curves indicate high-utility depth charts with stable bench outputs, while narrow, sharp peaks signal severe reliance on top-heavy star distributions and concentrated rotations.</p>
+            </div>
+            <div class="pure-u-1 pure-u-lg-16-24 vis-container">
+                <div id="ridgeline_density" class="chart-box"></div>
+            </div>
+        </section>
+
+        <!-- Metric Facets Matrix Dashboard Card Layout -->
+        <section class="pure-g row-align">
+            <div class="pure-u-1" style="padding: 35px; box-sizing: border-box;">
+                <h3>Roster Execution Matrices: FIC vs. PIE Metrics</h3>
+                <p class="narrative-p" style="margin-bottom: 25px;">A direct side-by-side diagnostic comparison of holistic impact metrics. Floor Impact Counter (FIC) values raw box-score productivity volumes, whereas Player Impact Estimate (PIE) gauges the exact percentage of game events controlled by an athlete.</p>
+                <div class="vis-container" style="padding: 0; overflow-x: auto;">
+                    <div id="team_execution_facets" class="chart-box" style="display: flex; justify-content: center;"></div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- SECTION 4: ADVANCED PLAYER IMPACT SUITE -->
+        <hr class="divider">
+        <span id="player-impact"></span>
+        <header class="pure-g"><div class="pure-u-1"><h2 class="section-title">05. Advanced Player Impact Suite</h2></div></header>
+
+        <!-- Playmaker Scatter Metric Section Block Layout -->
+        <section class="pure-g row-align">
+            <div class="pure-u-1 pure-u-lg-16-24 vis-container" style="border-right: 1px solid rgba(255, 255, 255, 0.03);">
+                <div id="player_scatter" class="chart-box"></div>
+            </div>
+            <div class="pure-u-1 pure-u-lg-8-24 text-container">
                 <div>
                     <h3>Workloads & Assists vs. Points</h3>
-                    <p class="narrative-p" style="margin-bottom: 15px;">This profile charts playmaker table-setters against volume scoring anchors. Bubble sizes reflect game durations (MPG). Use the interactive franchise dropdown selector to evaluate internal roster utility distributions.</p>
-                </div>
-                <div style="width: 100%; text-align: center; margin-top: 10px;">
-                    <img src="https://imageresizer.static9.net.au/230NLRYknbRLBc4nsqTnhwCaN2c=/0x18:1024x594/1200x1200/https%3A%2F%2Fprod.static9.net.au%2Ffs%2Fd4243168-14b1-4ec7-84f5-0365349404c3" alt="NBL Workload Focus" style="width: 100%; max-width: 320px; height: auto; border-radius: 6px; border: 1px solid #e1e8ed;">
+                    <p class="narrative-p" style="margin-bottom: 20px;">This landscape records playmaker table-setters against volume scoring anchors. Bubble coordinates map minutes-per-game (MPG). <span class="ux-badge">Interactive Feature</span> Adjust the dedicated drop-down selector to isolate internal roster breakdowns.</p>
                 </div>
             </div>
         </section>
 
-        <section class="pure-g row-align" style="margin-top: 35px;">
-            <div class="pure-u-1 pure-u-lg-16-24 vis-container" style="background-color: #ffffff; padding: 15px; border-radius: 8px; border: 1px solid #e1e8ed; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
-                <div id="efficiency_quadrants" class="chart-box" style="border:none; box-shadow:none;"></div>
+        <!-- Paint Protection Metric Section Block Layout -->
+        <section class="pure-g row-align">
+            <div class="pure-u-1 pure-u-lg-16-24 vis-container" style="border-right: 1px solid rgba(255, 255, 255, 0.03);">
+                <div id="efficiency_quadrants" class="chart-box"></div>
             </div>
-            <div class="pure-u-1 pure-u-lg-8-24 text-container" style="padding-left: 20px; display: flex; flex-direction: column; justify-content: space-between;">
+            <div class="pure-u-1 pure-u-lg-8-24 text-container">
                 <div>
                     <h3>Paint Security Matrix</h3>
-                    <p class="narrative-p" style="margin-bottom: 15px;">Defensive mapping pits blocks against Advanced Rim Recovery (ARR). Use the range slider at the bottom to filter minimal workloads, or click a legend badge to track a single team's interior wall.</p>
-                </div>
-                <div style="width: 100%; text-align: center; margin-top: 10px;">
-                    <img src="https://content.api.news/v3/images/bin/6f9c53163370f4185cf4d6c022fac28d" alt="NBL Paint Security" style="width: 100%; max-width: 320px; height: auto; border-radius: 6px; border: 1px solid #e1e8ed;">
+                    <p class="narrative-p" style="margin-bottom: 20px;">Defensive mapping pits total blocks against Advanced Rim Recovery (ARR). <span class="ux-badge">Interactive Feature</span> Drag the slider scale to eliminate marginal rotation constraints, or isolate team clusters by clicking indicators in the legend.</p>
                 </div>
             </div>
         </section>
 
-        <section class="pure-g row-align" style="margin-top: 35px;">
-            <div class="pure-u-1" style="background-color: #ffffff; padding: 25px; border-radius: 8px; border: 1px solid #e1e8ed; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
-                <div style="text-align: left; margin-bottom: 20px;">
-                    <h3>Player Archetype Fingerprints (Parallel Axes)</h3>
-                    <p class="narrative-p" style="color: #555;">Instead of isolating indicators, this coordinates system draws a path mapping individual player utility across multiple constraints simultaneously. It separates volume floor generals from defensive paint locks.</p>
-                </div>
-                <div class="vis-container" style="overflow-x: auto;"><div id="parallel_profiles" class="chart-box" style="border:none; box-shadow:none;"></div></div>
+        <!-- Parallel Coordinates Profiling Coordinate Workspace -->
+        <section class="pure-g row-align">
+            <div class="pure-u-1" style="padding: 35px; box-sizing: border-box;">
+                <h3>Player Archetype Fingerprints (Parallel Axes Coordinate Space)</h3>
+                <p class="narrative-p" style="margin-bottom: 25px;">Instead of evaluating performance parameters in metrics silos, this structural framework tracks complete player execution curves across five discrete attributes simultaneously, grouping high-volume floor generals apart from physical defensive interior anchors.</p>
+                <div class="vis-container" style="padding: 0; overflow-x: auto;"><div id="parallel_profiles" class="chart-box"></div></div>
             </div>
         </section>
 
+
+        <!-- SECTION 5: HIGH-FIDELITY SPATIAL SHOT GEOGRAPHY -->
         <hr class="divider">
-        <header class="pure-g"><div class="pure-u-1"><h2 class="section-title">5. High-Fidelity Spatial Shot Geography</h2></div></header>
+        <span id="shot-geography"></span>
+        <header class="pure-g"><div class="pure-u-1"><h2 class="section-title">06. High-Fidelity Spatial Shot Geography</h2></div></header>
 
-        <section class="pure-g row-align" style="margin-top: 15px;">
-            <div class="pure-u-1" style="background: #ffffff; padding: 25px; border-radius: 8px; border: 1px solid #e1e8ed; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
-                <div style="text-align: left; margin-bottom: 20px; padding: 0 10px;">
-                    <h3 style="margin-top: 0;">Spatial Court Density and Shot Selection Architecture</h3>
-                    <p class="narrative-p" style="max-width: 90%; color: #555;">Mapping every attempt across the hardwood workspace. This spatial dataset evaluates specific high-value efficiency hubs, contrasting mid-range frequency drop-offs against high-density rim and corner-three distributions.</p>
-                </div>
-                <div class="vis-container" style="display: flex; justify-content: center; overflow-x: auto; padding: 10px;">
-                    <div id="shot_chart" class="chart-box" style="border: none; padding: 0; box-shadow: none;"></div>
-                </div>
+        <!-- Court Scatter Geographic Placement Card -->
+        <section class="pure-g row-align">
+            <div class="pure-u-1" style="padding: 35px; box-sizing: border-box;">
+                <h3>Spatial Court Density and Shot Selection Architecture</h3>
+                <p class="narrative-p" style="margin-bottom: 25px;">Mapping actual event coordinates across the hardwood floor workspace. This spatial dataset isolates specific high-efficiency hotspots, charting steep mid-range frequency drop-offs against high-volume rim distributions and corner-three strategies.</p>
+                <div class="vis-container" style="padding: 0; overflow-x: auto;"><div id="shot_chart" class="chart-box"></div></div>
             </div>
         </section>
 
-        <section class="pure-g row-align" style="margin-top: 35px; margin-bottom: 60px;">
-            <div class="pure-u-1" style="background: #ffffff; padding: 25px; border-radius: 8px; border: 1px solid #e1e8ed; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
-                <div style="text-align: left; margin-bottom: 20px;">
-                    <h3 style="margin-top:0;">Aggregated Court Volume & Efficiency Blueprint</h3>
-                    <p class="narrative-p" style="color:#555;">By compressing thousands of separate events into discrete spatial grids, this structural blueprint exposes structural hot spots. Larger cells indicate strategic zones where offensive systems focus shot volume, colored by efficiency.</p>
-                </div>
-                <div class="vis-container" style="display: flex; justify-content: center; overflow-x: auto;"><div id="binned_shot_density" class="chart-box" style="border:none; background:transparent; box-shadow:none;"></div></div>
-            </div>
-        </section>
+        <!-- Hexagonal Binned Geographic Framework Card -->
+        <section class="pure-g row-align" style="margin-bottom: 60px;">
+            <div class="pure-u-1" style="padding: 35px; box-sizing: border-box;">
+                <h3>Aggregated Court Volume & Efficiency Blueprint</h3>
+                <p class="narrative-p" style="margin-bottom: 25px;">By parsing thousands of coordinates into discrete spatial grid cells, this structural map exposes offensive blueprints. Hexagonal area dimensions report concentrated shot frequency zones, and colors communicate performance thresholds.</p>
+                <div class="vis-container" style="padding: 0; overflow-x: auto;"><div id="binned_shot_density" class="chart-box"></div></div>
+            </section>
+        </div>
 
-        <footer style="margin-top: 40px; padding: 20px 10px; border-top: 1px solid #e1e8ed; font-size: 0.85rem; color: #7f8c8d; line-height: 1.5;">
-            <p style="margin: 0 0 5px 0;"><strong>Portfolio Narrative Asset Sources:</strong></p>
-            <ul style="margin: 0; padding-left: 20px; list-style-type: square;">
-                <li>Introduction Spread Action Banner via official National Basketball League CDN. URL link available <a href="https://cdn.nbl.com.au/s/391bc4ef-6279-4d90-8c26-5f2544d58c00.jpg" target="_blank" style="color: #3498db;">here</a>.</li>
-                <li>Section 4 Workloads Image via Nine Network Platform. URL link available <a href="https://imageresizer.static9.net.au/230NLRYknbRLBc4nsqTnhwCaN2c=/0x18:1024x594/1200x1200/https%3A%2F%2Fprod.static9.net.au%2Ffs%2Fd4243168-14b1-4ec7-84f5-0365349404c3" target="_blank" style="color: #3498db;">here</a>.</li>
-                <li>Section 4 Paint Security Image via News Corp Australia API. URL link available <a href="https://content.api.news/v3/images/bin/6f9c53163370f4185cf4d6c022fac28d" target="_blank" style="color: #3498db;">here</a>.</li>
-            </ul>
+
+        <!-- Analytics Dashboard Platform Footer Ledger -->
+        <footer style="margin-top: 80px; padding: 30px 0; border-top: 1px solid rgba(255, 255, 255, 0.06); font-size: 0.85rem; color: #64748b; line-height: 1.6;">
+            <p style="margin: 0 0 5px 0;">National Basketball League Analytics Platform Hub Portfolio Spec.</p>
+            <p style="margin: 0;">Data compiled across tracked spatial distributions and individual play profiles (Season 25-26).</p>
         </footer>
 
     </div>
 
+    <!-- Target Graph Execution Render Inits -->
     <script>
-        vegaEmbed('#bump_chart', "jsons/bump_chart.json", {"actions": false}).catch(console.error);
-        vegaEmbed('#map_home_court', "jsons/map_home_court.json", {"actions": false}).catch(console.error);
-        vegaEmbed('#dumbbell_efficiency', "jsons/dumbbell_efficiency.json", {"actions": false}).catch(console.error);
-        vegaEmbed('#ridgeline_density', "jsons/ridgeline_density.json", {"actions": false}).catch(console.error);
-        vegaEmbed('#margin_diverging', "jsons/team_margin_diverging.json", {"actions": false}).catch(console.error);
-        vegaEmbed('#period_heatmap', "jsons/period_heatmap.json", {"actions": false}).catch(console.error);
-        vegaEmbed('#player_scatter', "jsons/player_scatter.json", {"actions": false}).catch(console.error);
-        vegaEmbed('#efficiency_quadrants', "jsons/player_efficiency_quadrants.json", {"actions": false}).catch(console.error);
-        vegaEmbed('#roster_treemap', "jsons/roster_treemap.json", {mode: "vega" }, {"actions": false}).catch(console.error);
-        vegaEmbed('#parallel_profiles', "jsons/parallel_profiles.json", {"actions": false}).catch(console.error);
-        vegaEmbed('#team_execution_facets', "jsons/team_execution_facets.json", {"actions": false}).catch(console.error);
-        vegaEmbed('#shot_chart', "jsons/shot_chart.json", {"actions": false}).catch(console.error);
-        vegaEmbed('#binned_shot_density', "jsons/binned_shot_density.json", {"actions": false}).catch(console.error);
+        // Global configuration overrides to block toolbars cleanly
+        const opt = {"actions": false};
+
+        vegaEmbed('#bump_chart', "jsons/bump_chart.json", opt).catch(console.error);
+        vegaEmbed('#map_home_court', "jsons/map_home_court.json", opt).catch(console.error);
+        vegaEmbed('#dumbbell_efficiency', "jsons/dumbbell_efficiency.json", opt).catch(console.error);
+        vegaEmbed('#ridgeline_density', "jsons/ridgeline_density.json", opt).catch(console.error);
+        vegaEmbed('#margin_diverging', "jsons/team_margin_diverging.json", opt).catch(console.error);
+        vegaEmbed('#period_heatmap', "jsons/period_heatmap.json", opt).catch(console.error);
+        vegaEmbed('#player_scatter', "jsons/player_scatter.json", opt).catch(console.error);
+        vegaEmbed('#efficiency_quadrants', "jsons/player_efficiency_quadrants.json", opt).catch(console.error);
+        vegaEmbed('#roster_treemap', "jsons/roster_treemap.json", {mode: "vega", ...opt}).catch(console.error);
+        vegaEmbed('#parallel_profiles', "jsons/parallel_profiles.json", opt).catch(console.error);
+        vegaEmbed('#team_execution_facets', "jsons/team_execution_facets.json", opt).catch(console.error);
+        vegaEmbed('#shot_chart', "jsons/shot_chart.json", opt).catch(console.error);
+        vegaEmbed('#binned_shot_density', "jsons/binned_shot_density.json", opt).catch(console.error);
     </script>
 </body>
 </html>

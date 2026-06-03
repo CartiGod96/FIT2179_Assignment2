@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Ridgeline Plot of Supercoach Production Rate - Fixed Facet Scope",
+  "description": "Ridgeline Plot of Supercoach Production Rate - With Tooltips",
   "data": {"url": "data/nbl-player-stats.csv"},
   "facet": {
     "row": {
@@ -13,10 +13,10 @@
         "labelFontWeight": "bold",
         "labelPadding": 12,
         "labelFontSize": 11
-      },
-      "spacing": -22
+      }
     }
   },
+  "spacing": -26,
   "spec": {
     "width": 580,
     "height": 45,
@@ -65,7 +65,11 @@
       "fillOpacity": {
         "condition": {"param": "row_hover", "value": 0.85},
         "value": 0.3
-      }
+      },
+      "tooltip": [
+        {"field": "Team", "type": "nominal"},
+        {"field": "value", "type": "quantitative", "title": "Supercoach Pace", "format": ".1f"}
+      ]
     }
   },
   "config": {

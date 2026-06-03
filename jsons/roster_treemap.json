@@ -40,8 +40,15 @@
     {
       "name": "color",
       "type": "ordinal",
-      "domain": {"data": "raw", "field": "Team"},
-      "range": {"scheme": "category20"}
+      "domain": [
+        "Adelaide", "Brisbane", "Cairns", "Illawarra", "Melbourne", 
+        "New Zealand", "Perth", "South East Melbourne", "Sydney", "Tasmania"
+      ],
+      "range": [
+        "#0f172a", "#1e293b", "#334155", "#475569", 
+        "#0ea5e9", "#0284c7", "#0369a1", "#075985",
+        "#566573", "#78281f"
+      ]
     }
   ],
   "marks": [
@@ -49,14 +56,36 @@
       "type": "rect",
       "from": {"data": "leaves"},
       "encode": {
-        "enter": {"stroke": {"value": "#ffffff"}},
+        "enter": {
+          "stroke": {"value": "#ffffff"},
+          "strokeWidth": {"value": 1.5}
+        },
         "update": {
           "x": {"field": "x0"},
           "y": {"field": "y0"},
           "x2": {"field": "x1"},
           "y2": {"field": "y1"},
-          "fill": {"scale": "color", "field": "Team"},
-          "tooltip": {"signal": "datum.Player + ': ' + format(datum.ScoringImpact, '.1f')"}
+          "fill": {"scale": "color", "field": "Team"}
+        }
+      }
+    },
+    {
+      "type": "text",
+      "from": {"data": "leaves"},
+      "interactive": false,
+      "encode": {
+        "enter": {
+          "font": {"value": "Plus Jakarta Sans"},
+          "fontWeight": {"value": "600"},
+          "fontSize": {"value": 11},
+          "fill": {"value": "#ffffff"},
+          "align": {"value": "center"},
+          "baseline": {"value": "middle"},
+          "text": {"field": "Player"}
+        },
+        "update": {
+          "x": {"signal": "0.5 * (datum.x0 + datum.x1)"},
+          "y": {"signal": "0.5 * (datum.y0 + datum.y1)"}
         }
       }
     }

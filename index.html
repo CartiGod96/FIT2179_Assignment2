@@ -120,6 +120,14 @@
                 <span class="chapter-label">Chapter 03</span>
                 <h2 class="section-title">Franchise Production &amp; <span class="title-italic">Efficiency Dynamics</span></h2>
             </div>
+            
+            <div class="pure-g">
+                <div class="pure-u-1">
+                    <div class="vis-container">
+                        <div id="scatter_efficiency" style="width: 100%;"></div>
+                    </div>
+                </div>
+            </div>
 
             <div class="pure-g content-panel row-align">
                 <div class="pure-u-1 pure-u-lg-8-24 text-container">
@@ -344,6 +352,7 @@
         vegaEmbed('#ridgeline_density', "jsons/ridgeline_density.json", opt).catch(console.error);
         vegaEmbed('#margin_diverging', "jsons/team_margin_diverging.json", opt).catch(console.error);
         vegaEmbed('#period_heatmap', "jsons/period_heatmap.json", opt).catch(console.error);
+        vegaEmbed('#scatter_efficiency', "jsons/scatter_efficiency.json", opt).catch(console.error);
         vegaEmbed('#player_scatter', "jsons/player_scatter.json", opt).catch(console.error);
         vegaEmbed('#efficiency_quadrants', "jsons/player_efficiency_quadrants.json", opt).catch(console.error);
         vegaEmbed('#roster_treemap', "jsons/roster_treemap.json", opt).catch(console.error);

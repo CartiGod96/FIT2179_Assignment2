@@ -52,14 +52,11 @@
           "Sydney Kings",
           "Tasmania JackJumpers"
         ],
-        "name": "Isolate Franchise Roster: "
+        "name": "Filter Team Archetype: "
       }
     }
   ],
   "transform": [
-    {
-      "filter": "datum.Minutes_A > 12 && datum.Matches > 5"
-    },
     {
       "window": [{"op": "rank", "as": "rank_mins"}],
       "sort": [{"field": "Minutes_A", "order": "ascending"}]
@@ -77,8 +74,7 @@
       "sort": [{"field": "ARR", "order": "ascending"}]
     },
     {
-      "window": [{"op": "count", "as": "total_players"}],
-      "frame": [null, null]
+      "joinaggregate": [{"op": "count", "as": "total_players"}]
     },
     {
       "calculate": "(datum.rank_mins - 1) / (datum.total_players - 1)",
@@ -106,7 +102,7 @@
   ],
   "mark": {
     "type": "line", 
-    "opacity": 0.4, 
+    "opacity": 0.35, 
     "strokeWidth": 2,
     "interpolate": "linear"
   },
@@ -116,31 +112,54 @@
       "type": "nominal",
       "title": "Roster Metric Axes",
       "sort": ["Mins/G", "Pts/G", "Impact (PIE)", "Rim Def (ARR)"],
-      "axis": {"labelAngle": 0, "grid": true}
+      "axis": {
+        "labelAngle": 0, 
+        "grid": true,
+        "gridColor": "#e2e8f0",
+        "domainColor": "#475569",
+        "labelFont": "Plus Jakarta Sans",
+        "titleFont": "Plus Jakarta Sans",
+        "titlePadding": 12
+      }
     },
     "y": {
       "field": "Percentile_Value",
       "type": "quantitative",
       "title": "League Percentile Rank (0 to 1.0)",
-      "axis": {"format": ".0%"}
+      "axis": {
+        "format": ".0%",
+        "grid": true,
+        "gridColor": "#e2e8f0",
+        "domainColor": "#475569",
+        "labelFont": "Plus Jakarta Sans",
+        "titleFont": "Plus Jakarta Sans"
+      }
     },
     "color": {
       "field": "Team",
       "type": "nominal",
       "title": "Team Squad",
-      "scale": {"scheme": "tableau10"}
+      "scale": {
+        "domain": [
+          "Adelaide", "Brisbane", "Cairns", "Illawarra", "Melbourne", 
+          "New Zealand", "Perth", "South East Melbourne", "Sydney", "Tasmania"
+        ],
+        "range": [
+          "#0f172a", "#1e293b", "#334155", "#475569", 
+          "#0ea5e9", "#0284c7", "#0369a1", "#075985",
+          "#566573", "#78281f"
+        ]
+      },
+      "legend": {
+        "titleFont": "Plus Jakarta Sans",
+        "labelFont": "Plus Jakarta Sans",
+        "symbolType": "circle"
+      }
     },
-    "detail": {"field": "Player"},
-    "tooltip": [
-      {"field": "Player", "type": "nominal", "title": "Player"},
-      {"field": "Team", "type": "nominal", "title": "Team"},
-      {"field": "Minutes_A", "type": "quantitative", "title": "Mins/G"},
-      {"field": "Points_A", "type": "quantitative", "title": "Pts/G"},
-      {"field": "PIE", "type": "quantitative", "title": "PIE Metric"},
-      {"field": "ARR", "type": "quantitative", "title": "ARR Index"}
-    ]
+    "detail": {"field": "Player"}
   },
   "config": {
-    "axis": {"titleFontWeight": "bold", "labelFontSize": 11}
+    "font": "Plus Jakarta Sans",
+    "view": {"stroke": "transparent"}
   }
 }

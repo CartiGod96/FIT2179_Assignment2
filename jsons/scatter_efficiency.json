@@ -1,0 +1,261 @@
+{
+
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+
+  "description": "Drill-Down Donut to Scatter Interface Panel",
+
+  "data": { "url": "data/nbl-player-stats.csv" },
+
+  "transform": [
+
+    {"filter": "datum.Minutes_A > 5"},
+
+    {"filter": "datum.Points_A > 0"},
+
+    {"filter": "datum.Assists_A >= 0"}
+
+  ],
+
+  "hconcat": [
+
+    {
+
+      "title": {
+
+        "text": "1. Select Roster Group",
+
+        "subtitle": "Click a donut slice to drill down",
+
+        "fontSize": 13,
+
+        "anchor": "start"
+
+      },
+
+      "width": 220,
+
+      "height": 280,
+
+      "transform": [
+
+        {
+
+          "aggregate": [{"op": "sum", "field": "Minutes_A", "as": "TotalMinutes"}],
+
+          "groupby": ["Team"]
+
+        }
+
+      ],
+
+      "params": [
+
+        {
+
+          "name": "donut_click",
+
+          "select": {"type": "point", "fields": ["Team"]}
+
+        }
+
+      ],
+
+      "mark": {"type": "arc", "innerRadius": 65, "outerRadius": 100, "cursor": "pointer", "stroke": "#ffffff", "strokeWidth": 1},
+
+      "encoding": {
+
+        "theta": {"field": "TotalMinutes", "type": "quantitative"},
+
+        "color": {
+
+          "field": "Team",
+
+          "type": "nominal",
+
+          "legend": null,
+
+          "scale": {
+
+            "range": [
+
+              "#0f172a", "#1e293b", "#334155", "#475569", 
+
+              "#0ea5e9", "#0284c7", "#0369a1", "#075985",
+
+              "#566573", "#78281f"
+
+            ]
+
+          }
+
+        },
+
+        "opacity": {
+
+          "condition": {"param": "donut_click", "value": 1.0},
+
+          "value": 0.35
+
+        },
+
+        "tooltip": [
+
+          {"field": "Team", "type": "nominal", "title": "Franchise"},
+
+          {"field": "TotalMinutes", "type": "quantitative", "title": "Total Roster Mins", "format": ",.0f"}
+
+        ]
+
+      }
+
+    },
+
+    {
+
+      "title": {
+
+        "text": "2. Roster Efficiency Distribution",
+
+        "subtitle": "Isolating player scoring and playmaking impact",
+
+        "fontSize": 13,
+
+        "anchor": "start"
+
+      },
+
+      "width": 460,
+
+      "height": 280,
+
+      "params": [
+
+        {
+
+          "name": "node_hover",
+
+          "select": {"type": "point", "on": "mouseover", "clear": "mouseout", "nearest": false}
+
+        }
+
+      ],
+
+      "transform": [
+
+        {"filter": {"param": "donut_click"}}
+
+      ],
+
+      "mark": {"type": "circle", "filled": true, "cursor": "pointer"},
+
+      "encoding": {
+
+        "x": {
+
+          "field": "Assists_A",
+
+          "type": "quantitative",
+
+          "title": "Assists Per Game (APG)",
+
+          "axis": {"grid": true}
+
+        },
+
+        "y": {
+
+          "field": "Points_A",
+
+          "type": "quantitative",
+
+          "title": "Points Per Game (PPG)",
+
+          "axis": {"grid": true}
+
+        },
+
+        "size": {
+
+          "field": "Minutes_A",
+
+          "type": "quantitative",
+
+          "title": "MPG",
+
+          "scale": {"range": [40, 300]},
+
+          "legend": {"orient": "bottom", "offset": 10}
+
+        },
+
+        "color": {
+
+          "field": "Team",
+
+          "type": "nominal",
+
+          "title": "Franchise",
+
+          "scale": {
+
+            "range": [
+
+              "#0f172a", "#1e293b", "#334155", "#475569", 
+
+              "#0ea5e9", "#0284c7", "#0369a1", "#075985",
+
+              "#566573", "#78281f"
+
+            ]
+
+          },
+
+          "legend": {"orient": "right"}
+
+        },
+
+        "stroke": {
+
+          "condition": {"param": "node_hover", "value": "#0f172a"},
+
+          "value": "transparent"
+
+        },
+
+        "strokeWidth": {"value": 2},
+
+        "opacity": {
+
+          "condition": {"param": "node_hover", "value": 1.0},
+
+          "value": 0.7
+
+        },
+
+        "tooltip": [
+
+          {"field": "Player", "type": "nominal"},
+
+          {"field": "Team", "type": "nominal"},
+
+          {"field": "Points_A", "type": "quantitative", "title": "PPG", "format": ".1f"},
+
+          {"field": "Assists_A", "type": "quantitative", "title": "APG", "format": ".1f"},
+
+          {"field": "Minutes_A", "type": "quantitative", "title": "Min/G", "format": ".1f"}
+
+        ]
+
+      }
+
+    }
+
+  ],
+
+  "config": {
+
+    "view": {"stroke": "transparent"}
+
+  }
+
+}

@@ -1,55 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Ridgeline Plot of Supercoach Production Rate",
+  "description": "Ridgeline Plot of Supercoach Production Rate - Fixed Facet Scope",
   "data": {"url": "data/nbl-player-stats.csv"},
-  "width": 580,
-  "height": 45,
-  "autosize": {
-    "type": "fit-x",
-    "contains": "padding"
-  },
-  "params": [
-    {
-      "name": "row_hover",
-      "select": {"type": "point", "on": "mouseover", "clear": "mouseout", "fields": ["Team"]}
-    }
-  ],
-  "transform": [
-    {"filter": "datum.Minutes_A >= 10"},
-    {
-      "density": "Supercoach_40",
-      "groupby": ["Team"],
-      "extent": [0, 70],
-      "steps": 100
-    }
-  ],
-  "mark": {
-    "type": "area",
-    "interpolate": "monotone",
-    "stroke": "#0f172a",
-    "strokeWidth": 1.5
-  },
-  "encoding": {
-    "x": {
-      "field": "value",
-      "type": "quantitative",
-      "title": "Supercoach Production Pace (Per 40 Mins)",
-      "axis": {"grid": false}
-    },
-    "y": {
-      "field": "density",
-      "type": "quantitative",
-      "axis": null,
-      "scale": {"range": [45, -20]}
-    },
-    "fill": {
-      "condition": {"param": "row_hover", "value": "#0ea5e9"},
-      "value": "#94a3b8"
-    },
-    "fillOpacity": {
-      "condition": {"param": "row_hover", "value": 0.85},
-      "value": 0.3
-    },
+  "facet": {
     "row": {
       "field": "Team",
       "type": "nominal",
@@ -62,6 +15,57 @@
         "labelFontSize": 11
       },
       "spacing": -22
+    }
+  },
+  "spec": {
+    "width": 580,
+    "height": 45,
+    "autosize": {
+      "type": "fit-x",
+      "contains": "padding"
+    },
+    "params": [
+      {
+        "name": "row_hover",
+        "select": {"type": "point", "on": "mouseover", "clear": "mouseout", "fields": ["Team"]}
+      }
+    ],
+    "transform": [
+      {"filter": "datum.Minutes_A >= 10"},
+      {
+        "density": "Supercoach_40",
+        "groupby": ["Team"],
+        "extent": [0, 70],
+        "steps": 100
+      }
+    ],
+    "mark": {
+      "type": "area",
+      "interpolate": "monotone",
+      "stroke": "#0f172a",
+      "strokeWidth": 1.5
+    },
+    "encoding": {
+      "x": {
+        "field": "value",
+        "type": "quantitative",
+        "title": "Supercoach Production Pace (Per 40 Mins)",
+        "axis": {"grid": false}
+      },
+      "y": {
+        "field": "density",
+        "type": "quantitative",
+        "axis": null,
+        "scale": {"range": [45, -20]}
+      },
+      "fill": {
+        "condition": {"param": "row_hover", "value": "#0ea5e9"},
+        "value": "#94a3b8"
+      },
+      "fillOpacity": {
+        "condition": {"param": "row_hover", "value": 0.85},
+        "value": 0.3
+      }
     }
   },
   "config": {

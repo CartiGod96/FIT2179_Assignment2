@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Interactive Dumbbell Plot for Team Offense vs Defense PPP",
+  "description": "Interactive Dumbbell Plot for Team Offense vs Defense PPP - Fixed Layer Scope",
   "data": {"url": "data/nbl-team-stats.csv"},
   "width": "container",
   "height": 420,
@@ -8,17 +8,6 @@
     "type": "fit",
     "contains": "padding"
   },
-  "params": [
-    {
-      "name": "team_hover",
-      "select": {
-        "type": "point",
-        "on": "mouseover",
-        "clear": "mouseout",
-        "fields": ["Team"]
-      }
-    }
-  ],
   "encoding": {
     "y": {
       "field": "Team",
@@ -34,6 +23,7 @@
   },
   "layer": [
     {
+      "description": "Connecting rule line between points",
       "mark": {"type": "rule", "size": 3},
       "encoding": {
         "x": {
@@ -44,12 +34,27 @@
         },
         "x2": {"field": "PPP_Against"},
         "color": {
-          "condition": {"param": "team_hover", "value": "#94a3b8"},
+          "condition": [
+            {"param": "hover_offense", "value": "#94a3b8"},
+            {"param": "hover_defense", "value": "#94a3b8"}
+          ],
           "value": "#e2e8f0"
         }
       }
     },
     {
+      "description": "Offensive PPP points layer",
+      "params": [
+        {
+          "name": "hover_offense",
+          "select": {
+            "type": "point",
+            "on": "mouseover",
+            "clear": "mouseout",
+            "fields": ["Team"]
+          }
+        }
+      ],
       "mark": {"type": "point", "size": 260, "filled": true},
       "encoding": {
         "x": {"field": "PPP", "type": "quantitative"},
@@ -63,7 +68,10 @@
           }
         },
         "opacity": {
-          "condition": {"param": "team_hover", "value": 1},
+          "condition": [
+            {"param": "hover_offense", "value": 1},
+            {"param": "hover_defense", "value": 1}
+          ],
           "value": 0.35
         },
         "tooltip": [
@@ -74,12 +82,27 @@
       }
     },
     {
+      "description": "Defensive PPP points layer",
+      "params": [
+        {
+          "name": "hover_defense",
+          "select": {
+            "type": "point",
+            "on": "mouseover",
+            "clear": "mouseout",
+            "fields": ["Team"]
+          }
+        }
+      ],
       "mark": {"type": "point", "size": 260, "filled": true},
       "encoding": {
         "x": {"field": "PPP_Against", "type": "quantitative"},
         "color": {"datum": "Defensive PPP"},
         "opacity": {
-          "condition": {"param": "team_hover", "value": 1},
+          "condition": [
+            {"param": "hover_offense", "value": 1},
+            {"param": "hover_defense", "value": 1}
+          ],
           "value": 0.35
         },
         "tooltip": [

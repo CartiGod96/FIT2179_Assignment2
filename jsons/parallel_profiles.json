@@ -22,113 +22,77 @@
   },
   "params": [
     {
+      "name": "line_hover",
+      "select": {"type": "point", "on": "mouseover", "clear": "mouseout", "fields": ["Player"]}
+    },
+    {
       "name": "archetype_team_filter",
       "select": {"type": "point", "fields": ["Team"]},
       "bind": {
         "input": "select",
         "options": [
-          null,
-          "Adelaide",
-          "Brisbane",
-          "Cairns",
-          "Illawarra",
-          "Melbourne",
-          "New Zealand",
-          "Perth",
-          "South East Melbourne",
-          "Sydney",
-          "Tasmania"
+          null, "Adelaide", "Brisbane", "Cairns", "Illawarra", "Melbourne",
+          "New Zealand", "Perth", "South East Melbourne", "Sydney", "Tasmania"
         ],
         "labels": [
-          "Show All Franchises",
-          "Adelaide 36ers",
-          "Brisbane Bullets",
-          "Cairns Taipans",
-          "Illawarra Hawks",
-          "Melbourne United",
-          "New Zealand Breakers",
-          "Perth Wildcats",
-          "South East Melbourne Phoenix",
-          "Sydney Kings",
-          "Tasmania JackJumpers"
+          "Show All Franchises", "Adelaide 36ers", "Brisbane Bullets", "Cairns Taipans", "Illawarra Hawks", "Melbourne United",
+          "New Zealand Breakers", "Perth Wildcats", "South East Melbourne Phoenix", "Sydney Kings", "Tasmania JackJumpers"
         ],
         "name": "Isolate Franchise Roster: "
       }
     }
   ],
   "transform": [
-    {
-      "filter": "datum.Minutes_A > 12 && datum.Matches > 5"
-    },
-    {
-      "window": [{"op": "rank", "as": "rank_mins"}],
-      "sort": [{"field": "Minutes_A", "order": "ascending"}]
-    },
-    {
-      "window": [{"op": "rank", "as": "rank_pts"}],
-      "sort": [{"field": "Points_A", "order": "ascending"}]
-    },
-    {
-      "window": [{"op": "rank", "as": "rank_pie"}],
-      "sort": [{"field": "PIE", "order": "ascending"}]
-    },
-    {
-      "window": [{"op": "rank", "as": "rank_arr"}],
-      "sort": [{"field": "ARR", "order": "ascending"}]
-    },
-    {
-      "window": [{"op": "count", "as": "total_players"}],
-      "frame": [null, null]
-    },
-    {
-      "calculate": "(datum.rank_mins - 1) / (datum.total_players - 1)",
-      "as": "Mins/G"
-    },
-    {
-      "calculate": "(datum.rank_pts - 1) / (datum.total_players - 1)",
-      "as": "Pts/G"
-    },
-    {
-      "calculate": "(datum.rank_pie - 1) / (datum.total_players - 1)",
-      "as": "Impact (PIE)"
-    },
-    {
-      "calculate": "(datum.rank_arr - 1) / (datum.total_players - 1)",
-      "as": "Rim Def (ARR)"
-    },
-    {
-      "filter": {"param": "archetype_team_filter"}
-    },
-    {
-      "fold": ["Mins/G", "Pts/G", "Impact (PIE)", "Rim Def (ARR)"],
-      "as": ["Metric", "Percentile_Value"]
-    }
+    { "filter": "datum.Minutes_A > 12 && datum.Matches > 5" },
+    { "window": [{"op": "rank", "as": "rank_mins"}], "sort": [{"field": "Minutes_A", "order": "ascending"}] },
+    { "window": [{"op": "rank", "as": "rank_pts"}], "sort": [{"field": "Points_A", "order": "ascending"}] },
+    { "window": [{"op": "rank", "as": "rank_pie"}], "sort": [{"field": "PIE", "order": "ascending"}] },
+    { "window": [{"op": "rank", "as": "rank_arr"}], "sort": [{"field": "ARR", "order": "ascending"}] },
+    { "window": [{"op": "count", "as": "total_players"}], "frame": [null, null] },
+    { "calculate": "(datum.rank_mins - 1) / (datum.total_players - 1)", "as": "Mins/G" },
+    { "calculate": "(datum.rank_pts - 1) / (datum.total_players - 1)", "as": "Pts/G" },
+    { "calculate": "(datum.rank_pie - 1) / (datum.total_players - 1)", "as": "Impact (PIE)" },
+    { "calculate": "(datum.rank_arr - 1) / (datum.total_players - 1)", "as": "Rim Def (ARR)" },
+    { "filter": {"param": "archetype_team_filter"} },
+    { "fold": ["Mins/G", "Pts/G", "Impact (PIE)", "Rim Def (ARR)"], "as": ["Metric", "Percentile_Value"] }
   ],
   "mark": {
     "type": "line", 
-    "opacity": 0.4, 
-    "strokeWidth": 2,
     "interpolate": "linear"
   },
   "encoding": {
     "x": {
       "field": "Metric",
       "type": "nominal",
-      "title": "Roster Metric Axes",
+      "title": null,
       "sort": ["Mins/G", "Pts/G", "Impact (PIE)", "Rim Def (ARR)"],
-      "axis": {"labelAngle": 0, "grid": true}
+      "axis": {"labelAngle": 0, "grid": true, "labelFontWeight": "bold", "labelFontSize": 12}
     },
     "y": {
       "field": "Percentile_Value",
       "type": "quantitative",
-      "title": "League Percentile Rank (0 to 1.0)",
+      "title": "League Percentile Rank",
       "axis": {"format": ".0%"}
     },
     "color": {
       "field": "Team",
       "type": "nominal",
-      "title": "Team Squad",
-      "scale": {"scheme": "tableau10"}
+      "title": "Franchise",
+      "scale": {
+        "range": [
+          "#0f172a", "#1e293b", "#334155", "#475569", 
+          "#0ea5e9", "#0284c7", "#0369a1", "#075985",
+          "#566573", "#78281f"
+        ]
+      }
+    },
+    "opacity": {
+      "condition": {"param": "line_hover", "value": 1.0},
+      "value": 0.15
+    },
+    "strokeWidth": {
+      "condition": {"param": "line_hover", "value": 3.5},
+      "value": 1.5
     },
     "detail": {"field": "Player"},
     "tooltip": [

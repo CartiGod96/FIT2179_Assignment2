@@ -1,13 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
-  "description": "Production-Ready Responsive Roster Scoring Impact Treemap",
-  "width": 760,
-  "height": 400,
-  "padding": 0,
-  "autosize": {
-    "type": "fit",
-    "contains": "padding"
-  },
+  "width": 800,
+  "height": 450,
   "data": [
     {
       "name": "raw",
@@ -26,7 +20,7 @@
       "name": "tree",
       "source": "raw",
       "transform": [
-        {"type": "nest", "keys": [["Team"]]},
+        {"type": "nest", "keys": ["Team"]},
         {
           "type": "treemap",
           "field": "ScoringImpact",
@@ -39,9 +33,7 @@
     {
       "name": "leaves",
       "source": "tree",
-      "transform": [
-        {"type": "filter", "expr": "!datum.children"}
-      ]
+      "transform": [{"type": "filter", "expr": "!datum.children"}]
     }
   ],
   "scales": [
@@ -49,11 +41,7 @@
       "name": "color",
       "type": "ordinal",
       "domain": {"data": "raw", "field": "Team"},
-      "range": [
-        "#0f172a", "#1e293b", "#334155", "#475569", 
-        "#0ea5e9", "#0284c7", "#0369a1", "#075985",
-        "#566573", "#78281f"
-      ]
+      "range": {"scheme": "category20"}
     }
   ],
   "marks": [
@@ -61,43 +49,14 @@
       "type": "rect",
       "from": {"data": "leaves"},
       "encode": {
-        "enter": {
-          "stroke": {"value": "#ffffff"},
-          "strokeWidth": {"value": 1.5}
-        },
+        "enter": {"stroke": {"value": "#ffffff"}},
         "update": {
           "x": {"field": "x0"},
           "y": {"field": "y0"},
           "x2": {"field": "x1"},
           "y2": {"field": "y1"},
           "fill": {"scale": "color", "field": "Team"},
-          "fillOpacity": {"value": 0.85}
-        },
-        "hover": {
-          "fillOpacity": {"value": 1.0},
-          "stroke": {"value": "#0ea5e9"},
-          "strokeWidth": {"value": 2.5}
-        }
-      }
-    },
-    {
-      "type": "text",
-      "from": {"data": "leaves"},
-      "interactive": false,
-      "encode": {
-        "enter": {
-          "font": {"value": "'Plus Jakarta Sans', sans-serif"},
-          "align": {"value": "center"},
-          "baseline": {"value": "middle"},
-          "fill": {"value": "#ffffff"},
-          "fontSize": {"value": 11},
-          "fontWeight": {"value": "bold"}
-        },
-        "update": {
-          "x": {"signal": "0.5 * (datum.x0 + datum.x1)"},
-          "y": {"signal": "0.5 * (datum.y0 + datum.y1)"},
-          "text": {"signal": "datum.x1 - datum.x0 > 55 ? datum.Player : ''"},
-          "opacity": {"signal": "datum.x1 - datum.x0 > 45 && datum.y1 - datum.y0 > 20 ? 1 : 0"}
+          "tooltip": {"signal": "datum.Player + ': ' + format(datum.ScoringImpact, '.1f')"}
         }
       }
     }

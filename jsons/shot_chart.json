@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Spatial Shot Footprint on a Horizontal Basketball Court Layout.",
-  "width": "container",
+  "width": 800,
   "height": 430,
   "layer": [
     {
@@ -35,7 +35,7 @@
         }
       ],
       "transform": [ { "filter": {"param": "shot_chart_exclusive_dropdown_signal"} } ],
-      "mark": { "type": "circle", "size": 16, "cursor": "pointer" },
+      "mark": { "type": "circle", "size": 14, "opacity": 0.45 },
       "encoding": {
         "x": { "field": "X", "type": "quantitative", "scale": {"domain": [0, 100]}, "axis": null },
         "y": { "field": "Y", "type": "quantitative", "scale": {"domain": [0, 100]}, "axis": null },
@@ -43,10 +43,7 @@
           "field": "Shot_Outcome",
           "type": "nominal",
           "title": "Shot Outcome",
-          "scale": { "domain": ["Make", "Miss"], "range": ["#0ea5e9", "#cbd5e1"] }
-        },
-        "opacity": {
-          "value": 0.6
+          "scale": { "domain": ["Make", "Miss"], "range": ["#00b4d8", "#dcdcdc"] }
         },
         "tooltip": [
           {"field": "Team", "type": "nominal"},

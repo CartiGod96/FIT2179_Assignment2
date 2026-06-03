@@ -1,18 +1,26 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Rebuilt High-Fidelity Spatial Shot Geography Grid Heatmap",
-  "width": "container",
+  "width": 800,
   "height": 430,
   "layer": [
     {
+      "description": "Layer 1: Base Court Map Backdrop",
       "data": { "values": [{}] },
-      "mark": { "type": "image", "url": "images/fiba_court_flat.png", "width": 800, "height": 430, "aspect": false },
+      "mark": {
+        "type": "image",
+        "url": "images/fiba_court_flat.png",
+        "width": 800,
+        "height": 430,
+        "aspect": false
+      },
       "encoding": {
         "x": {"datum": 50, "scale": {"domain": [0, 100]}, "axis": null},
         "y": {"datum": 50, "scale": {"domain": [0, 100]}, "axis": null}
       }
     },
     {
+      "description": "Layer 2: Translucent Quantitative Grid Overlaid on Hardwood",
       "data": { "url": "data/nbl_shot_coordinates.csv" },
       "params": [
         {
@@ -37,9 +45,20 @@
       "transform": [
         { "filter": {"param": "density_chart_team_dropdown"} },
         { "filter": "datum.X >= 0 && datum.X <= 100 && datum.Y >= 0 && datum.Y <= 100" },
-        { "calculate": "datum.Shot_Outcome == 'Make' ? 1 : 0", "as": "shot_made_numeric" },
-        { "bin": {"maxbins": 7}, "field": "X", "as": "binned_x" },
-        { "bin": {"exact": false, "maxbins": 5, "step": 20}, "field": "Y", "as": "binned_y" },
+        {
+          "calculate": "datum.Shot_Outcome == 'Make' ? 1 : 0",
+          "as": "shot_made_numeric"
+        },
+        { 
+          "bin": {"maxbins": 7}, 
+          "field": "X", 
+          "as": "binned_x" 
+        },
+        { 
+          "bin": {"exact": false, "maxbins": 5, "step": 20}, 
+          "field": "Y", 
+          "as": "binned_y" 
+        },
         {
           "joinaggregate": [
             {"op": "count", "as": "zone_shot_count"},
@@ -49,11 +68,27 @@
         },
         { "filter": "datum.zone_shot_count >= 25" }
       ],
-      "mark": { "type": "rect", "filled": true, "opacity": 0.75, "stroke": "#ffffff", "strokeWidth": 0.5 },
+      "mark": {
+        "type": "rect",
+        "filled": true,
+        "opacity": 0.08,
+        "stroke": "#ffffff",
+        "strokeWidth": 0.5
+      },
       "encoding": {
-        "x": { "field": "binned_x", "type": "quantitative", "scale": {"domain": [0, 100]}, "axis": null },
+        "x": { 
+          "field": "binned_x", 
+          "type": "quantitative", 
+          "scale": {"domain": [0, 100]}, 
+          "axis": null 
+        },
         "x2": { "field": "binned_x_end" },
-        "y": { "field": "binned_y", "type": "quantitative", "scale": {"domain": [0, 100]}, "axis": null },
+        "y": { 
+          "field": "binned_y", 
+          "type": "quantitative", 
+          "scale": {"domain": [0, 100]}, 
+          "axis": null 
+        },
         "y2": { "field": "binned_y_end" },
         "color": {
           "field": "zone_fg_percentage",
@@ -61,10 +96,13 @@
           "title": "Zone FG%",
           "scale": {
             "type": "linear",
-            "domain": [0.3, 0.45, 0.6],
-            "range": ["#f1f5f9", "#38bdf8", "#0284c7"]
+            "scheme": "blues"
           },
-          "legend": { "format": ".0%", "orient": "right", "titleFontWeight": "bold" }
+          "legend": { 
+            "format": ".0%", 
+            "orient": "right",
+            "titleFontWeight": "bold"
+          }
         },
         "tooltip": [
           {"field": "zone_shot_count", "type": "quantitative", "title": "Attempts in Zone"},
@@ -73,5 +111,7 @@
       }
     }
   ],
-  "config": { "view": {"stroke": "transparent", "background": "transparent"} }
-}
+  "config": {
+    "view": {"stroke": "transparent", "background": "transparent"}
+  }
+}   

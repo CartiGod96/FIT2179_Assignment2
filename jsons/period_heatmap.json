@@ -42,7 +42,9 @@
       "scale": {
         "type": "linear",
         "domain": [85, 100, 115],
-        "range": ["#f43f5e", "#f1f5f9", "#0ea5e9"]
+        "range": ["#f43f5e", "#f1f5f9", "#0ea5e9"],
+        "interpolate": "hcl",
+        "clamp": true
       },
       "legend": {"orient": "right", "titleFontWeight": "bold"}
     },

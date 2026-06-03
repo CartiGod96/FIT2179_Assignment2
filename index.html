@@ -120,14 +120,6 @@
                 <span class="chapter-label">Chapter 03</span>
                 <h2 class="section-title">Franchise Production &amp; <span class="title-italic">Efficiency Dynamics</span></h2>
             </div>
-            
-            <div class="pure-g">
-                <div class="pure-u-1">
-                    <div class="vis-container">
-                        <div id="scatter_efficiency" style="width: 100%;"></div>
-                    </div>
-                </div>
-            </div>
 
             <div class="pure-g content-panel row-align">
                 <div class="pure-u-1 pure-u-lg-8-24 text-container">
@@ -180,6 +172,22 @@
             <div class="section-header-wrapper">
                 <span class="chapter-label">Chapter 04</span>
                 <h2 class="section-title">Roster Architecture &amp; <span class="title-italic">Depth Dynamics</span></h2>
+            </div>
+
+            <!-- Full Width Drill-Down Control Panel Block -->
+            <div class="pure-g content-panel row-align">
+                <div class="pure-u-1 panel-inner">
+                    <h3>Franchise Roster Production &amp; Efficiency Drill-Down</h3>
+                    <p class="narrative-p">
+                        This unified interface links high-level roster volume distributions directly to on-court scoring output. By isolating the minute-allocation profiles across squads, users can extract structural insights into how organizations construct their player hierarchies.
+                    </p>
+                    <div class="interactive-box">
+                        <strong>How to Explore:</strong> Click a franchise sector within the left-hand donut chart to isolate individual player profiles on the production scatter plot. Click the chart's negative background space to reset filters.
+                    </div>
+                    <div class="vis-container">
+                        <div id="scatter_efficiency" class="chart-box"></div>
+                    </div>
+                </div>
             </div>
 
             <div class="pure-g content-panel row-align">
@@ -239,26 +247,6 @@
             <div class="section-header-wrapper">
                 <span class="chapter-label">Chapter 05</span>
                 <h2 class="section-title">Advanced Player <span class="title-italic">Impact Suite</span></h2>
-            </div>
-
-            <div class="pure-g content-panel row-align">
-                <div class="pure-u-1 pure-u-lg-16-24 vis-container-split" style="border-right: none; border-left: 1px solid #e2e8f0; order: 2;">
-                    <div id="player_scatter" class="chart-box"></div>
-                </div>
-                <div class="pure-u-1 pure-u-lg-8-24 text-container" style="order: 1;">
-                    <div class="panel-inner">
-                        <h3>Workloads &amp; Assists vs. Points</h3>
-                        <p class="narrative-p">
-                            Plotting scoring production against playmaking creation maps distinct player roles across the league. The tracking profile outlines clear archetypes, tracing a linear trend from high-volume scorers to primary tablesetters. 
-                        </p>
-                        <p class="narrative-p">
-                            Outliers climbing toward the top-right quadrant identify elite offensive engines. This space isolates high-usage franchise anchors who handle both playmaking workloads and heavy scoring burdens simultaneously.
-                        </p>
-                        <div class="interactive-box">
-                            <strong>How to Explore:</strong> Utilize the dropdown selection element to isolate and audit individual franchise rosters.
-                        </div>
-                    </div>
-                </div>
             </div>
 
             <div class="pure-g content-panel row-align">
@@ -353,7 +341,6 @@
         vegaEmbed('#margin_diverging', "jsons/team_margin_diverging.json", opt).catch(console.error);
         vegaEmbed('#period_heatmap', "jsons/period_heatmap.json", opt).catch(console.error);
         vegaEmbed('#scatter_efficiency', "jsons/scatter_efficiency.json", opt).catch(console.error);
-        vegaEmbed('#player_scatter', "jsons/player_scatter.json", opt).catch(console.error);
         vegaEmbed('#efficiency_quadrants', "jsons/player_efficiency_quadrants.json", opt).catch(console.error);
         vegaEmbed('#roster_treemap', "jsons/roster_treemap.json", opt).catch(console.error);
         vegaEmbed('#parallel_profiles', "jsons/parallel_profiles.json", opt).catch(console.error);

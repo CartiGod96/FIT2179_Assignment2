@@ -67,27 +67,13 @@
         "theta": {"field": "TotalMinutes", "type": "quantitative"},
 
         "color": {
-
           "field": "Team",
-
           "type": "nominal",
-
-          "legend": null,
-
+          "title": "Franchise",
           "scale": {
-
-            "range": [
-
-              "#0f172a", "#1e293b", "#334155", "#475569", 
-
-              "#0ea5e9", "#0284c7", "#0369a1", "#075985",
-
-              "#566573", "#78281f"
-
-            ]
-
-          }
-
+            "scheme": "tableau10"
+          },
+          "legend": {"orient": "right"}
         },
 
         "opacity": {

@@ -10,7 +10,7 @@
         "url": "https://raw.githubusercontent.com/rowanhogan/australian-states/master/states.geojson",
         "format": {"type": "json"}
       },
-      "mark": { "type": "geoshape", "fill": "#eaeaea", "stroke": "#ffffff", "strokeWidth": 1.5 }
+      "mark": { "type": "geoshape", "fill": "#f1f5f9", "stroke": "#ffffff", "strokeWidth": 1.5 }
     },
     {
       "data": { "url": "data/nbl_stadium_coords.csv" },
@@ -19,9 +19,13 @@
           "name": "map_chart_exclusive_signal",
           "select": {"type": "point", "fields": ["Team"]},
           "bind": "legend"
+        },
+        {
+          "name": "point_hover",
+          "select": {"type": "point", "on": "mouseover", "clear": "mouseout", "nearest": false}
         }
       ],
-      "mark": { "type": "circle", "cursor": "pointer" },
+      "mark": { "type": "circle", "cursor": "pointer", "filled": true },
       "encoding": {
         "longitude": {"field": "Longitude", "type": "quantitative"},
         "latitude": {"field": "Latitude", "type": "quantitative"},
@@ -29,17 +33,31 @@
           "field": "Capacity",
           "type": "quantitative",
           "title": "Stadium Capacity",
-          "scale": {"domain": [4000, 20000], "range": [80, 600]}
+          "scale": {"domain": [4000, 20000], "range": [100, 700]}
         },
         "color": {
           "field": "Team",
           "type": "nominal",
           "title": "Franchise",
-          "scale": {"scheme": "tableau10"}
+          "scale": {
+            "range": [
+              "#0f172a", "#1e293b", "#334155", "#475569", 
+              "#0ea5e9", "#0284c7", "#0369a1", "#075985",
+              "#566573", "#78281f"
+            ]
+          }
         },
         "opacity": {
-          "condition": {"param": "map_chart_exclusive_signal", "value": 0.9},
-          "value": 0.15
+          "condition": {"param": "map_chart_exclusive_signal", "value": 0.95},
+          "value": 0.2
+        },
+        "stroke": {
+          "condition": {"param": "point_hover", "value": "#0f172a"},
+          "value": "#ffffff"
+        },
+        "strokeWidth": {
+          "condition": {"param": "point_hover", "value": 2},
+          "value": 0.5
         },
         "tooltip": [
           {"field": "Stadium", "type": "nominal"},

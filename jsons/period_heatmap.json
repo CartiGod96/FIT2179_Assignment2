@@ -1,9 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Team Period Percentages Heatmap via nbl-team-stats.csv",
-  "data": {
-    "url": "data/nbl-team-stats.csv"
-  },
+  "data": { "url": "data/nbl-team-stats.csv" },
   "transform": [
     {
       "fold": ["Period1_Percentage", "Period2_Percentage", "Period3_Percentage", "Period4_Percentage"],
@@ -14,22 +12,28 @@
       "as": "Quarter"
     }
   ],
-  "width": 780,
-  "height": 300,
-  "mark": {"type": "rect", "stroke": "#ffffff", "strokeWidth": 1.5},
+  "width": "container",
+  "height": 320,
+  "params": [
+    {
+      "name": "cell_hover",
+      "select": {"type": "point", "on": "mouseover", "clear": "mouseout", "nearest": false}
+    }
+  ],
+  "mark": {"type": "rect", "strokeWidth": 1.5},
   "encoding": {
     "x": {
       "field": "Quarter",
       "type": "ordinal",
       "title": "Game Period",
       "sort": ["Q1", "Q2", "Q3", "Q4"],
-      "axis": {"labelAngle": 0, "grid": false}
+      "axis": {"labelAngle": 0, "grid": false, "labelFontWeight": "bold"}
     },
     "y": {
       "field": "Team",
       "type": "nominal",
-      "title": "Franchise",
-      "axis": {"grid": false}
+      "title": null,
+      "axis": {"grid": false, "labelFontWeight": "bold", "labelFontSize": 11}
     },
     "color": {
       "field": "Efficiency",
@@ -37,9 +41,14 @@
       "title": "Eff % Index",
       "scale": {
         "type": "linear",
-        "domain": [80, 100, 115],
-        "range": ["#d7191c", "#f7f7f7", "#2c7bb6"]
-      }
+        "domain": [85, 100, 115],
+        "range": ["#f43f5e", "#f1f5f9", "#0ea5e9"]
+      },
+      "legend": {"orient": "right", "titleFontWeight": "bold"}
+    },
+    "stroke": {
+      "condition": {"param": "cell_hover", "value": "#0f172a"},
+      "value": "#ffffff"
     },
     "tooltip": [
       {"field": "Team", "type": "nominal"},

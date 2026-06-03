@@ -1,53 +1,91 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Dumbbell Plot for Team Offense vs Defense PPP",
+  "description": "Interactive Dumbbell Plot for Team Offense vs Defense PPP",
   "data": {"url": "data/nbl-team-stats.csv"},
-  "width": 500,
-  "height": 350,
+  "width": "container",
+  "height": 420,
   "autosize": {
-  "type": "fit",
-  "contains": "padding"
-},
+    "type": "fit",
+    "contains": "padding"
+  },
+  "params": [
+    {
+      "name": "team_hover",
+      "select": {
+        "type": "point",
+        "on": "mouseover",
+        "clear": "mouseout",
+        "fields": ["Team"]
+      }
+    }
+  ],
   "encoding": {
     "y": {
       "field": "Team",
       "type": "nominal",
       "sort": {"field": "PPP", "order": "descending"},
-      "axis": {"title": null, "labelFontWeight": "bold"}
+      "axis": {
+        "title": null, 
+        "labelFontWeight": "bold",
+        "labelFontSize": 12,
+        "labelColor": "#0f172a"
+      }
     }
   },
   "layer": [
     {
-      "mark": {"type": "rule", "color": "#cbd5e1", "size": 3},
+      "mark": {"type": "rule", "size": 3},
       "encoding": {
         "x": {
           "field": "PPP",
           "type": "quantitative",
-          "scale": {"zero": false},
-          "title": "Points Per Possession (Green = Scored, Red = Allowed)"
+          "scale": {"zero": false, "padding": 20},
+          "title": "Points Per Possession (PPP)"
         },
-        "x2": {"field": "PPP_Against"}
+        "x2": {"field": "PPP_Against"},
+        "color": {
+          "condition": {"param": "team_hover", "value": "#94a3b8"},
+          "value": "#e2e8f0"
+        }
       }
     },
     {
-      "mark": {"type": "point", "size": 250, "filled": true, "opacity": 1},
+      "mark": {"type": "point", "size": 260, "filled": true},
       "encoding": {
         "x": {"field": "PPP", "type": "quantitative"},
-        "color": {"datum": "Offensive PPP", "scale": {"range": ["#2ecc71", "#e74c3c"]}, "legend": {"title": "Efficiency Metric"}},
+        "color": {
+          "datum": "Offensive PPP",
+          "scale": {"range": ["#0ea5e9", "#f43f5e"]},
+          "legend": {
+            "title": "Efficiency Dimension",
+            "orient": "top",
+            "offset": 10
+          }
+        },
+        "opacity": {
+          "condition": {"param": "team_hover", "value": 1},
+          "value": 0.35
+        },
         "tooltip": [
           {"field": "Team", "type": "nominal"},
-          {"field": "PPP", "type": "quantitative", "title": "Offensive PPP"}
+          {"field": "PPP", "type": "quantitative", "title": "Offensive PPP", "format": ".2f"},
+          {"field": "PPP_Against", "type": "quantitative", "title": "Defensive PPP", "format": ".2f"}
         ]
       }
     },
     {
-      "mark": {"type": "point", "size": 250, "filled": true, "opacity": 1},
+      "mark": {"type": "point", "size": 260, "filled": true},
       "encoding": {
         "x": {"field": "PPP_Against", "type": "quantitative"},
-        "color": {"datum": "Defensive PPP Allowed"},
+        "color": {"datum": "Defensive PPP"},
+        "opacity": {
+          "condition": {"param": "team_hover", "value": 1},
+          "value": 0.35
+        },
         "tooltip": [
           {"field": "Team", "type": "nominal"},
-          {"field": "PPP_Against", "type": "quantitative", "title": "Defensive PPP Allowed"}
+          {"field": "PPP", "type": "quantitative", "title": "Offensive PPP", "format": ".2f"},
+          {"field": "PPP_Against", "type": "quantitative", "title": "Defensive PPP", "format": ".2f"}
         ]
       }
     }

@@ -4,16 +4,32 @@
   "width": "container",
   "height": 380,
   "data": { "url": "data/nbl-team-stats.csv" },
+  "params": [
+    {
+      "name": "bar_hover",
+      "select": {"type": "point", "on": "mouseover", "clear": "mouseout", "fields": ["Team"]}
+    }
+  ],
   "transform": [
     { "calculate": "(datum.Score - datum.Score_Against) / 28", "as": "NetMarginPerGame" }
   ],
   "mark": { "type": "bar", "cornerRadiusEnd": 4 },
   "encoding": {
     "x": { "field": "NetMarginPerGame", "type": "quantitative", "title": "Net Point Margin per Game", "axis": {"grid": true} },
-    "y": { "field": "Team", "type": "nominal", "sort": "-x", "title": null, "axis": { "offset": 5, "ticks": false, "domain": false, "labelFontSize": 11 } },
+    "y": { 
+      "field": "Team", 
+      "type": "nominal", 
+      "sort": "-x", 
+      "title": null, 
+      "axis": { "offset": 5, "ticks": false, "domain": false, "labelFontSize": 12, "labelFontWeight": "bold", "labelColor": "#0f172a" } 
+    },
     "color": {
-      "condition": { "test": "datum.NetMarginPerGame > 0", "value": "#2ecc71" },
-      "value": "#e74c3c"
+      "condition": { "test": "datum.NetMarginPerGame > 0", "value": "#0ea5e9" },
+      "value": "#f43f5e"
+    },
+    "opacity": {
+      "condition": {"param": "bar_hover", "value": 1.0},
+      "value": 0.65
     },
     "tooltip": [
       {"field": "Team", "type": "nominal"},

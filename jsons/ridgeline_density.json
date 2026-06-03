@@ -2,8 +2,14 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Ridgeline Plot of Supercoach Production Rate",
   "data": {"url": "data/nbl-player-stats.csv"},
-  "width": 500,
-  "height": 50,
+  "width": "container",
+  "height": 45,
+  "params": [
+    {
+      "name": "row_hover",
+      "select": {"type": "point", "on": "mouseover", "clear": "mouseout", "fields": ["Team"]}
+    }
+  ],
   "transform": [
     {"filter": "datum.Minutes_A >= 10"},
     {
@@ -16,10 +22,8 @@
   "mark": {
     "type": "area",
     "interpolate": "monotone",
-    "fill": "skyblue",
-    "stroke": "black",
-    "strokeWidth": 1,
-    "fillOpacity": 0.7
+    "stroke": "#0f172a",
+    "strokeWidth": 1.5
   },
   "encoding": {
     "x": {
@@ -32,7 +36,15 @@
       "field": "density",
       "type": "quantitative",
       "axis": null,
-      "scale": {"range": [50, -20]}
+      "scale": {"range": [45, -20]}
+    },
+    "fill": {
+      "condition": {"param": "row_hover", "value": "#0ea5e9"},
+      "value": "#94a3b8"
+    },
+    "fillOpacity": {
+      "condition": {"param": "row_hover", "value": 0.85},
+      "value": 0.3
     },
     "row": {
       "field": "Team",
@@ -42,9 +54,10 @@
         "labelAlign": "right",
         "labelAngle": 0,
         "labelFontWeight": "bold",
-        "labelPadding": 10
+        "labelPadding": 12,
+        "labelFontSize": 11
       },
-      "spacing": -25
+      "spacing": -22
     }
   },
   "config": {

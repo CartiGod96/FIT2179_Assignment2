@@ -32,6 +32,7 @@
                 <a href="#rosters"><span class="nav-num">04</span> Rosters</a>
                 <a href="#player-impact"><span class="nav-num">05</span> Impact</a>
                 <a href="#shot-geography"><span class="nav-num">06</span> Geometry</a>
+                <a href="#appendix"><span class="nav-num">07</span> Appendix</a>
             </div>
         </div>
     </nav>
@@ -174,7 +175,6 @@
                 <h2 class="section-title">Roster Architecture &amp; <span class="title-italic">Depth Dynamics</span></h2>
             </div>
 
-            <!-- Full Width Drill-Down Control Panel Block -->
             <div class="pure-g content-panel row-align">
                 <div class="pure-u-1 panel-inner">
                     <h3>Franchise Roster Production &amp; Efficiency Drill-Down</h3>
@@ -322,6 +322,58 @@
             </div>
         </section>
 
+        <section id="appendix" class="section-block">
+            <div class="section-header-wrapper">
+                <span class="chapter-label">Chapter 07</span>
+                <h2 class="section-title">Data Provenance &amp; <span class="title-italic">Appendix</span></h2>
+            </div>
+            
+            <div class="pure-g content-panel row-align">
+                <div class="pure-u-1 panel-inner" style="padding: 30px;">
+                    <h3>Data Sources &amp; Processing Framework</h3>
+                    <p class="narrative-p">
+                        To fulfill data transparency, replication standards, and academic design requirements, the provenance and pipeline configurations of all compiled datasets are cataloged below.
+                    </p>
+                    
+                    <ul class="appendix-list" style="list-style: none; padding-left: 0; margin-top: 24px;">
+                        <li style="margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid var(--border-color, #e2e8f0);">
+                            <strong style="color: var(--brand-navy, #0f172a); font-size: 1.1rem; display: block; margin-bottom: 6px;">Individual Player Performance &amp; Box-Score Aggregations</strong>
+                            <p class="narrative-p" style="margin: 0 0 10px 0;">
+                                Individual statistics, advanced defensive volume values, playing time configurations, and advanced Rim Recovery indexes (ARR) are extracted from the baseline datasets tracking individual player outputs.
+                            </p>
+                            <a href="https://www.wheeloratings.com/nbl_stats.html" target="_blank" rel="noopener noreferrer" style="color: var(--brand-orange, #ea580c); font-weight: 700; text-decoration: none; border-bottom: 1px dashed var(--brand-orange, #ea580c); font-size: 0.9rem;">
+                                Extract Player Statistics Feed &rarr;
+                            </a>
+                        </li>
+                        
+                        <li style="margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid var(--border-color, #e2e8f0);">
+                            <strong style="color: var(--brand-navy, #0f172a); font-size: 1.1rem; display: block; margin-bottom: 6px;">Franchise Efficiency Profiles &amp; Home/Away Splits</strong>
+                            <p class="narrative-p" style="margin: 0 0 10px 0;">
+                                Organizational points per possession (PPP), cumulative net point margins, and home/away breakdown indexes are generated and tracked directly via team analytics distributions.
+                            </p>
+                            <a href="https://www.wheeloratings.com/nbl_stats_team.html" target="_blank" rel="noopener noreferrer" style="color: var(--brand-orange, #ea580c); font-weight: 700; text-decoration: none; border-bottom: 1px dashed var(--brand-orange, #ea580c); font-size: 0.9rem;">
+                                Extract Franchise Standings Feed &rarr;
+                            </a>
+                        </li>
+                        
+                        <li style="margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid var(--border-color, #e2e8f0);">
+                            <strong style="color: var(--brand-navy, #0f172a); font-size: 1.1rem; display: block; margin-bottom: 6px;">High-Fidelity Coordinate Shot Geography</strong>
+                            <p class="narrative-p" style="margin: 0; line-height: 1.6;">
+                                Absolute coordinate positioning matrices and detailed event-by-event shot selections are programmatically scraped via the open-source <code style="background-color: #f1f5f9; padding: 2px 6px; border-radius: 4px; font-family: monospace; font-size: 0.85rem; color: #0f172a;">NBLr</code> package deployed on the Comprehensive R Archive Network (CRAN). This library maps official league tracking feeds to extract exact court coordinate pairs.
+                            </p>
+                        </li>
+                        
+                        <li style="margin-bottom: 10px;">
+                            <strong style="color: var(--brand-navy, #0f172a); font-size: 1.1rem; display: block; margin-bottom: 6px;">Derived Competition Ladder Data Structures</strong>
+                            <p class="narrative-p" style="margin: 0; line-height: 1.6;">
+                                The cumulative round-by-round trajectory series mapped across the dynamic competition bump graph was derived by manually reconstructing week-by-week ladder positions from transactional match summaries. Real-time win/loss records, point percentage matrices, and official NBL tie-breaking criteria were sequentially aggregated to model rank variations across the 20-round schedule.
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
         <footer class="dashboard-footer">
             <p class="footer-primary">National Basketball League Analytics Platform Portfolio Specification.</p>
             <p class="footer-secondary">Data compiled across tracked spatial distributions and individual play profiles (Season 2025-2026).</p>
@@ -330,10 +382,8 @@
     </main>
 
     <script>
-        // Premium embedding view controls
         const opt = {"actions": false};
 
-        // Standalone detached JSON spec routers
         vegaEmbed('#bump_chart', "jsons/bump_chart.json", opt).catch(console.error);
         vegaEmbed('#map_home_court', "jsons/map_home_court.json", opt).catch(console.error);
         vegaEmbed('#dumbbell_efficiency', "jsons/dumbbell_efficiency.json", opt).catch(console.error);

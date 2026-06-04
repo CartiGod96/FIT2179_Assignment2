@@ -34,6 +34,38 @@
   ],
   "layer": [
     {
+      "description": "Vertical baseline quadrant divider",
+      "mark": {
+        "type": "rule",
+        "color": "#64748b",
+        "strokeDash": [4, 4],
+        "strokeWidth": 1.5
+      },
+      "encoding": {
+        "x": {
+          "aggregate": "mean",
+          "field": "ARR",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "description": "Horizontal baseline quadrant divider",
+      "mark": {
+        "type": "rule",
+        "color": "#64748b",
+        "strokeDash": [4, 4],
+        "strokeWidth": 1.5
+      },
+      "encoding": {
+        "y": {
+          "aggregate": "mean",
+          "field": "Blocks_A",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
       "params": [
         {
           "name": "qd_legend_toggle_axis",

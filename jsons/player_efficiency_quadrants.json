@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Advanced Defensive Performance and Rim Protection Quadrants (Chart 10)",
+  "description": "Defensive Disruptors and Playmaking Stock Quadrants (Chart 10)",
   "width": "container",
   "height": 350,
   "data": {
@@ -10,7 +10,7 @@
       "parse": {
         "Minutes_A": "number",
         "Blocks_A": "number",
-        "ARR": "number",
+        "Steals_A": "number",
         "Matches": "number"
       }
     }
@@ -30,11 +30,12 @@
   ],
   "transform": [
     {"filter": "datum.Minutes_A >= qd_filter_minutes_slider"},
-    {"filter": "datum.ARR > 0"}
+    {"filter": "datum.Steals_A >= 0"},
+    {"filter": "datum.Blocks_A >= 0"}
   ],
   "layer": [
     {
-      "description": "Vertical baseline quadrant divider",
+      "description": "Vertical baseline quadrant divider (League Mean Steals)",
       "mark": {
         "type": "rule",
         "color": "#64748b",
@@ -44,13 +45,13 @@
       "encoding": {
         "x": {
           "aggregate": "mean",
-          "field": "ARR",
+          "field": "Steals_A",
           "type": "quantitative"
         }
       }
     },
     {
-      "description": "Horizontal baseline quadrant divider",
+      "description": "Horizontal baseline quadrant divider (League Mean Blocks)",
       "mark": {
         "type": "rule",
         "color": "#64748b",
@@ -80,10 +81,10 @@
       "mark": {"type": "circle", "cursor": "pointer"},
       "encoding": {
         "x": {
-          "field": "ARR",
+          "field": "Steals_A",
           "type": "quantitative",
-          "title": "Advanced Rim Recovery / Position Index (ARR)",
-          "scale": {"domain": [0, 4]}
+          "title": "Steals per Game",
+          "scale": {"domain": [0, 2.5]}
         },
         "y": {
           "field": "Blocks_A",
@@ -125,8 +126,8 @@
           {"field": "Player", "type": "nominal"},
           {"field": "Team", "type": "nominal"},
           {"field": "Matches", "type": "quantitative", "title": "Matches Played"},
-          {"field": "Blocks_A", "type": "quantitative", "title": "Blocks/Game"},
-          {"field": "ARR", "type": "quantitative", "title": "Advanced Rim Recovery"}
+          {"field": "Steals_A", "type": "quantitative", "title": "Steals/Game"},
+          {"field": "Blocks_A", "type": "quantitative", "title": "Blocks/Game"}
         ]
       }
     }

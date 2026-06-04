@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Faceted Player Total Floor Impact and Impact Estimate Matrix (Charts 7 & 8)",
+  "description": "Faceted Player Total Floor Impact, Impact Estimate, and All-Round Versatility Matrix (Charts 7, 8 & 9)",
   "data": {
     "url": "data/nbl-player-stats.csv"
   },
@@ -8,6 +8,7 @@
     {"filter": "datum.Minutes_A > 5"},
     {"filter": "datum.FIC > 0"},
     {"filter": "datum.PIE > 0"},
+    {"filter": "datum.ARR > 0"},
     {
       "calculate": "datum.EffectiveFieldGoalPercentage / 100",
       "as": "eFG_Decimal"
@@ -32,10 +33,10 @@
   ],
   "hconcat": [
     {
-      "width": 350,
+      "width": 240,
       "height": 340,
-      "title": "Floor Value: Minutes vs Total FIC",
-      "mark": {"type": "circle", "size": 60},
+      "title": "Volume: Minutes vs Total FIC",
+      "mark": {"type": "circle", "size": 55},
       "encoding": {
         "x": {
           "field": "Minutes_A",
@@ -70,10 +71,10 @@
       }
     },
     {
-      "width": 350,
+      "width": 240,
       "height": 340,
       "title": "Game Swing: True Shot % vs Player Impact",
-      "mark": {"type": "circle", "size": 60},
+      "mark": {"type": "circle", "size": 55},
       "encoding": {
         "x": {
           "field": "eFG_Decimal",
@@ -86,6 +87,45 @@
           "field": "PIE",
           "type": "quantitative",
           "title": "Player Impact Estimate (PIE)"
+        },
+        "color": {
+          "field": "Team",
+          "type": "nominal",
+          "scale": {"scheme": "tableau10"},
+          "legend": null
+        },
+        "opacity": {
+          "condition": {
+            "test": {"and": ["chart_brush", "legend_selection"]},
+            "value": 0.75
+          },
+          "value": 0.12
+        },
+        "tooltip": [
+          {"field": "Player", "type": "nominal"},
+          {"field": "Team", "type": "nominal"},
+          {"field": "EffectiveFieldGoalPercentage", "type": "quantitative", "title": "eFG% Original"},
+          {"field": "PIE", "type": "quantitative", "title": "PIE Rating"}
+        ]
+      }
+    },
+    {
+      "width": 240,
+      "height": 340,
+      "title": "Versatility: Workload vs All-Round Rating",
+      "mark": {"type": "circle", "size": 55},
+      "encoding": {
+        "x": {
+          "field": "Minutes_A",
+          "type": "quantitative",
+          "title": "Minutes per Game",
+          "scale": {"domain": [5, 40]}
+        },
+        "y": {
+          "field": "ARR",
+          "type": "quantitative",
+          "title": "All-Round Rating (Wheelo ARR)",
+          "scale": {"zero": false}
         },
         "color": {
           "field": "Team",
@@ -103,8 +143,8 @@
         "tooltip": [
           {"field": "Player", "type": "nominal"},
           {"field": "Team", "type": "nominal"},
-          {"field": "EffectiveFieldGoalPercentage", "type": "quantitative", "title": "eFG% Original"},
-          {"field": "PIE", "type": "quantitative", "title": "PIE Rating"}
+          {"field": "ARR", "type": "quantitative", "title": "All-Round Rating"},
+          {"field": "Minutes_A", "type": "quantitative", "title": "Minutes/G"}
         ]
       }
     }

@@ -10,7 +10,8 @@
         "Points_A": "number",
         "PIE": "number",
         "ARR": "number",
-        "Matches": "number"
+        "Matches": "number",
+        "SuperCoach_40": "number"
       }
     }
   },
@@ -81,6 +82,10 @@
       "sort": [{"field": "ARR", "order": "ascending"}]
     },
     {
+      "window": [{"op": "rank", "as": "rank_sc40"}],
+      "sort": [{"field": "SuperCoach_40", "order": "ascending"}]
+    },
+    {
       "window": [{"op": "count", "as": "total_players"}],
       "frame": [null, null]
     },
@@ -101,10 +106,14 @@
       "as": "All Round Impact (ARR)"
     },
     {
+      "calculate": "(datum.rank_sc40 - 1) / (datum.total_players - 1)",
+      "as": "SuperCoach 40 (SC40)"
+    },
+    {
       "filter": {"param": "pcp_team_filter"}
     },
     {
-      "fold": ["Mins/G", "Pts/G", "Impact (PIE)", "All Round Impact (ARR)"],
+      "fold": ["Mins/G", "Pts/G", "Impact (PIE)", "All Round Impact (ARR)", "SuperCoach 40 (SC40)"],
       "as": ["Metric", "Percentile_Value"]
     }
   ],
@@ -120,7 +129,7 @@
           "field": "Metric",
           "type": "nominal",
           "title": "Roster Metric Axes",
-          "sort": ["Mins/G", "Pts/G", "Impact (PIE)", "All Round Impact (ARR)"],
+          "sort": ["Mins/G", "Pts/G", "Impact (PIE)", "All Round Impact (ARR)", "SuperCoach 40 (SC40)"],
           "axis": {"labelAngle": 0, "grid": true}
         },
         "y": {
@@ -150,7 +159,8 @@
           {"field": "Minutes_A", "type": "quantitative", "title": "Mins/G"},
           {"field": "Points_A", "type": "quantitative", "title": "Pts/G"},
           {"field": "PIE", "type": "quantitative", "title": "PIE Metric"},
-          {"field": "ARR", "type": "quantitative", "title": "ARR Index"}
+          {"field": "ARR", "type": "quantitative", "title": "ARR Index"},
+          {"field": "SuperCoach_40", "type": "quantitative", "title": "SuperCoach 40"}
         ]
       }
     }

@@ -1,16 +1,18 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Parallel Coordinates Utility Profiles via Fixed League Percentile Rankings",
+  "description": "Parallel Coordinates Utility Profiles via Fixed League Percentile Rankings (Normalized Per-40 / Efficiency Stats)",
   "data": {
     "url": "data/nbl-player-stats.csv",
     "format": {
       "type": "csv",
       "parse": {
         "Minutes_A": "number",
-        "Points_A": "number",
-        "PIE": "number",
-        "ARR": "number",
-        "Matches": "number"
+        "Matches": "number",
+        "Points_40": "number",
+        "Supercoach_40": "number",
+        "ARR_40": "number",
+        "FIC_40": "number",
+        "PIE": "number"
       }
     }
   },
@@ -65,46 +67,54 @@
       "filter": "datum.Minutes_A > 12 && datum.Matches > 5"
     },
     {
-      "window": [{"op": "rank", "as": "rank_mins"}],
-      "sort": [{"field": "Minutes_A", "order": "ascending"}]
+      "window": [{"op": "rank", "as": "rank_pts40"}],
+      "sort": [{"field": "Points_40", "order": "ascending"}]
     },
     {
-      "window": [{"op": "rank", "as": "rank_pts"}],
-      "sort": [{"field": "Points_A", "order": "ascending"}]
+      "window": [{"op": "rank", "as": "rank_sc40"}],
+      "sort": [{"field": "Supercoach_40", "order": "ascending"}]
+    },
+    {
+      "window": [{"op": "rank", "as": "rank_arr40"}],
+      "sort": [{"field": "ARR_40", "order": "ascending"}]
+    },
+    {
+      "window": [{"op": "rank", "as": "rank_fic40"}],
+      "sort": [{"field": "FIC_40", "order": "ascending"}]
     },
     {
       "window": [{"op": "rank", "as": "rank_pie"}],
       "sort": [{"field": "PIE", "order": "ascending"}]
     },
     {
-      "window": [{"op": "rank", "as": "rank_arr"}],
-      "sort": [{"field": "ARR", "order": "ascending"}]
-    },
-    {
       "window": [{"op": "count", "as": "total_players"}],
       "frame": [null, null]
     },
     {
-      "calculate": "(datum.rank_mins - 1) / (datum.total_players - 1)",
-      "as": "Mins/G"
+      "calculate": "(datum.rank_pts40 - 1) / (datum.total_players - 1)",
+      "as": "Pts/40"
     },
     {
-      "calculate": "(datum.rank_pts - 1) / (datum.total_players - 1)",
-      "as": "Pts/G"
+      "calculate": "(datum.rank_sc40 - 1) / (datum.total_players - 1)",
+      "as": "Supercoach 40"
+    },
+    {
+      "calculate": "(datum.rank_arr40 - 1) / (datum.total_players - 1)",
+      "as": "ARR 40"
+    },
+    {
+      "calculate": "(datum.rank_fic40 - 1) / (datum.total_players - 1)",
+      "as": "FIC 40"
     },
     {
       "calculate": "(datum.rank_pie - 1) / (datum.total_players - 1)",
       "as": "Impact (PIE)"
     },
     {
-      "calculate": "(datum.rank_arr - 1) / (datum.total_players - 1)",
-      "as": "All Round Impact (ARR)"
-    },
-    {
       "filter": {"param": "pcp_team_filter"}
     },
     {
-      "fold": ["Mins/G", "Pts/G", "Impact (PIE)", "All Round Impact (ARR)"],
+      "fold": ["Pts/40", "Supercoach 40", "ARR 40", "FIC 40", "Impact (PIE)"],
       "as": ["Metric", "Percentile_Value"]
     }
   ],
@@ -119,8 +129,8 @@
         "x": {
           "field": "Metric",
           "type": "nominal",
-          "title": "Roster Metric Axes",
-          "sort": ["Mins/G", "Pts/G", "Impact (PIE)", "All Round Impact (ARR)"],
+          "title": "Normalised Per-40 / Efficiency Metric Axes",
+          "sort": ["Pts/40", "Supercoach 40", "ARR 40", "FIC 40", "Impact (PIE)"],
           "axis": {"labelAngle": 0, "grid": true}
         },
         "y": {
@@ -148,9 +158,11 @@
           {"field": "Player", "type": "nominal", "title": "Player"},
           {"field": "Team", "type": "nominal", "title": "Team"},
           {"field": "Minutes_A", "type": "quantitative", "title": "Mins/G"},
-          {"field": "Points_A", "type": "quantitative", "title": "Pts/G"},
-          {"field": "PIE", "type": "quantitative", "title": "PIE Metric"},
-          {"field": "ARR", "type": "quantitative", "title": "ARR Index"}
+          {"field": "Points_40", "type": "quantitative", "title": "Pts/40"},
+          {"field": "Supercoach_40", "type": "quantitative", "title": "Supercoach 40"},
+          {"field": "ARR_40", "type": "quantitative", "title": "ARR 40"},
+          {"field": "FIC_40", "type": "quantitative", "title": "FIC 40"},
+          {"field": "PIE", "type": "quantitative", "title": "PIE Metric"}
         ]
       }
     }

@@ -98,13 +98,13 @@
     },
     {
       "calculate": "(datum.rank_arr - 1) / (datum.total_players - 1)",
-      "as": "Rim Def (ARR)"
+      "as": "All Round Impact (ARR)"
     },
     {
       "filter": {"param": "pcp_team_filter"}
     },
     {
-      "fold": ["Mins/G", "Pts/G", "Impact (PIE)", "Rim Def (ARR)"],
+      "fold": ["Mins/G", "Pts/G", "Impact (PIE)", "All Round Impact (ARR)"],
       "as": ["Metric", "Percentile_Value"]
     }
   ],
@@ -120,7 +120,7 @@
           "field": "Metric",
           "type": "nominal",
           "title": "Roster Metric Axes",
-          "sort": ["Mins/G", "Pts/G", "Impact (PIE)", "Rim Def (ARR)"],
+          "sort": ["Mins/G", "Pts/G", "Impact (PIE)", "All Round Impact (ARR)"],
           "axis": {"labelAngle": 0, "grid": true}
         },
         "y": {

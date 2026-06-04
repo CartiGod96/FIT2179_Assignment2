@@ -78,19 +78,19 @@
           "select": {"type": "point", "on": "mouseover", "clear": "mouseout", "empty": "none"}
         }
       ],
-      "mark": {"type": "circle", "cursor": "pointer"},
+      "mark": {"type": "circle", "cursor": "pointer", "clip": true},
       "encoding": {
         "x": {
           "field": "Steals_A",
           "type": "quantitative",
           "title": "Steals per Game",
-          "scale": {"domain": [0, 2.5]}
+          "scale": {"domain": [0, 2.3]}
         },
         "y": {
           "field": "Blocks_A",
           "type": "quantitative",
           "title": "Blocks per Game",
-          "scale": {"domain": [0, 2.5]}
+          "scale": {"domain": [0, 2.0]}
         },
         "size": {
           "condition": {"param": "qd_hover_interactive_node", "value": 340},

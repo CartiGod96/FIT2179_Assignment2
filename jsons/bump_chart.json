@@ -3,12 +3,22 @@
   "description": "NBL Round-by-Round Position Tracking Bump Chart.",
   "width": "container",
   "height": 400,
-  "data": { "url": "data/nbl_ladder_history.csv" },
+  "data": { 
+    "url": "data/nbl_ladder_history.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "round_number": "number",
+        "rank": "number"
+      }
+    }
+  },
   "encoding": {
     "x": {
       "field": "round_number",
       "type": "ordinal",
       "title": "Competition Round",
+      "sort": "ascending",
       "axis": {"labelAngle": 0, "grid": true}
     },
     "y": {
@@ -65,7 +75,7 @@
         },
         "tooltip": [
           {"field": "team_name", "type": "nominal", "title": "Team"},
-          {"field": "round_number", "type": "ordinal", "title": "Round"},
+          {"field": "round_number", "type": "quantitative", "title": "Round"},
           {"field": "rank", "type": "quantitative", "title": "Rank"}
         ]
       }

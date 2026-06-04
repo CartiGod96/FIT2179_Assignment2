@@ -3,6 +3,11 @@
   "description": "Drill-Down Donut to Scatter Interface Panel",
   "data": { "url": "data/nbl-player-stats.csv" },
   "spacing": 35,
+  "resolve": {
+    "scale": {
+      "color": "independent"
+    }
+  },
   "transform": [
     {"filter": "datum.Minutes_A > 5"},
     {"filter": "datum.Points_A > 0"},
@@ -26,7 +31,7 @@
       ],
       "params": [
         {
-          "name": "donut_click",
+          "name": "sc_donut_click",
           "select": {"type": "point", "fields": ["Team"]}
         }
       ],
@@ -43,7 +48,7 @@
           "legend": {"orient": "right"}
         },
         "opacity": {
-          "condition": {"param": "donut_click", "value": 1.0},
+          "condition": {"param": "sc_donut_click", "value": 1.0},
           "value": 0.35
         },
         "tooltip": [
@@ -63,12 +68,12 @@
       "height": 280,
       "params": [
         {
-          "name": "node_hover",
+          "name": "sc_node_hover",
           "select": {"type": "point", "on": "mouseover", "clear": "mouseout", "nearest": false}
         }
       ],
       "transform": [
-        {"filter": {"param": "donut_click"}}
+        {"filter": {"param": "sc_donut_click"}}
       ],
       "mark": {"type": "circle", "filled": true, "cursor": "pointer"},
       "encoding": {
@@ -105,12 +110,12 @@
           "legend": {"orient": "right"}
         },
         "stroke": {
-          "condition": {"param": "node_hover", "value": "#0f172a"},
+          "condition": {"param": "sc_node_hover", "value": "#0f172a"},
           "value": "transparent"
         },
         "strokeWidth": {"value": 2},
         "opacity": {
-          "condition": {"param": "node_hover", "value": 1.0},
+          "condition": {"param": "sc_node_hover", "value": 1.0},
           "value": 0.7
         },
         "tooltip": [

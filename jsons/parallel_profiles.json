@@ -22,7 +22,7 @@
   },
   "params": [
     {
-      "name": "archetype_team_filter",
+      "name": "pcp_team_filter",
       "select": {"type": "point", "fields": ["Team"]},
       "bind": {
         "input": "select",
@@ -54,6 +54,10 @@
         ],
         "name": "Isolate Franchise Roster: "
       }
+    },
+    {
+      "name": "pcp_profile_hover",
+      "select": {"type": "point", "on": "mouseover", "clear": "mouseout", "fields": ["Player"]}
     }
   ],
   "transform": [
@@ -97,7 +101,7 @@
       "as": "Rim Def (ARR)"
     },
     {
-      "filter": {"param": "archetype_team_filter"}
+      "filter": {"param": "pcp_team_filter"}
     },
     {
       "fold": ["Mins/G", "Pts/G", "Impact (PIE)", "Rim Def (ARR)"],
@@ -106,12 +110,6 @@
   ],
   "layer": [
     {
-      "params": [
-        {
-          "name": "profile_hover",
-          "select": {"type": "point", "on": "mouseover", "clear": "mouseout", "nearest": true, "fields": ["Player"]}
-        }
-      ],
       "mark": {
         "type": "line", 
         "interpolate": "linear",
@@ -132,7 +130,7 @@
           "axis": {"format": ".0%"}
         },
         "strokeWidth": {
-          "condition": {"param": "profile_hover", "value": 4.5},
+          "condition": {"param": "pcp_profile_hover", "value": 4.5},
           "value": 1.5
         },
         "color": {
@@ -142,7 +140,7 @@
           "scale": {"scheme": "tableau10"}
         },
         "opacity": {
-          "condition": {"param": "profile_hover", "value": 1.0},
+          "condition": {"param": "pcp_profile_hover", "value": 1.0},
           "value": 0.2
         },
         "detail": {"field": "Player"},

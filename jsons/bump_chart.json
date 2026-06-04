@@ -11,14 +11,10 @@
       "bind": "legend"
     },
     {
-      "name": "point_hover",
+      "name": "bump_point_hover",
       "select": {"type": "point", "on": "mouseover", "clear": "mouseout", "nearest": true, "fields": ["team_name"]}
     }
   ],
-  "mark": {
-    "type": "line",
-    "interpolate": "monotone"
-  },
   "encoding": {
     "x": {
       "field": "round_number",
@@ -33,15 +29,6 @@
       "scale": {"reverse": true, "domain": [1, 10]},
       "axis": {"tickMinStep": 1, "values": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
     },
-    "strokeWidth": {
-      "condition": {"param": "point_hover", "value": 6.5},
-      "value": 3.5
-    },
-    "point": {
-      "condition": {"param": "point_hover", "size": 160, "filled": true},
-      "size": 60,
-      "filled": true
-    },
     "color": {
       "field": "team_name",
       "type": "nominal",
@@ -51,11 +38,37 @@
     "opacity": {
       "condition": {"param": "bump_chart_exclusive_signal", "value": 1},
       "value": 0.15
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "interpolate": "monotone"
+      },
+      "encoding": {
+        "strokeWidth": {
+          "condition": {"param": "bump_point_hover", "value": 6.5},
+          "value": 3.5
+        }
+      }
     },
-    "tooltip": [
-      {"field": "team_name", "type": "nominal", "title": "Team"},
-      {"field": "round_number", "type": "ordinal", "title": "Round"},
-      {"field": "rank", "type": "quantitative", "title": "Rank"}
-    ]
-  }
+    {
+      "mark": {
+        "type": "circle",
+        "filled": true
+      },
+      "encoding": {
+        "size": {
+          "condition": {"param": "bump_point_hover", "value": 160},
+          "value": 60
+        },
+        "tooltip": [
+          {"field": "team_name", "type": "nominal", "title": "Team"},
+          {"field": "round_number", "type": "ordinal", "title": "Round"},
+          {"field": "rank", "type": "quantitative", "title": "Rank"}
+        ]
+      }
+    }
+  ]
 }

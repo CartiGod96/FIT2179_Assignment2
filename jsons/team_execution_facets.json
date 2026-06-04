@@ -1,26 +1,30 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Faceted Player Total Floor Impact and Impact Estimate Matrix with Cross-Highlighting.",
+  "description": "Faceted Player Total Floor Impact and Impact Estimate Matrix (Charts 7 & 8)",
   "data": {
     "url": "data/nbl-player-stats.csv"
   },
   "transform": [
     {"filter": "datum.Minutes_A > 5"},
     {"filter": "datum.FIC > 0"},
-    {"filter": "datum.PIE > 0"}
+    {"filter": "datum.PIE > 0"},
+    {
+      "calculate": "datum.EffectiveFieldGoalPercentage / 100",
+      "as": "eFG_Decimal"
+    }
   ],
   "params": [
     {
-      "name": "brush_selection",
+      "name": "chart_brush",
       "select": {
         "type": "interval",
         "resolve": "global"
       }
     },
     {
-      "name": "legend_filter",
+      "name": "legend_selection",
       "select": {
-        "type": "point", 
+        "type": "point",
         "fields": ["Team"]
       },
       "bind": "legend"
@@ -31,7 +35,7 @@
       "width": 350,
       "height": 340,
       "title": "Floor Value: Minutes vs Total FIC",
-      "mark": {"type": "circle", "size": 75},
+      "mark": {"type": "circle", "size": 60},
       "encoding": {
         "x": {
           "field": "Minutes_A",
@@ -51,19 +55,17 @@
           "legend": null
         },
         "opacity": {
-          "condition": [
-            {
-              "test": {"and": ["brush_selection", "legend_filter"]},
-              "value": 0.85
-            }
-          ],
-          "value": 0.15
+          "condition": {
+            "test": {"and": ["chart_brush", "legend_selection"]},
+            "value": 0.75
+          },
+          "value": 0.12
         },
         "tooltip": [
           {"field": "Player", "type": "nominal"},
           {"field": "Team", "type": "nominal"},
-          {"field": "FIC", "type": "quantitative", "title": "FIC Index", "format": ".2f"},
-          {"field": "Minutes_A", "type": "quantitative", "title": "Minutes/G", "format": ".1f"}
+          {"field": "FIC", "type": "quantitative", "title": "FIC Index"},
+          {"field": "Minutes_A", "type": "quantitative", "title": "Minutes/G"}
         ]
       }
     },
@@ -71,14 +73,14 @@
       "width": 350,
       "height": 340,
       "title": "Game Swing: True Shot % vs Player Impact",
-      "mark": {"type": "circle", "size": 75},
+      "mark": {"type": "circle", "size": 60},
       "encoding": {
         "x": {
-          "field": "EffectiveFieldGoalPercentage",
+          "field": "eFG_Decimal",
           "type": "quantitative",
           "title": "Effective Field Goal % (eFG%)",
           "axis": {"format": "%"},
-          "scale": {"domain": [0.3, 0.75]}
+          "scale": {"domain": [0.3, 0.7]}
         },
         "y": {
           "field": "PIE",
@@ -92,19 +94,17 @@
           "scale": {"scheme": "tableau10"}
         },
         "opacity": {
-          "condition": [
-            {
-              "test": {"and": ["brush_selection", "legend_filter"]},
-              "value": 0.85
-            }
-          ],
-          "value": 0.15
+          "condition": {
+            "test": {"and": ["chart_brush", "legend_selection"]},
+            "value": 0.75
+          },
+          "value": 0.12
         },
         "tooltip": [
           {"field": "Player", "type": "nominal"},
           {"field": "Team", "type": "nominal"},
-          {"field": "EffectiveFieldGoalPercentage", "type": "quantitative", "title": "eFG%", "format": ".1%"},
-          {"field": "PIE", "type": "quantitative", "title": "PIE Rating", "format": ".2f"}
+          {"field": "EffectiveFieldGoalPercentage", "type": "quantitative", "title": "eFG% Original"},
+          {"field": "PIE", "type": "quantitative", "title": "PIE Rating"}
         ]
       }
     }

@@ -1,7 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
-  "width": 660,
-  "height": 360,
+  "width": 510,
+  "height": 330,
+  "padding": 10,
   "data": [
     {
       "name": "raw",
@@ -33,7 +34,9 @@
     {
       "name": "leaves",
       "source": "tree",
-      "transform": [{"type": "filter", "expr": "!datum.children"}]
+      "transform": [
+        {"type": "filter", "expr": "!datum.children"}
+      ]
     }
   ],
   "scales": [
@@ -52,7 +55,12 @@
       "titleFont": "Plus Jakarta Sans",
       "labelFont": "Plus Jakarta Sans",
       "encode": {
-        "symbols": {"update": {"shape": {"value": "circle"}, "size": {"value": 80}}}
+        "symbols": {
+          "update": {
+            "shape": {"value": "circle"},
+            "size": {"value": 80}
+          }
+        }
       }
     }
   ],
@@ -61,16 +69,36 @@
       "type": "rect",
       "from": {"data": "leaves"},
       "encode": {
-        "enter": {"stroke": {"value": "#ffffff"}, "strokeWidth": {"value": 1.5}},
+        "enter": {
+          "stroke": {"value": "#ffffff"},
+          "strokeWidth": {"value": 1.5}
+        },
         "update": {
           "x": {"field": "x0"},
           "y": {"field": "y0"},
           "x2": {"field": "x1"},
           "y2": {"field": "y1"},
-          "fill": {"scale": "color", "field": "Team"},
-          "tooltip": {
-            "signal": "{'Player': datum.Player, 'Franchise': datum.Team, 'Scoring Impact Index': format(datum.ScoringImpact, '.1f') + ' pts', 'Mins Played': format(datum.Minutes_A, '.1f') + ' MPG'}"
-          }
+          "fill": {"scale": "color", "field": "Team"}
+        }
+      }
+    },
+    {
+      "type": "text",
+      "from": {"data": "leaves"},
+      "interactive": false,
+      "encode": {
+        "enter": {
+          "font": {"value": "Plus Jakarta Sans"},
+          "align": {"value": "center"},
+          "baseline": {"value": "middle"},
+          "fill": {"value": "#ffffff"},
+          "fontSize": {"value": 9},
+          "text": {"field": "Player"}
+        },
+        "update": {
+          "x": {"signal": "0.5 * (datum.x0 + datum.x1)"},
+          "y": {"signal": "0.5 * (datum.y0 + datum.y1)"},
+          "opacity": {"signal": "datum.x1 - datum.x0 > 40 && datum.y1 - datum.y0 > 20 ? 1 : 0"}
         }
       }
     }

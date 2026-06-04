@@ -4,7 +4,16 @@
   "width": "container",
   "height": 350,
   "data": {
-    "url": "data/nbl-player-stats.csv"
+    "url": "data/nbl-player-stats.csv",
+    "format": {
+      "type": "csv",
+      "parse": {
+        "Minutes_A": "number",
+        "Blocks_A": "number",
+        "ARR": "number",
+        "Matches": "number"
+      }
+    }
   },
   "params": [
     {
@@ -55,7 +64,10 @@
           "field": "Matches",
           "type": "quantitative",
           "title": "Games Played",
-          "scale": {"range": [40, 240]}
+          "scale": {
+            "zero": false,
+            "range": [40, 240]
+          }
         },
         "color": {
           "field": "Team",
@@ -82,17 +94,9 @@
           {"field": "Team", "type": "nominal"},
           {"field": "Matches", "type": "quantitative", "title": "Matches Played"},
           {"field": "Blocks_A", "type": "quantitative", "title": "Blocks/Game"},
-          {"field": "ARR", "type": "quantitative", "title": "ARR Rating"}
+          {"field": "ARR", "type": "quantitative", "title": "Advanced Rim Recovery"}
         ]
       }
-    },
-    {
-      "mark": {"type": "rule", "color": "#7f8c8d", "strokeDash": [4, 4]},
-      "encoding": {"y": {"datum": 0.4}}
-    },
-    {
-      "mark": {"type": "rule", "color": "#7f8c8d", "strokeDash": [4, 4]},
-      "encoding": {"x": {"datum": 1.5}}
     }
   ]
 }

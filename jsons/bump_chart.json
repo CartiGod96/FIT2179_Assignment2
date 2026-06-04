@@ -6,13 +6,13 @@
   "data": { "url": "data/nbl_ladder_history.csv" },
   "params": [
     {
-      "name": "bump_chart_exclusive_signal",
+      "name": "nbl_bump_exclusive_sig",
       "select": {"type": "point", "fields": ["team_name"]},
       "bind": "legend"
     },
     {
-      "name": "bump_point_hover",
-      "select": {"type": "point", "on": "mouseover", "clear": "mouseout", "nearest": true, "fields": ["team_name"]}
+      "name": "nbl_bump_hover_sig",
+      "select": {"type": "point", "on": "mouseover", "clear": "mouseout", "fields": ["team_name"]}
     }
   ],
   "encoding": {
@@ -36,7 +36,7 @@
       "scale": {"scheme": "tableau10"}
     },
     "opacity": {
-      "condition": {"param": "bump_chart_exclusive_signal", "value": 1},
+      "condition": {"param": "nbl_bump_exclusive_sig", "value": 1},
       "value": 0.15
     }
   },
@@ -48,7 +48,7 @@
       },
       "encoding": {
         "strokeWidth": {
-          "condition": {"param": "bump_point_hover", "value": 6.5},
+          "condition": {"param": "nbl_bump_hover_sig", "value": 6.5},
           "value": 3.5
         }
       }
@@ -60,7 +60,7 @@
       },
       "encoding": {
         "size": {
-          "condition": {"param": "bump_point_hover", "value": 160},
+          "condition": {"param": "nbl_bump_hover_sig", "value": 160},
           "value": 60
         },
         "tooltip": [

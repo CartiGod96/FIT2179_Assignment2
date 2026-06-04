@@ -8,7 +8,7 @@
   },
   "params": [
     {
-      "name": "quad_minutes_filter",
+      "name": "quad_minutes_filter_unique",
       "value": 10,
       "bind": {
         "input": "range",
@@ -19,12 +19,12 @@
       }
     },
     {
-      "name": "quad_node_hover",
+      "name": "nbl_quadrant_hover_sig",
       "select": {"type": "point", "on": "mouseover", "clear": "mouseout"}
     }
   ],
   "transform": [
-    {"filter": "datum.Minutes_A >= quad_minutes_filter"},
+    {"filter": "datum.Minutes_A >= quad_minutes_filter_unique"},
     {"filter": "datum.ARR > 0"}
   ],
   "layer": [
@@ -32,7 +32,7 @@
       "name": "scatter_layer",
       "params": [
         {
-          "name": "quad_legend_select",
+          "name": "quad_legend_select_unique",
           "select": {"type": "point", "fields": ["Team"]},
           "bind": "legend"
         }
@@ -52,7 +52,7 @@
           "scale": {"domain": [0, 2.5]}
         },
         "size": {
-          "condition": {"param": "quad_node_hover", "value": 340},
+          "condition": {"param": "nbl_quadrant_hover_sig", "value": 340},
           "field": "Matches",
           "type": "quantitative",
           "title": "Games Played",
@@ -64,17 +64,17 @@
           "scale": {"scheme": "tableau10"}
         },
         "stroke": {
-          "condition": {"param": "quad_node_hover", "value": "#0f172a"},
+          "condition": {"param": "nbl_quadrant_hover_sig", "value": "#0f172a"},
           "value": "transparent"
         },
         "strokeWidth": {
-          "condition": {"param": "quad_node_hover", "value": 2},
+          "condition": {"param": "nbl_quadrant_hover_sig", "value": 2},
           "value": 0
         },
         "opacity": {
           "condition": [
-            {"param": "quad_node_hover", "value": 1.0},
-            {"param": "quad_legend_select", "value": 0.75}
+            {"param": "nbl_quadrant_hover_sig", "value": 1.0},
+            {"param": "quad_legend_select_unique", "value": 0.75}
           ],
           "value": 0.08
         },

@@ -3,11 +3,6 @@
   "description": "Drill-Down Donut to Scatter Interface Panel",
   "data": { "url": "data/nbl-player-stats.csv" },
   "spacing": 35,
-  "resolve": {
-    "scale": {
-      "color": "independent"
-    }
-  },
   "transform": [
     {"filter": "datum.Minutes_A > 5"},
     {"filter": "datum.Points_A > 0"},
@@ -31,7 +26,7 @@
       ],
       "params": [
         {
-          "name": "sc_donut_click",
+          "name": "sc_donut_click_unique",
           "select": {"type": "point", "fields": ["Team"]}
         }
       ],
@@ -48,7 +43,7 @@
           "legend": {"orient": "right"}
         },
         "opacity": {
-          "condition": {"param": "sc_donut_click", "value": 1.0},
+          "condition": {"param": "sc_donut_click_unique", "value": 1.0},
           "value": 0.35
         },
         "tooltip": [
@@ -68,12 +63,12 @@
       "height": 280,
       "params": [
         {
-          "name": "sc_node_hover",
+          "name": "sc_node_hover_unique",
           "select": {"type": "point", "on": "mouseover", "clear": "mouseout", "nearest": false}
         }
       ],
       "transform": [
-        {"filter": {"param": "sc_donut_click"}}
+        {"filter": {"param": "sc_donut_click_unique"}}
       ],
       "mark": {"type": "circle", "filled": true, "cursor": "pointer"},
       "encoding": {
@@ -101,21 +96,17 @@
           "type": "nominal",
           "title": "Franchise",
           "scale": {
-            "range": [
-              "#0f172a", "#1e293b", "#334155", "#475569", 
-              "#0ea5e9", "#0284c7", "#0369a1", "#075985",
-              "#566573", "#78281f"
-            ]
+            "scheme": "tableau10"
           },
           "legend": {"orient": "right"}
         },
         "stroke": {
-          "condition": {"param": "sc_node_hover", "value": "#0f172a"},
+          "condition": {"param": "sc_node_hover_unique", "value": "#0f172a"},
           "value": "transparent"
         },
         "strokeWidth": {"value": 2},
         "opacity": {
-          "condition": {"param": "sc_node_hover", "value": 1.0},
+          "condition": {"param": "sc_node_hover_unique", "value": 1.0},
           "value": 0.7
         },
         "tooltip": [

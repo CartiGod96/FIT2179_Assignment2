@@ -6,12 +6,12 @@
   "data": { "url": "data/nbl_ladder_history.csv" },
   "params": [
     {
-      "name": "nbl_bump_exclusive_sig",
+      "name": "bm_exclusive_legend_axis",
       "select": {"type": "point", "fields": ["team_name"]},
       "bind": "legend"
     },
     {
-      "name": "nbl_bump_hover_sig",
+      "name": "bm_hover_interactive_node",
       "select": {"type": "point", "on": "mouseover", "clear": "mouseout", "fields": ["team_name"]}
     }
   ],
@@ -36,7 +36,7 @@
       "scale": {"scheme": "tableau10"}
     },
     "opacity": {
-      "condition": {"param": "nbl_bump_exclusive_sig", "value": 1},
+      "condition": {"param": "bm_exclusive_legend_axis", "value": 1},
       "value": 0.15
     }
   },
@@ -48,7 +48,7 @@
       },
       "encoding": {
         "strokeWidth": {
-          "condition": {"param": "nbl_bump_hover_sig", "value": 6.5},
+          "condition": {"param": "bm_hover_interactive_node", "value": 6.5},
           "value": 3.5
         }
       }
@@ -60,7 +60,7 @@
       },
       "encoding": {
         "size": {
-          "condition": {"param": "nbl_bump_hover_sig", "value": 160},
+          "condition": {"param": "bm_hover_interactive_node", "value": 160},
           "value": 60
         },
         "tooltip": [

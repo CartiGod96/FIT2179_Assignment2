@@ -8,7 +8,7 @@
   },
   "params": [
     {
-      "name": "quad_minutes_filter_unique",
+      "name": "qd_filter_minutes_slider",
       "value": 10,
       "bind": {
         "input": "range",
@@ -17,14 +17,10 @@
         "step": 1,
         "name": "Minimum Minutes Played per Game: "
       }
-    },
-    {
-      "name": "nbl_quadrant_hover_sig",
-      "select": {"type": "point", "on": "mouseover", "clear": "mouseout"}
     }
   ],
   "transform": [
-    {"filter": "datum.Minutes_A >= quad_minutes_filter_unique"},
+    {"filter": "datum.Minutes_A >= qd_filter_minutes_slider"},
     {"filter": "datum.ARR > 0"}
   ],
   "layer": [
@@ -32,9 +28,13 @@
       "name": "scatter_layer",
       "params": [
         {
-          "name": "quad_legend_select_unique",
+          "name": "qd_legend_toggle_axis",
           "select": {"type": "point", "fields": ["Team"]},
           "bind": "legend"
+        },
+        {
+          "name": "qd_hover_interactive_node",
+          "select": {"type": "point", "on": "mouseover", "clear": "mouseout"}
         }
       ],
       "mark": {"type": "circle", "cursor": "pointer"},
@@ -52,7 +52,7 @@
           "scale": {"domain": [0, 2.5]}
         },
         "size": {
-          "condition": {"param": "nbl_quadrant_hover_sig", "value": 340},
+          "condition": {"param": "qd_hover_interactive_node", "value": 340},
           "field": "Matches",
           "type": "quantitative",
           "title": "Games Played",
@@ -64,17 +64,17 @@
           "scale": {"scheme": "tableau10"}
         },
         "stroke": {
-          "condition": {"param": "nbl_quadrant_hover_sig", "value": "#0f172a"},
+          "condition": {"param": "qd_hover_interactive_node", "value": "#0f172a"},
           "value": "transparent"
         },
         "strokeWidth": {
-          "condition": {"param": "nbl_quadrant_hover_sig", "value": 2},
+          "condition": {"param": "qd_hover_interactive_node", "value": 2},
           "value": 0
         },
         "opacity": {
           "condition": [
-            {"param": "nbl_quadrant_hover_sig", "value": 1.0},
-            {"param": "quad_legend_select_unique", "value": 0.75}
+            {"param": "qd_hover_interactive_node", "value": 1.0},
+            {"param": "qd_legend_toggle_axis", "value": 0.75}
           ],
           "value": 0.08
         },

@@ -25,7 +25,6 @@
   ],
   "layer": [
     {
-      "name": "scatter_layer",
       "params": [
         {
           "name": "qd_legend_toggle_axis",
@@ -34,7 +33,7 @@
         },
         {
           "name": "qd_hover_interactive_node",
-          "select": {"type": "point", "on": "mouseover", "clear": "mouseout"}
+          "select": {"type": "point", "on": "mouseover", "clear": "mouseout", "empty": "none"}
         }
       ],
       "mark": {"type": "circle", "cursor": "pointer"},

@@ -17,6 +17,10 @@
         "step": 1,
         "name": "Minimum Minutes Played per Game: "
       }
+    },
+    {
+      "name": "node_hover",
+      "select": {"type": "point", "on": "mouseover", "clear": "mouseout"}
     }
   ],
   "transform": [
@@ -33,7 +37,7 @@
           "bind": "legend"
         }
       ],
-      "mark": {"type": "circle", "opacity": 0.7},
+      "mark": {"type": "circle", "cursor": "pointer"},
       "encoding": {
         "x": {
           "field": "ARR",
@@ -48,6 +52,7 @@
           "scale": {"domain": [0, 2.5]}
         },
         "size": {
+          "condition": {"param": "node_hover", "value": 340},
           "field": "Matches",
           "type": "quantitative",
           "title": "Games Played",
@@ -58,8 +63,19 @@
           "type": "nominal",
           "scale": {"scheme": "tableau10"}
         },
+        "stroke": {
+          "condition": {"param": "node_hover", "value": "#0f172a"},
+          "value": "transparent"
+        },
+        "strokeWidth": {
+          "condition": {"param": "node_hover", "value": 2},
+          "value": 0
+        },
         "opacity": {
-          "condition": {"param": "legend_select", "value": 0.75},
+          "condition": [
+            {"param": "node_hover", "value": 1.0},
+            {"param": "legend_select", "value": 0.75}
+          ],
           "value": 0.08
         },
         "tooltip": [

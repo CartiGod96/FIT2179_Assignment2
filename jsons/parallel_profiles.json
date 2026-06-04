@@ -104,42 +104,59 @@
       "as": ["Metric", "Percentile_Value"]
     }
   ],
-  "mark": {
-    "type": "line", 
-    "opacity": 0.4, 
-    "strokeWidth": 2,
-    "interpolate": "linear"
-  },
-  "encoding": {
-    "x": {
-      "field": "Metric",
-      "type": "nominal",
-      "title": "Roster Metric Axes",
-      "sort": ["Mins/G", "Pts/G", "Impact (PIE)", "Rim Def (ARR)"],
-      "axis": {"labelAngle": 0, "grid": true}
-    },
-    "y": {
-      "field": "Percentile_Value",
-      "type": "quantitative",
-      "title": "League Percentile Rank (0 to 1.0)",
-      "axis": {"format": ".0%"}
-    },
-    "color": {
-      "field": "Team",
-      "type": "nominal",
-      "title": "Team Squad",
-      "scale": {"scheme": "tableau10"}
-    },
-    "detail": {"field": "Player"},
-    "tooltip": [
-      {"field": "Player", "type": "nominal", "title": "Player"},
-      {"field": "Team", "type": "nominal", "title": "Team"},
-      {"field": "Minutes_A", "type": "quantitative", "title": "Mins/G"},
-      {"field": "Points_A", "type": "quantitative", "title": "Pts/G"},
-      {"field": "PIE", "type": "quantitative", "title": "PIE Metric"},
-      {"field": "ARR", "type": "quantitative", "title": "ARR Index"}
-    ]
-  },
+  "layer": [
+    {
+      "params": [
+        {
+          "name": "profile_hover",
+          "select": {"type": "point", "on": "mouseover", "clear": "mouseout", "nearest": true, "fields": ["Player"]}
+        }
+      ],
+      "mark": {
+        "type": "line", 
+        "interpolate": "linear",
+        "cursor": "pointer"
+      },
+      "encoding": {
+        "x": {
+          "field": "Metric",
+          "type": "nominal",
+          "title": "Roster Metric Axes",
+          "sort": ["Mins/G", "Pts/G", "Impact (PIE)", "Rim Def (ARR)"],
+          "axis": {"labelAngle": 0, "grid": true}
+        },
+        "y": {
+          "field": "Percentile_Value",
+          "type": "quantitative",
+          "title": "League Percentile Rank (0 to 1.0)",
+          "axis": {"format": ".0%"}
+        },
+        "strokeWidth": {
+          "condition": {"param": "profile_hover", "value": 4.5},
+          "value": 1.5
+        },
+        "color": {
+          "field": "Team",
+          "type": "nominal",
+          "title": "Team Squad",
+          "scale": {"scheme": "tableau10"}
+        },
+        "opacity": {
+          "condition": {"param": "profile_hover", "value": 1.0},
+          "value": 0.2
+        },
+        "detail": {"field": "Player"},
+        "tooltip": [
+          {"field": "Player", "type": "nominal", "title": "Player"},
+          {"field": "Team", "type": "nominal", "title": "Team"},
+          {"field": "Minutes_A", "type": "quantitative", "title": "Mins/G"},
+          {"field": "Points_A", "type": "quantitative", "title": "Pts/G"},
+          {"field": "PIE", "type": "quantitative", "title": "PIE Metric"},
+          {"field": "ARR", "type": "quantitative", "title": "ARR Index"}
+        ]
+      }
+    }
+  ],
   "config": {
     "axis": {"titleFontWeight": "bold", "labelFontSize": 11}
   }

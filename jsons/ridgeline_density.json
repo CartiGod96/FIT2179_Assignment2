@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Ridgeline Plot of Supercoach Production Rate - With Tooltips",
+  "description": "Ridgeline Plot of Supercoach Production Rate - Resized",
   "data": {"url": "data/nbl-player-stats.csv"},
   "facet": {
     "row": {
@@ -18,7 +18,7 @@
   },
   "spacing": -26,
   "spec": {
-    "width": 580,
+    "width": 440,
     "height": 45,
     "autosize": {
       "type": "fit-x",

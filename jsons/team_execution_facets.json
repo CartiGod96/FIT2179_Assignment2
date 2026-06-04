@@ -4,6 +4,7 @@
   "data": {
     "url": "data/nbl-player-stats.csv"
   },
+  "spacing": 40,
   "transform": [
     {"filter": "datum.Minutes_A > 5"},
     {"filter": "datum.FIC > 0"},
@@ -33,7 +34,7 @@
   ],
   "hconcat": [
     {
-      "width": 240,
+      "width": 220,
       "height": 340,
       "title": "Volume: Minutes vs Total FIC",
       "mark": {"type": "circle", "size": 55},
@@ -71,7 +72,7 @@
       }
     },
     {
-      "width": 240,
+      "width": 220,
       "height": 340,
       "title": "Game Swing: True Shot % vs Player Impact",
       "mark": {"type": "circle", "size": 55},
@@ -110,7 +111,7 @@
       }
     },
     {
-      "width": 240,
+      "width": 220,
       "height": 340,
       "title": "Versatility: Workload vs All-Round Rating",
       "mark": {"type": "circle", "size": 55},
